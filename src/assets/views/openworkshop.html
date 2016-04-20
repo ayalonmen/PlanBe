@@ -1,0 +1,207 @@
+
+<form ovalidate id="listForm" >
+
+
+    <!-----------Main ROW ------------------------>
+    <div class="row">
+
+
+        <div id="sec1">
+            <div class="small-12 columns">
+                <label>Workshop title
+                    <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="name">
+                    <span class="form-error">
+          Yo, you had better fill this out, it's required.
+        </span>
+                </label>
+            </div>
+
+            <div class="small-6 columns">
+                <label>Category
+                    <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="category">
+                    <span class="form-error">
+          Yo, you had better fill this out, it's required.
+        </span>
+                </label>
+            </div>
+
+            <div class="small-6 columns">
+                <label>Sub Category
+                    <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="subcategory">
+                    <span class="form-error">
+          Yo, you had better fill this out, it's required.
+        </span>
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>Description
+                    <textarea type="text" placeholder="Decription" aria-describedby="exampleHelpText" rows="5" required name="desc"></textarea>
+                    <span class="form-error">
+          Yo, you had better fill this out, it's required.
+        </span>
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>Add tags
+                    <input type="text" placeholder="Enter tags separated by comma  : example: cooking,vegan,food etc." aria-describedby="exampleHelpText" required name="tags">
+                    <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+                </label>
+            </div>
+
+            <div class="small-4 columns">
+              <label>Country
+                <select id="select" required name="country">
+                  <option value=""></option>
+                  <option value="US">United States</option>
+                  <option value="IL">Israel</option>
+                </select>
+              </label>
+            </div>
+            <div class="small-4 columns end">
+              <label>City
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" data-abide-ignore name="city">
+              </label>
+            </div>
+          </div>
+
+            <!--div class="small-12 columns">
+                <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec1','sec2')">Next</button>
+            </div-->
+
+        <!-- End of Sec1 ------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+        <div  id="sec2">
+            <div class="small-12 columns">
+            <fieldset class="fieldset" >
+                <legend>What will participants learn?</legend>
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="learn1">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="learn2">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="learn3">
+                <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+            </fieldset>
+ </div>
+
+        <div class="small-12 columns">
+            <fieldset class="fieldset">
+                <legend>Who is it for?</legend>
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="for1">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="for2">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="for3">
+                <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+            </fieldset>
+        </div>
+
+        <div class="small-12 columns">
+            <fieldset class="fieldset">
+                <legend>Need to Know</legend>
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" required name="need1">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="need2">
+                <input type="text" placeholder="" aria-describedby="exampleHelpText" name="need3">
+                <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+            </fieldset>
+        </div>
+
+
+        <div class="small-12 columns">
+            <fieldset class="fieldset">
+                <legend>Please choose session type</legend>
+            <div class="expanded button-group">
+                <a class="button" onclick="toggleSession('btn_multi_session','btn_one_session','session_type')" id="btn_one_session" name="one">One Time √ </a>
+                <a class="button hollow" onclick="toggleSession('btn_one_session','btn_multi_session','session_type')" id="btn_multi_session" name="multi">Multi Session</a>
+            </div>
+        </fieldset>
+        </div>
+
+
+
+        <div class="small-4 columns">
+            <label>How many available seats?
+                <input type="number" placeholder="1" aria-describedby="exampleHelpText" required pattern="number" name="seats">
+                <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+            </label>
+        </div>
+
+
+        <!--div class="small-12 columns">
+            <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec3')">Next</button>
+        </div-->
+
+        <div class="small-12 columns" id="sec3">
+            <fieldset class="fieldset">
+                <legend>Add images o videos</legend>
+                <div class="pb_row" data-equalizer data-equalize-on="medium" id="img_container">
+                    <div class="small-4 pb_columns end" id="click_add">
+                        <div class="callout" data-equalizer-watch><img src="https://placeholdit.imgix.net/~text?txtsize=45&txt=Click-to-Add&w=200&h=200&bg=cccccc" id="wimg1" style="cursor:pointer" onclick="performClick('img_1_file');" /></img>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="small-6 columns">
+            <label>Price
+                <div class="callout">Please set the price</div>
+            </label>
+        </div>
+
+        <div class="small-6 columns" style="padding-top:10px;">
+            <div class="callout">
+                <input type="number" placeholder="" aria-describedby="exampleHelpText" required name="price">
+            </div>
+                <span class="form-error">
+      Yo, you had better fill this out, it's required.
+    </span>
+            </label>
+        </div>
+        <div class="small-12 columns">
+            <fieldset class="fieldset">
+                <legend>Volume</legend>
+                <div class="callout secondary float-left">Give discout for volume</div>
+
+                    <div class="callout  float-left"><input type="number" placeholder="" aria-describedby="exampleHelpText" required name="volume"></div>
+                    <div class="callout  float-left"><input type="number" placeholder="" aria-describedby="exampleHelpText" required name="volume_price"></div>
+            </fieldset>
+        </div>
+        <div class="small-12 columns">
+            <fieldset class="fieldset">
+                <legend>Please choose cancelation policy</legend>
+            <div class="expanded button-group">
+                <a class="button" onclick="toggleSession('btn_strict_session','btn_easy_session','policy_type')" id="btn_easy_session" name="easy">EASY √ </a>
+                <a class="button hollow" onclick="toggleSession('btn_easy_session','btn_strict_session','policy_type')" id="btn_strict_session" name="strict">STRICT</a>
+            </div>
+        </fieldset>
+        </div>
+
+
+
+        <div class="small-12 columns">
+            <fieldset class="fieldset hide" id="hidden_set">
+                <legend>Hidden</legend>
+                <input type="text"  class="hide" id="session_type" value="one"/>
+                    <input type="text"  class="hide" id="policy_type" value="easy"/>
+            </fieldset>
+        </div>
+
+        <div class="small-12 columns">
+
+            <button class="large button float-right" type="submit" value="Submit">Submit</button>
+            <input type="file" name="img_1_file" class="hide" id="img_1_file" />
+
+        </div>
+
+
+    </div>
+</form>

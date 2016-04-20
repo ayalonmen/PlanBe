@@ -1,0 +1,32 @@
+  <div class="pb_row" >
+<form  name="logForm" ng-submit="submit()" novalidate ng-model="logForm">
+<div class="small-12 medium-6 pb_columns centered" style="margin-top:40px;border:solid 1px #CCCCCC;background-color:#EEEEEE" >
+    <div class="pb_row"  >
+        <div class="alert callout" ng-show='error!="" '>
+  <p>{[{error}]}</p>
+</div>
+    <div class="small-12 medium-12 pb_columns">
+      <label>Email
+        <input type="email" placeholder="me@something.com" ng-model="username" name="username" required>
+      </label>
+    </div>
+</div>
+
+
+<div class="pb_row">
+    <div class="small-12 medium-12 pb_columns">
+      <label>Password
+        <input type="password" id="password" placeholder="yeti4preZ" name="password" ng-model="password" required  ng-minlength="6" ng-maxlength="12">
+      </label>
+    </div>
+  </div>
+
+  <div class="pb_row">
+      <div class="small-4 pb_columns">
+        <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : logForm.username.$invalid || logForm.password.$invalid}">Submit</button>
+
+      </div>
+
+    </div>
+    </form>
+</div>

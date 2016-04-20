@@ -1,0 +1,23 @@
+
+<div class="pb_top_bar" id="site_main_header" style="z-index:5;position:fixed;width:100%;background-color:#333333;height:60px;">
+<div class="pb_row expanded" style="padding-top:10px;">
+    <div class="small-2 large-1 columns">
+        <a href="home.html">PlanBE</a>
+    </div>
+    <div class="small-2  columns">
+            <a id="header_become_guide" class="hollow button " ng-click="navigateToOpenWorkshop()" style="margin:0;">List a Workshop</a>
+    </div>
+    <div class="small-6 columns">
+        <div class="input-group float-left" >
+            <input class="input-group-field" type="url">
+            <a class="input-group-button button">Search</a>
+        </div>
+    </div>
+    <div class="small-2 columns">
+        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateToLogin()">Sign In</a>
+       <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateToRegister()">Sign Up</a>
+       <a id="header_id_logout"  ng-hide="!isLogged"   ng-click="signOut()">Log Out</a>
+         <!--a style="background-color:white;font-size:14px;">logged : {[{isLogged}]}</a> -->
+    </div>
+</div>
+</div>

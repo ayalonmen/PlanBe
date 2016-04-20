@@ -1,0 +1,203 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import 'motion-ui';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-accordion;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-close-button;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-flex-video;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-menu;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
+
+.pb_hero{
+    background-size: cover;
+    height: 37vh;
+}
+@mixin pb_rounded_div ($rad,$wid,$hyt) {
+      border-radius: $rad;
+      width: $wid;
+      height:$hyt;
+      background-color: white;
+      border-style: solid;
+      border-width: thick;
+      border-color: white;
+    }
+.pb_profilepic
+{
+    @include pb_rounded_div(50%,180px,180px);
+    display: table;
+    position: relative;
+    margin-top: -100px;
+    z-index: 2;
+    background-size: contain;
+    background-image: url('http://www.aaedits.co.uk/wp-content/uploads/2015/11/Small-Business-Saturday-UK-Logo-2015-Blue-Hi-Res.jpg');
+    background-repeat: no-repeat;
+}
+
+.ng-invalid.ng-dirty
+{
+    border-color:red;
+    color:red;
+}
+.ng-valid.ng-dirty
+{
+    border-color:green;
+        color:green;
+}
+
+
+.pb_profilepic_inline
+{
+    @include pb_rounded_div(50%,100px,100px);
+    background-size: contain;
+    background-image: url('http://www.aaedits.co.uk/wp-content/uploads/2015/11/Small-Business-Saturday-UK-Logo-2015-Blue-Hi-Res.jpg');
+    background-repeat: no-repeat;
+}
+.pb_profile_header
+{
+    height: 38vh;
+}
+.pb_row{
+    @extend .row;
+    border-width:0px;
+    border-color: #bbbbbb;
+    border-style:solid;
+}
+.pb_columns{
+    @extend .columns;
+    border-width:0px;
+    border-color: #EEEEEE;
+    border-style:solid;
+}
+.pb_test_border
+{
+    border: solid 1px #bbbbbb;
+}
+
+.result_card {
+    border-radius: 0px;
+    display: block;
+    margin: 0 0 0 0;
+    cursor: pointer;
+   }
+   .result_card_tight {
+       @extend .result_card;
+      }
+
+.exp-bg-single{
+        height:140px;
+        background: no-repeat center center;
+        background-size: cover;
+        background-color: #414741;
+        background-blend-mode: overlay;
+        position:relative;
+     }
+
+     .exp-bg-single  h1{
+
+       line-height: 28px;
+       font-size: 11px;
+       cursor: pointer;
+       color: #fff;
+       font-size: 24px;
+       font-weight: bold;
+     }
+     .dark-label{
+      height:76px;
+      width:100%;
+      background-color:rgba(0,0,0,0.65);
+      position:absolute;
+      bottom:0;
+      left:0;
+      }
+
+      .dark-label h1{
+               color:#00d8b7 !important;
+               font-weight: 500 !important;
+               font-size: 28px;
+               margin-top:-10px;
+               line-height: 28px;
+               }
+      .dark-label h3{
+                   color:#00d8b7;
+                   font-weight: 300;
+                   margin-top:20px;
+                   margin-left:20px;
+                   font-style: normal;
+                   font-size: 12px;
+                   line-height: 10px;
+                   }
+
+
+
+@media screen and #{breakpoint(small down)}  {
+    .pb_profilepic
+    {
+        @include pb_rounded_div(50%,80px,80px);
+        display: table;
+        position: relative;
+        margin-top: -40px;
+    }
+}
+.pb_label
+{
+    @extend .label;
+    margin-right: 8px;
+}
+.pb_center{
+    margin: auto;
+    width: 60%;
+    border: 0px solid #73AD21;
+    padding: 10px;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+
+
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
