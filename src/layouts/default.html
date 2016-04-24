@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="{{root}}assets/css/app.css">
   </head>
   <body ng-controller="Main">
-<pb-header is-logged="isLogged" sign-out="signOut" navigate-to-login="navigateToLogin" navigate-to-register="navigateToRegister" navigate-to-open-workshop="navigateToOpenWorkshop"></pb-header>
+<pb-header is-logged="isLogged" sign-out="signOut" navigate-to="navigateTo"></pb-header>
 <div style="padding-top:60px;min-height:90vh;">
+
 <div ng-view></div>
 </div>
+<!--div>{[{userDetails}]}</div-->
 <pb-footer></pb-footer>
     <script src="{{root}}assets/js/app.js"></script>
   </body>

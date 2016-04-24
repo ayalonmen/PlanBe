@@ -7,8 +7,10 @@ var myApp = angular.module('myApp', [
   'home',
   'register',
    'login',
-   'openworkshop'
-])
+   'openworkshop',
+    'workshop',
+    'business'
+]);
 
 /** Application Data */
 myApp.constant("Data_Model", {
@@ -28,21 +30,54 @@ myApp.globals =   {
 
 myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$scope',function(Backand,$rootScope,$location,SessionManager,$scope)
 {
-    $scope.isLogged = SessionManager.api.isLoggedIn();
-    $scope.user = SessionManager.api.getUserName();
 
-    $rootScope.$on(Backand.EVENTS.SIGNOUT,function()
+    ////LISTENERS
+$rootScope.$on(Backand.EVENTS.SIGNUP,function()
 {
-    $scope.isLogged = SessionManager.api.isLoggedIn();
-    $location.url("")
-})
+    $scope.setSessionData()
+
+});
+
+$rootScope.$on(Backand.EVENTS.SIGNOUT,function()
+{
+$scope.setSessionData();
+$location.url("")
+});
+
 $rootScope.$on(Backand.EVENTS.SIGNIN,function()
 {
-    $scope.isLogged = SessionManager.api.isLoggedIn();
+    $scope.setSessionData();
     $location.url("")
-})
-$scope.signOut= function(destination)
+});
+/////METHODS
+
+    $scope.setSessionData=function()
+    {
+        SessionManager.api.getUserDetails().then(function(data)
+    {
+        console.log("Main -------------");
+        $scope.userDetails  = data;
+        $scope.isLogged = SessionManager.api.isLoggedIn();
+        console.log(" -------------")
+    })
+    };
+
+
+
+$scope.signUp=function(userObj)
 {
+    SessionManager.api.signUp(userObj.firstName,userObj.lastName,userObj.email,userObj.password, userObj.confirmPassword).then(function(data)
+{
+   $rootScope.$broadcast("SERVER_REGISTRATION_OK", "");
+
+},function(data, status, headers, config)
+{
+      $rootScope.$broadcast("SERVER_REGISTRATION_ERROR", "");
+})
+
+};
+
+$scope.signOut= function(caller,destination) {
     var url = "";
     if(destination !== "undefined")
     {
@@ -50,20 +85,59 @@ $scope.signOut= function(destination)
     }
 SessionManager.api.signout();
 $location.url(url)
-}
-$scope.navigateToLogin= function()
+};
+
+$scope.navigateTo=function(caller,destination)
 {
-$location.url("/login")
-}
-$scope.navigateToRegister= function()
+    var url = "";
+    if (destination !== "undefined") {
+        url = destination
+    }
+    $location.url(url)
+};
+
+$scope.signIn = function(caller,username,password)
 {
-$location.url("/register")
-}
-$scope.navigateToOpenWorkshop= function()
-{
-$location.url("/openworkshop")
-}
-}])
+    SessionManager.api.signin(username,password);
+};
+
+$scope.openBusiness = function(bizObj){
+
+       bizObj.owner = $scope.userDetails.userId;
+      SessionManager.api.create("businesses",bizObj).then(function(data){
+          //TODO
+          console.log("Success on create business");
+          $rootScope.$broadcast("CREATE_BUSINESS_SUCCESS", data);
+      },function(data)
+  {
+      //TODO
+      console.log("Error on create business")
+  })
+};
+
+$scope.openWorkshop= function(wsObj){
+
+
+      SessionManager.api.create("workshops",wsObj).then(function(data){
+          //TODO
+          console.log("Success on create workshop");
+          $scope.navigateTo("self" , "/workshop/"+ ( data.data["__metadata"]).id)
+      },function(data)
+  {
+      //TODO
+      console.log("Error on create workshop")
+  })
+};
+    $scope.readOne  = function (name, id, deep, level) {
+    return SessionManager.api.readOne(name, id, deep, level)
+};
+
+
+//////CONFIG
+    $scope.userDetails={};
+    $scope.setSessionData()
+
+}]);
 
 myApp.config(['$routeProvider','$interpolateProvider',function($routeProvider,$interpolateProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});
@@ -76,93 +150,8 @@ myApp.config(function (BackandProvider) {
      BackandProvider.setAnonymousToken(myApp.globals["ANONYMOUS_TOKEN"]);
  })
 
- .directive("registrationForm" ,function(){
-          return {
-              restrict: "E",
-              templateUrl:'../../assets/templates/registration-form.html',
-              scope:{},
-              controller: function($scope,Backand,$http,$location)
-              {
-                         $scope.newUser =   {firstName:"Jim",lastName: "Curry",email: "string@strong.",password: "123123", confirmPassword: "123123"};
-                         $scope.regForm= null;
-                         $scope.error = ""
-                         $scope.submit = function () {
-                            console.log("create")
-                            console.log($scope.newUser)
-                           return $http({
-                             method: 'POST',
-                             url : Backand.getApiUrl() + "/1/user/signup",
-                             headers: {
-                               'SignUpToken': 'dcca42b9-588a-4be5-b56a-eecd5d9aebb8'
-                             },
-                             data:  $scope.newUser
-                           }).then(function(response) {
-                                    console.log("Post SignUP")
-                                    console.log(response.data)
-                                    $location.url("/login");
-                           });
-                       }
-              },
-              controllerAs:'ctrl'
-          }
- })
 
- .directive("loginForm" ,function(){
-          return {
-              restrict: "E",
-              templateUrl:'../../assets/templates/login-form.html',
-              controller: function($scope,Backand,$http,$location)
-              {
-                  $scope.username ="";
-                  $scope.password ="";
-                 $scope.logForm= null;
-                 $scope.error = ""
-                 $scope.submit = function() {
-                console.log("Controller signin")
-                   Backand.signin($scope.username, $scope.password)
-                   .then(
-                     function (data, status, headers, config) {
-                       //enter session
-                       console.log(data)
 
-                     },
-                     function (data, status, headers, config) {
-
-                         console.log( data)
-                         $scope.error = "Something went wrong. Seems like "  + data.error_description;
-                         $scope.password=""
-                         console.log(     $scope.logForm.$submitted)
-                     }
-                   );
-                 }
-              },
-              controllerAs:'ctrl'
-          }
- })
-
- .directive("pbHeader" ,function(){
-          return {
-              restrict: "E",
-              templateUrl:'../../assets/templates/pb-header.html',
-              replace:true,
-              scope:{
-                  isLogged: "=",
-                  signOut:"=",
-                   navigateToLogin:"=",
-                   navigateToRegister: "=",
-                     navigateToOpenWorkshop: "="
-              },
-              controllerAs:'ctrl'
-          }
- })
-
- .directive("pbFooter" ,function(){
-          return {
-              restrict: "E",
-              templateUrl:'../../assets/templates/pb-footer.html',
-
-          }
- })
 
  .directive('compareTo',  function() {
      return {
@@ -183,25 +172,101 @@ myApp.config(function (BackandProvider) {
      };
  })
 
- .factory('SessionManager', ['Backand',function(Backand){
+ .factory('SessionManager', ['Backand','$http',function(Backand,$http){
    var o = {};
    o.api={};
 
    o.api.isLoggedIn = function(){
        return Backand.getToken()!==null;
    };
-o.api.getUserName=function()
-{
+o.api.getUserName=function() {
     return Backand.getUsername();
-}
-o.api.signout = function()
-{
+};
+o.api.getUserDetails=function() {
+    return Backand.getUserDetails()
+};
+o.api.signout = function() {
     Backand.signout();
-}
+};
+o.api.signin = function(username,password)
+{
+    Backand.signin(username, password).then(function (data, status, headers, config) {
+        //enter session
+        console.log("POST SIGNIN");
+        console.log(data)
+    },
+      function (data, status, headers, config) {
+          console.log( data);
+      });
+  };
+o.api.signUp = function(firstName,lastName,email,password,confirmPassword)
+{
+    console.log(firstName + ": " +lastName+  ": " + email+": " +password+ ": " +confirmPassword);
+    return Backand.signup(firstName,lastName,email,password,confirmPassword)
+};
+        o.api.readOne=  function (name, id, deep, level) {
+            return $http({
+                method: 'GET',
+                url: Backand.getApiUrl() + '/1/objects/' + name + '/' + id,
+                params: {
+                    deep: deep,
+                    level: level
+                }
+            });
+        };
+
+o.api.readList  = function(name, sort, filter) {
+      return $http({
+        method: 'GET',
+        url: Backand.getApiUrl() + '/1/objects/' + name,
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          filter: filter || '',
+          sort: sort || ''
+        }
+      });
+  };
+
+  o.api.create  = function(name,dataObj) {
+        return     $http({
+               method: 'POST',
+               url : Backand.getApiUrl() + "/1/objects/" + name,
+               data:  dataObj
+    });
+};
 
 
-   return o;
+
+
+    return o;
 }]);
 
-
 $(document).foundation();
+
+
+/*$scope.submit = function () {
+   console.log("create");
+   console.log($scope.newUser);
+ /*return $http({
+    method: 'POST',
+    url : Backand.getApiUrl() + "/1/user/signup",
+    headers: {
+      'SignUpToken': 'dcca42b9-588a-4be5-b56a-eecd5d9aebb8'
+    },
+    data:  $scope.newUser
+  }).then(function(response) {
+           console.log("Post SignUP");
+           console.log(response.data);
+           $location.url("/login");
+  });
+}
+{
+
+
+
+
+
+
+
+*/
