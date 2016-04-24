@@ -1,2 +1,23 @@
-<p ng-show="ctrl.userStatus">You are Logged</p>
-<p>Welcome to PlanBe</p>
+<div class="pb_row" style="margin-top:5%" >
+
+<div class="small-12 medium-12 pb_columns centered">
+        <div ng-show="isLogged" class="fade-in">
+            <h2>
+            Hi {[{userDetails.firstName}]}, <br>
+            Welcome to PlanBE
+        </h2>
+       </div>
+
+       <div ng-show="!isLogged" class="fade-in">
+           <h1>PlanBE </h1>
+           <h3>Live a richer life..<h3>
+               <br>
+           <h4>
+           Hello there, <br>  </h4>
+          <h5> This PlanBE application. Login to become a part of our community</h5>
+
+      </div>
+
+
+</div>
+</div>

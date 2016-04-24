@@ -6,14 +6,14 @@
         <div class="callout primary">
     <h4>  Hey, you are trying to register but It seems like you're already signed in as  {[{user}]}.</h4><br>
     <h5>Not you? Please sign out first:</h5>
-    <button  class="button" ng-click="signOut('/register')">Sign Out<button/>
+    <button  class="button" ng-click="signOut('register','/register')">Sign Out<button/>
 </div>
     </div>
     </div>
 
     <div class="pb_row">
     <div class="small-8 pb-columns">
-<registration-form ng-hide="isLogged"></registration-form>
+<registration-form ng-hide="isLogged" sign-up="signUp"></registration-form>
 </div>
 </div>
 

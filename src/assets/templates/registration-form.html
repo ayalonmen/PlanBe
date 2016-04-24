@@ -1,57 +1,68 @@
-<div class="row" ng-directive="registrationForm" >
-    <div class="large-12 columns">
-        <h1>Please Create an Account</h1>
+<div ng-show="!regForm.$submitted" class="fade-in">
+    <div class="pb_row">
+        <div class="large-12 columns">
+            <h1>Please Create an Account</h1>
+        </div>
     </div>
+        <div class="pb_row">
+            <div class="large-8 medium-6 columns">
+                <form id="regForm" ng-submit="signUp(newUser)" ng-model="regForm" name="regForm" novalidate>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <label>First Name
+                                <input type="text" placeholder="John" name="firstName" ng-model="newUser.firstName" required>
+                            </label>
+                        </div>
+            </div>
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <label>Last Name
+                                    <input type="text" placeholder="Doe" name="lastName" ng-model="newUser.lastName" required>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-12 columns">
+
+                                <label>Email
+                                    <input type="email" placeholder="me@something.com" name="email" ng-model="newUser.email" required>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-12 columns">
+
+                                <label>Password Required
+                                    <input type="password" id="password" placeholder="yeti4preZ" name="password" ng-model="newUser.password" ng-minlength="6" ng-maxlength="12" requierd>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-12 columns">
+
+                                <label>Re-enter Password
+                                    <input type="password" placeholder="yeti4preZ" name="confirmPassword" ng-model="newUser.confirmPassword" compare-to="newUser.password" ng-minlength="6" ng-maxlength="12" required>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <button class="button float-right" type="submit" ng-class="{'disabled' : regForm.firstName.$invalid || regForm.lastName.$invalid || regForm.email.$invalid || regForm.password.$invalid || regForm.confirmPassword.$invalid}">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 </div>
 
-<div class="row" >
-    <div class="large-8 medium-6 columns">
-        <form id="regForm" ng-submit="submit()" ng-model="regForm" name="regForm" novalidate>
-            <div class="row">
-                <div class="small-12 columns">
-                    <label>First Name
-                        <input type="text" placeholder="John" name="firstName" ng-model="newUser.firstName" required>
-                    </label>
-                </div>
-                <div class="small-12 columns">
-                    <label>Last Name
-                        <input type="text" placeholder="Doe" name="lastName" ng-model="newUser.lastName" required>
-                    </label>
-                </div>
-                <div class="small-12 columns">
-                    <label>Email
-                        <input type="email" placeholder="me@something.com" name="email" ng-model="newUser.email" required>
-                    </label>
-                </div>
-                <div class="small-12 columns">
-                    <label>Password Required
-                        <input type="password" id="password" placeholder="yeti4preZ" name="pwd" ng-model="newUser.password" ng-minlength="6" ng-maxlength="12" requierd>
-                    </label>
-                </div>
-                <div class="small-12 columns">
-                    <label>Re-enter Password
-                        <input type="password" placeholder="yeti4preZ" name="confirmPassword" ng-model="newUser.confirmPassword" compare-to="newUser.password" ng-minlength="6" ng-maxlength="12" required>
-                    </label>
-                </div>
 
-                <div class="small-12 columns">
-                <button class="button float-right" type="submit" ng-class="{'disabled' : regForm.firstName.$invalid || regForm.lastName.$invalid || regForm.email.$invalid || regForm.password.$invalid}">Submit</button>
-        </div>
-        </div>
-        </form>
-
-
-    </div>
-    <div class="large-4 medium-6 columns">
-        <fieldset class="fieldset">
-            <legend>Object review</legend>
-            <div>
-                <p>first name:<span style="color:green"> {[{ newUser.firstName }]}</span></p>
-                <p>last name:<span style="color:green"> {[{ newUser.lastName }]}</span></p>
-                <p>email:<span style="color:green"> {[{ newUser.email }]}</span></p>
-                <p>password:<span style="color:green"> {[{ newUser.password }]}</span></p>
-                <p>confirm password: <span style="color:green">{[{ newUser.confirmPassword }]}</span></p>
-            </div>
-        </fieldset>
+<div class="pb_row" ng-show="regForm.$submitted &&  server_ok" style="margin-top:10%;">
+    <div class="large-12 columns fade-in">
+        <h1>Exciting! you've just created a brand new account in PlanBe.</h1>
+        <h3>We have sent you a confirmation email. Please validate you account.</h3>
+        <h6>user:{[{ $scope.returnedData }]}</h6>
     </div>
 </div>

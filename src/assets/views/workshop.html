@@ -1,0 +1,113 @@
+<div class="pb_row fade-in" style="margin-top:5%" >
+
+    <div class="small-8 pb_columns centered ">
+
+            <h2>
+                Welcome to Workshop {[{workshop.name}]}
+            </h2>
+        <h5>by<a class="small button" ng-click="gotoBusiness(workshop.business.id)" >{[{workshop.business.name}]}</a></h5>
+    </div>
+
+    <div class="small-4 pb_columns centered ">
+        <a class="button float-right" ng-show=" workshop.business.owner==userDetails.userId ">Edit</a>
+    </div>
+
+    <div class="small-12 medium-12 pb_columns centered">
+
+    <fieldset class="fieldset" style="background-color: #eeeeee">
+        <legend  style="border:1px solid  #cacaca;color:white;background-color: #161b1d">
+            About
+        </legend>
+        <h5>{[{workshop.description}]}</h5>
+    </fieldset>
+</div>
+
+
+    <fieldset class="fieldset" style="background-color: #eeeeee">
+        <legend  style="border:1px solid  #cacaca;color:white;background-color: #161b1d">
+            Tags
+        </legend>
+        <h5>{[{workshop.description}]}</h5>
+    </fieldset>
+</div>
+
+    <div class="small-4 medium-4 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                Price
+            </legend>
+            {[{workshop.price | currency}]}
+        </fieldset>
+    </div>
+    <div class="small-4 medium-4 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                Volume Discount
+            </legend>
+            {[{workshop.volume }]}  / {[{workshop.volumeprice | currency}]}
+        </fieldset>
+    </div>
+    <div class="small-4 medium-4 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+               Number of Seats
+            </legend>
+            {[{workshop.seats}]}
+        </fieldset>
+    </div>
+    <div class="small-12 medium-12 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                What you will learn
+            </legend>
+          <l>
+              <li ng-repeat="item in workshop.learn">
+                  {[{item}]}
+              </li>
+          </l>
+        </fieldset>
+    </div>
+<div class="small-12 medium-12 pb_columns centered">
+
+    <fieldset class="fieldset">
+        <legend>
+            Who is it for
+        </legend>
+        <l>
+            <li ng-repeat="item in workshop.whofor">
+                {[{item}]}
+            </li>
+        </l>
+    </fieldset>
+</div>
+
+    <div class="small-12 medium-12 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                Need to know
+            </legend>
+            <l>
+                <li ng-repeat="item in workshop.needto">
+                    {[{item}]}
+                </li>
+            </l>
+        </fieldset>
+    </div>
+
+
+    <div class="small-4 medium-4 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                Our Cancelation  Policy
+            </legend>
+            {[{(workshop.cancelpolicy)?"Easy" : "Strict"}]}
+        </fieldset>
+    </div>
+
+</div>

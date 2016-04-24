@@ -1,0 +1,45 @@
+<div class="pb_row fade-in" style="margin-top:5%" >
+
+    <div class="small-12 medium-12 pb_columns centered ">
+
+        <h2>
+            Welcome to  {[{business.name}]}
+        </h2>
+
+
+    </div>
+
+    <div class="small-12 medium-12 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                About
+            </legend>
+            <h5>{[{business.about}]}</h5>
+        </fieldset>
+    </div>
+
+    <div class="small-4 medium-4 pb_columns centered">
+
+        <fieldset class="fieldset">
+            <legend>
+                logo
+            </legend>
+            {[{business.logo}]}
+        </fieldset>
+    </div>
+
+ <div ng-repeat="workshop in business.workshops">
+        <div class="small-4 medium-4 pb_columns centered">
+
+            <fieldset class="fieldset" ng-click="navigateTo('business','/workshop/'+workshop.id)">
+                <legend>
+                    {[{workshop.name}]}
+                </legend>
+                {[{workshop.description}]}
+            </fieldset>
+        </div>
+    </div>
+
+
+</div>

@@ -13,7 +13,12 @@ angular.module('login', ['ngRoute'])
 
 
 
-.controller('LoginCtrl', [function() {
- this.test = "dfsfdsfds"
+.controller('LoginCtrl', ['$scope',function($scope) {
+ // this.signIn= function()
+ // {
+ //     alert('Login controller signIn()')
+ // }
 }]);
+
+
 })();

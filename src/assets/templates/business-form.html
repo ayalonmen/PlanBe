@@ -1,0 +1,77 @@
+<div class="pb_row fade-in" style="margin-top:5%;">
+    <div class="small-12 columns">
+    <h3>Hey, You need to define your business first</h3>
+    </div>
+<div class="small-12 columns">
+<form  name="bizForm" ng-submit="submitFunc(newBiz)" novalidate >
+    <div class="row">
+            <div class="small-12 columns">
+                <label>Business name
+                    <input type="text" placeholder=""  required ng-model="newBiz.name" name="name">
+                </label>
+            </div>
+
+
+        <div class="small-12 columns">
+            <label>About
+                <textarea rows="4" cols="50"  placeholder=""  required  ng-model="newBiz.about" name="about">
+                At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+                </textarea>
+
+            </label>
+        </div>
+
+
+            <div class="small-12 columns">
+                <label>Business Phone
+                    <input type="text" placeholder=""  required  ng-model="newBiz.phone" name="phone">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>Email
+                    <input type="email" placeholder=""  required  ng-model="newBiz.email" name="email">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>Country
+                    <input type="text" placeholder=""  required  ng-model="newBiz.country" name="country">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>City
+                    <input type="text" placeholder=""  required  ng-model="newBiz.city" name="city">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>PayPal
+                    <input type="text" placeholder=""  required  ng-model="newBiz.paypal" name="paypal">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>logo
+                    <input type="text" placeholder=""  required  ng-model="newBiz.logo" name="logo">
+                </label>
+            </div>
+
+            <div class="small-12 columns">
+                <label>cover
+                    <input type="text" placeholder=""  required  ng-model="newBiz.cover" name="cover">
+                </label>
+            </div>
+
+            <div class="small-12 pb_columns">
+              <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : bizForm.name.$invalid || bizForm.description.$invalid || bizForm.address.$invalid|| bizForm.phone.$invalid}">Submit</button>
+            </div>
+
+    </div>
+
+
+
+</form>
+</div>
+</div>
