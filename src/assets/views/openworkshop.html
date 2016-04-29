@@ -1,10 +1,14 @@
 
-<business-form ng-show="showBizForm" submit-func="openBusiness"></business-form>
+<business-form ng-show="ctrl.showBizForm" submit-func="openBusiness" get-url-func="readOne" upload-image="getS3Url"></business-form>
 
-<div class="pb_row" style="margin-top:5%;" ng-show="showWSForm">
+<open-workshop-one ng-show="ctrl.showWSForm==1"  submit-func="submitOne" ></open-workshop-one>
+<open-workshop-two ng-show="ctrl.showWSForm==2"  submit-func="submitTwo" ></open-workshop-two>
+<open-workshop-three ng-show="ctrl.showWSForm==3"  submit-func="submitThree" ></open-workshop-three>
+
+<!--div class="pb_row" style="margin-top:5%;" ng-show="ctrl.showWSForm">
     <div class="small-12 columns">
 <h2>Add a new workshop to your business: <br>
-     {[{newBiz.name}]}</h2> <h6>{[{newBiz}]}</h6>
+     {[{newBiz.name}]}</h2>
 <form novalidate name="wsListForm" ng-submit="prepareAndSubmit()">
 
     <div class="row">
@@ -60,7 +64,7 @@
                 <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec1','sec2')">Next</button>
             </div-->
 
-        <!-- End of Sec1 ------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- End of Sec1 ------------------------------------------------------------------------------------------------------------------------------
 
 
         <div  id="sec2">
@@ -113,7 +117,7 @@
 
         <!--div class="small-12 columns">
             <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec3')">Next</button>
-        </div-->
+        </div>
 
         <div class="small-12 columns" id="sec3">
             <fieldset class="fieldset">
@@ -174,4 +178,4 @@
 </form>
 </div>
 </div>
-</div>
+</div-->

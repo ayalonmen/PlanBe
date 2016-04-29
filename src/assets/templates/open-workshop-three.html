@@ -1,0 +1,42 @@
+<div class=" fade-in" style="margin-top:5%;" >
+    <form  name="wsFormOne" ng-submit="submitFunc(newWS)" novalidate >
+        <div class="pb_row">
+            <div class="small-12 columns">
+                <h3>Let's continue open a  workshop 3</h3>
+
+            </div>
+        </div>
+        <div class="pb_row">
+            <div class="small-12 columns">
+
+                <label>Images
+                  <div class="callout">
+                      <div class="row small-up-1 medium-up-2 large-up-4">
+                          <div class="columns">
+                            <image-uploader></image-uploader>
+                          </div>
+                          <div class="columns">
+                              <image-uploader></image-uploader>
+                          </div>
+                          <div class="columns">
+                              <image-uploader></image-uploader>
+                          </div>
+                          <div class="columns">
+                              <image-uploader></image-uploader>
+                          </div>
+                      </div>
+                      </div>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="small-6 pb_columns">
+                <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : wsFormOne.tags.$invalid || wsFormOne.country.$invalid || wsFormOne.city.$invalid}">Submit</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>

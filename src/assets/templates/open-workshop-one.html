@@ -1,0 +1,55 @@
+<div class=" fade-in" style="margin-top:5%;">
+    <form  name="wsFormOne" ng-submit="submitFunc(newWS)" novalidate >
+        <div class="pb_row">
+            <div class="small-12 columns">
+                <h3>Let's open a new workshop</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns">
+                <label>Title
+                    <input type="text" placeholder=""  required ng-model="newWS.name" name="name">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns">
+                <label>Category
+                    <input type="text" placeholder=""  required  ng-model="newWS.category" name="category">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-6 columns">
+                <label>Sub Category
+                    <input type="text" placeholder=""  required  ng-model="newWS.subcategory" name="subcategory">
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-6 columns">
+                <label>About
+                <textarea rows="4" cols="50"  placeholder=""  required  ng-model="newWS.description" name="description">
+                </textarea>
+
+                </label>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="small-6 pb_columns">
+                <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : wsFormOne.name.$invalid || wsFormOne.description.$invalid || wsFormOne.category.$invalid|| wsFormOne.subcategory.$invalid}">Submit</button>
+
+            </div>
+        </div>
+
+
+
+</form>
+</div>

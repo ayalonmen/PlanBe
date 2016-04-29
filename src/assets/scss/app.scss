@@ -184,6 +184,19 @@
     border: 0px solid #73AD21;
     padding: 10px;
 }
+
+.biz-cover{
+   height:200px;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+.biz-logo{
+   height:200px;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
 .fade-in {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
          -moz-animation: fadein 2s; /* Firefox < 16 */

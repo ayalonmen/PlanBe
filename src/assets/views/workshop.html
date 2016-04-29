@@ -3,9 +3,9 @@
     <div class="small-8 pb_columns centered ">
 
             <h2>
-                Welcome to Workshop {[{workshop.name}]}
+                 {[{workshop.name}]}
             </h2>
-        <h5>by<a class="small button" ng-click="gotoBusiness(workshop.business.id)" >{[{workshop.business.name}]}</a></h5>
+        <h5><div>By <a  ng-click="gotoBusiness(workshop.business.id)" >{[{workshop.business.name}]}</a></h5>
     </div>
 
     <div class="small-4 pb_columns centered ">
@@ -22,22 +22,26 @@
     </fieldset>
 </div>
 
+    <div class="small-12 medium-12 pb_columns centered">
 
-    <fieldset class="fieldset" style="background-color: #eeeeee">
-        <legend  style="border:1px solid  #cacaca;color:white;background-color: #161b1d">
+    <fieldset class="fieldset">
+        <legend >
             Tags
         </legend>
-        <h5>{[{workshop.description}]}</h5>
+            <div class="small-1 columns end"ng-repeat="item in workshop.tags">
+            <label class="label float-left">{[{item}]}</label>
+            </div>
+
     </fieldset>
 </div>
 
-    <div class="small-4 medium-4 pb_columns centered">
+    <div class="small-4 medium-4 columns centered">
 
-        <fieldset class="fieldset">
-            <legend>
+        <fieldset class="fieldset"  style="background-color: #7ABA7A; color:#eeeeee">
+            <legend style="background-color: #161b1d">
                 Price
             </legend>
-            {[{workshop.price | currency}]}
+            <h4>{[{workshop.price | currency}]}</h4>
         </fieldset>
     </div>
     <div class="small-4 medium-4 pb_columns centered">
