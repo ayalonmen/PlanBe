@@ -1,50 +1,48 @@
-<div class=" fade-in" style="margin-top:5%;">
-    <form  name="wsFormOne" ng-submit="submitFunc(newWS)" novalidate >
-        <div class="pb_row">
-            <div class="small-12 columns">
-                <h3>Let's open a new workshop</h3>
-            </div>
-        </div>
+<div class=" fade-in" >
+    <form  name="wsForm1" ng-submit="update(2)" novalidate >
 
         <div class="row">
-            <div class="small-6 columns">
-                <label>Title
-                    <input type="text" placeholder=""  required ng-model="newWS.name" name="name">
+            <div class="small-12 medium-8 columns">
+                <label>Workshop Title
+                    <input type="text" placeholder=""  required ng-model="workshop.name" name="name" >
                 </label>
             </div>
         </div>
 
         <div class="row">
-            <div class="small-6 columns">
-                <label>Category
-                    <input type="text" placeholder=""  required  ng-model="newWS.category" name="category">
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-6 columns">
-                <label>Sub Category
-                    <input type="text" placeholder=""  required  ng-model="newWS.subcategory" name="subcategory">
-                </label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-6 columns">
+            <div class="small-12 medium-8 columns">
                 <label>About
-                <textarea rows="4" cols="50"  placeholder=""  required  ng-model="newWS.description" name="description">
+                <textarea rows="4" cols="50"  placeholder=""  required  ng-model="workshop.description" name="description">
                 </textarea>
 
                 </label>
             </div>
         </div>
 
+        <div class="row">
+            <div class="small-6 medium-4 columns">
+                <label>Category
+                    <input type="text" placeholder=""  required  ng-model="workshop.category" name="category">
+                </label>
+            </div>
+            <div class="small-6 medium-4 columns end">
+                <label>Sub Category
+                    <input type="text" placeholder=""  required  ng-model="workshop.subcategory" name="subcategory"  ng-readonly="wsForm1.category.$invalid">
+                </label>
+            </div>
+        </div>
 
-
+        <div class="pb_row">
+            <div class="small-12 medium-8 columns">
+                <label>Tags
+                    <input type="text" placeholder="Enter tags separated by comma  : example: cooking,vegan,food etc." required name="tags" ng-model="workshop.tags" ng-readonly="wsForm1.category.$invalid ||  wsForm1.subcategory.$invalid">
+                </label>
+            </div>
+        </div>
 
         <div class="row">
-            <div class="small-6 pb_columns">
-                <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : wsFormOne.name.$invalid || wsFormOne.description.$invalid || wsFormOne.category.$invalid|| wsFormOne.subcategory.$invalid}">Submit</button>
+            <div class="small-12 medium-8 columns">
+                <button class="button float-right" type="submit"  ng-class="{'disabled' : wsForm1.name.$invalid || wsForm1.description.$invalid || wsForm1.category.$invalid|| wsForm1.subcategory.$invalid}">NEXT</button>
 
             </div>
         </div>

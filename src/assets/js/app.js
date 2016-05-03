@@ -9,7 +9,9 @@ var myApp = angular.module('myApp', [
    'login',
    'openworkshop',
     'workshop',
-    'business'
+    'business',
+    'updateworkshop' ,
+    'ngDroplet'
 ]);
 
 /** Application Data */
@@ -137,6 +139,19 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         })
     };
 
+    $scope.updateWorkshop = function (wsObj) {
+
+        SessionManager.api.update("workshops",wsObj.id, wsObj,wsObj.tags).then(function (data) {
+            //TODO
+            console.log("Success on create workshop");
+            $rootScope.$broadcast("UPDATE_WORKSHOP_SUCCESS", data);
+        }, function (data) {
+            //TODO
+            console.log("Error on create workshop")
+            $rootScope.$broadcast("UPDATE_WORKSHOP_ERROR", data);
+        })
+    };
+
     $scope.readOne = function (name, id, deep, level) {
         return SessionManager.api.readOne(name, id, deep, level)
     };
@@ -147,6 +162,11 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
        // data.url = dataObj;
         return SessionManager.api.onDemand("images","S3onDemand",dataObj)
     }
+
+    $scope.$on("REFRESH_SESSION_REQUEST",function(event)
+    {
+        $scope.setSessionData()
+    })
 
 //////CONFIG
     $scope.userDetails={};

@@ -6,18 +6,22 @@
             return {
                 restrict: "E",
                 templateUrl:'../../assets/templates/open-workshop-two.html',
-                scope:
-                {
-                    submitFunc: "=",
-                    getUrlFunc:"=",
-                    uploadImage:"=",
-                    ngShow: "="
-                },
                 controller: function($scope)
                 {
-                    $scope.newWS = {};
-                },
-                controllerAs:'ctrl'
+
+                    $scope.setPolicy=function(val)
+                    {
+                    $scope.workshop.cancelpolicy = val;
+                    console.log(val)
+                    }
+                    $scope.setSingleSession=function(val)
+                    {
+                    $scope.workshop.isMulti = val;
+                    console.log(val)
+                    }
+
+        },
+                controllerAs:'ows2ctrl'
             }
         })
 

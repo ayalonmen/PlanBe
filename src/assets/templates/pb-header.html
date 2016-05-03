@@ -1,6 +1,4 @@
-
-<div class="pb_top_bar" id="site_main_header" style="z-index:5;position:fixed;width:100%;background-color:#333333;height:60px;">
-<div class="pb_row expanded" style="padding-top:10px;">
+<div class="pb_row expanded"  id="site_main_header" style="z-index:5;position:fixed;width:100%;background-color:#333333;height:60px;padding-top:10px;">
     <div class="small-2 large-1 columns">
         <a ng-click="navigateTo('header','/home')">PlanBE</a>
     </div>
@@ -17,7 +15,6 @@
         <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')">Sign In</a>
        <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')">Sign Up</a>
        <a id="header_id_logout"  ng-hide="!isLogged"   ng-click="signOut('header')">Log Out</a>
-         <!--a style="background-color:white;font-size:14px;">logged : {[{isLogged}]}</a> -->
     </div>
 </div>
-</div>
+

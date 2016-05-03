@@ -1,3 +1,11 @@
+<div class=" row expanded">
+    <div class="columns hero" style="background-image: url('{[{workshop.assets[0].url}]}')">
+<h1>{[{workshop.name}]}</h1>
+    </div>
+</div>
+
+
+
 <div class="pb_row fade-in" style="margin-top:5%" >
 
     <div class="small-8 pb_columns centered ">
@@ -14,26 +22,33 @@
 
     <div class="small-12 medium-12 pb_columns centered">
 
-    <fieldset class="fieldset" style="background-color: #eeeeee">
-        <legend  style="border:1px solid  #cacaca;color:white;background-color: #161b1d">
-            About
-        </legend>
-        <h5>{[{workshop.description}]}</h5>
-    </fieldset>
-</div>
-
-    <div class="small-12 medium-12 pb_columns centered">
-
-    <fieldset class="fieldset">
-        <legend >
-            Tags
-        </legend>
-            <div class="small-1 columns end"ng-repeat="item in workshop.tags">
-            <label class="label float-left">{[{item}]}</label>
+    <div >
+        <label >
+            About</label>
+            <div>
+               {[{workshop.description}]}
             </div>
 
-    </fieldset>
+
+    </div>
 </div>
+
+
+        <div class="small-12 columns">
+
+            <label>Images
+                <div class="callout">
+                    <div class="row small-up-1 medium-up-2 large-up-4">
+                        <div class="columns" ng-repeat="n in workshop.assets  track by $index">
+                            <div class="callout biz-logo" style="background-image: url('{[{workshop.assets[$index].url}]}');padding:0;">
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </label>
+        </div>
+
 
     <div class="small-4 medium-4 columns centered">
 
@@ -69,7 +84,7 @@
                 What you will learn
             </legend>
           <l>
-              <li ng-repeat="item in workshop.learn">
+              <li ng-repeat="item in workshop.learn track by $index">
                   {[{item}]}
               </li>
           </l>
@@ -82,7 +97,7 @@
             Who is it for
         </legend>
         <l>
-            <li ng-repeat="item in workshop.whofor">
+            <li ng-repeat="item in workshop.whofor track by $index">
                 {[{item}]}
             </li>
         </l>

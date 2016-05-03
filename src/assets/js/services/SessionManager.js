@@ -79,8 +79,15 @@
                 })
                 };
 
-
-
+            o.api.update = function (name,id,dataObj,params) {
+                return $http({
+                    method: 'PUT',
+                    url: Backand.getApiUrl() + '/1/objects/' + name + '/' + id,
+                   data:dataObj,
+                    params:params
+                });
+            };
+            
             return o;
 
         }]);

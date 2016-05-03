@@ -12,7 +12,7 @@
         }])
 
 
-        .controller('WsCtrl', ['$routeParams','$scope',function($routeParams,$scope) {
+        .controller('WsCtrl', ['$routeParams','$scope','WorkshopHelper',function($routeParams,$scope,WorkshopHelper) {
             console.log($routeParams.id);
             $scope.wsid = $routeParams.id
             $scope.userDetails = $scope.$parent.userDetails
@@ -21,26 +21,7 @@
             {
                 console.log("Workshop found")
                 console.log(data)
-                $scope.workshop = data.data
-                $scope.workshop.learn = $scope.workshop.learn.split("-b-")
-                $scope.workshop.whofor = $scope.workshop.whofor.split("-b-")
-                $scope.workshop.needto = $scope.workshop.needto.split("-b-")
-                //We build a uinque array of tags
-                $scope.workshop.tags = $scope.workshop.tags.split(",")
-                var arr =   $scope.workshop.tags
-                var arr2 = new Array();
-                for(var i = 0; i<arr.length;i++)
-                {
-                    var item = arr[i]
-                    console.log(item)
-                    if(arr2.indexOf(item)<0)
-                    {
-                        arr2.push(item)
-                        console.log(arr2.indexOf(item))
-                    }
-
-                }
-                $scope.workshop.tags = arr2;
+                $scope.workshop = WorkshopHelper.parseWorkshop (data.data)
 
             },function(data)
             {

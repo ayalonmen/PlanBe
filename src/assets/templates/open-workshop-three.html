@@ -1,40 +1,40 @@
-<div class=" fade-in" style="margin-top:5%;" >
-    <form  name="wsFormOne" ng-submit="submitFunc(newWS)" novalidate >
-        <div class="pb_row">
-            <div class="small-12 columns">
-                <h3>Let's continue open a  workshop 3</h3>
+<div class=" fade-in" >
+    <form  name="wsForm3" ng-submit="update(showWSForm+1)" novalidate >
 
-            </div>
+        <div class="pb_row">
+
+            <div class="small-4 columns end">
+            <label>Lat
+                <input type="number" step="0.00000000001" placeholder="" ng-model="workshop.lat" name="lat">
+            </label>
         </div>
-        <div class="pb_row">
-            <div class="small-12 columns">
-
-                <label>Images
-                  <div class="callout">
-                      <div class="row small-up-1 medium-up-2 large-up-4">
-                          <div class="columns">
-                            <image-uploader></image-uploader>
-                          </div>
-                          <div class="columns">
-                              <image-uploader></image-uploader>
-                          </div>
-                          <div class="columns">
-                              <image-uploader></image-uploader>
-                          </div>
-                          <div class="columns">
-                              <image-uploader></image-uploader>
-                          </div>
-                      </div>
-                      </div>
+            <div class="small-4 columns end">
+                <label>Long
+                    <input type="number" step="0.00000000001" placeholder="" ng-model="workshop.long" name="long">
                 </label>
             </div>
+
+
+</div>
+        <div class="pb_row">
+
+        <div class="small-4 columns end">
+            <label>Address
+                <select id="select" required  ng-model="workshop.address" name="address">
+                    <option value=""></option>
+                    <option value="Barcelona">Barcelona</option>
+                    <option value="Tel Aviv">Tel Aviv</option>
+                </select>
+            </label>
         </div>
+            </div>
+
 
 
         <div class="row">
-            <div class="small-6 pb_columns">
-                <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : wsFormOne.tags.$invalid || wsFormOne.country.$invalid || wsFormOne.city.$invalid}">Submit</button>
-
+            <div class="small-8 pb_columns">
+                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm3.long.$invalid || wsForm3.lat.$invalid || wsForm3.address.$invalid}">NEXT</button>
+                <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
             </div>
         </div>
 

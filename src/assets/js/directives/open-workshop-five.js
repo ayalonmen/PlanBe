@@ -2,16 +2,16 @@
     'use strict';
 
     angular.module('myApp')
-        .directive("openWorkshopThree" ,function(){
+        .directive("openWorkshopFive" ,function(){
             return {
                 restrict: "E",
-                templateUrl:'../../assets/templates/open-workshop-three.html',
+                templateUrl:'../../assets/templates/open-workshop-five.html',
 
                 controller: function($scope)
                 {
 
                 },
-                controllerAs:'ows3ctrl'  
+                controllerAs:'ows5ctrl'
             }
         })
 
