@@ -10,7 +10,7 @@
 
                     element.on('click',function(e)
                     {
-                        angular.element(e.target).siblings('#upload').trigger('click');
+                        angular.element(e.target).siblings('#upload').trigger('click');  
                       e.stopPropagation()
                     });
 

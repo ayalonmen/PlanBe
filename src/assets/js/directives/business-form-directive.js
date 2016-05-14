@@ -13,7 +13,7 @@
                     uploadImage:"=",
                      ngShow: "="
                 },
-                controller: function($scope,Backand,$http,$location,Data_Model)
+                controller: function($scope)
                 {
                     $scope.cover = {}
                     $scope.logo = {}
@@ -21,6 +21,7 @@
                     $scope.newBiz = {};
                     $scope.content = {};
                     $scope.images = {};
+
 
                     $scope.$on("SERVER_CREATE_OK",function()
                     {
@@ -44,7 +45,17 @@
 
                         })
 
+
                 };
+                    $scope.$parent.setSessionData()
+
+
+                $scope.$on("SESSION_READY",function(e) {
+                    $scope.user = $scope.$parent.userDetails;
+                    console.log("SESSION_READY")
+                    console.log( $scope.user )
+                    $scope.newBiz.email = $scope.user.email;  
+            })
 
                     $scope.$on("SERVER_CREATE_ERROR",function()
                     {

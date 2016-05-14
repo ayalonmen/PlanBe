@@ -1,104 +1,57 @@
-<div class=" fade-in" style="margin-top:5%;">
-    <form  name="bizForm" ng-submit="submitFunc(newBiz)" novalidate >
-<div class="pb_row">
-    <div class="small-12 columns">
-    <h3>Hey, You need to define your business first</h3>
+<div class=" fade-in">
+    <div class="pb_row">
+        <div class="small-12 medium-6  small-centered columns">
+        <span style="text-align:center;"  > <h4>First, let's set up your business</h4>
+            <h6>Enter your address to enable default currency, taxes, and invoice settings based on your region.
+                You can change these at any time</h6></span>
+        </div>
+    </div>
+        <form  name="bizForm" ng-submit="submitFunc(newBiz)" novalidate >
+            <div class="pb_row" style="margin-top:5%;">
+                <div class="small-12 small-centered columns ">
+
+
+                    <div class="row">
+                            <div class="small-12 medium-6 small-centered columns">
+                                <pb_label>Business name
+                                    <input type="text" placeholder=""  required ng-model="newBiz.name" name="name">
+                                </pb_label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="small-12 medium-6 small-centered  columns">
+                                <pb_label>Email
+                                    <input type="email" placeholder=""  required  ng-model="newBiz.email" name="email" >
+                                </pb_label>
+                            </div>
+                        </div>
+
+                    <div class="row">
+                            <div class="small-12 medium-6 small-centered  columns">
+                                <pb_label>Business Phone
+                                    <input type="text" placeholder=""  required  ng-model="newBiz.phone" name="phone">
+                                </pb_label>
+                            </div>
+                        </div>
+
+                    <div class="row">
+                            <div class="small-12 medium-6 small-centered columns">
+                                <pb_label>Address
+                                    <input type="text" placeholder=""  required  ng-model="newBiz.country" name="country">
+                                </pb_label>
+                            </div>
+                        </div>
+
+
+                    <div class="row">
+                            <div class="small-12 medium-6 small-centered pb_columns">
+                              <button class="large button expanded" type="submit"  ng-class="{'disabled' : bizForm.$invalid}">Next, Set up your workshop</button>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
-    <div class="row">
-            <div class="small-6 columns">
-                <label>Business name
-                    <input type="text" placeholder=""  required ng-model="newBiz.name" name="name">
-                </label>
-            </div>
-        </div>
-
-    <div class="row">
-        <div class="small-6 columns">
-            <label>About
-                <textarea rows="4" cols="50"  placeholder=""  required  ng-model="newBiz.about" name="about">
-                At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-                </textarea>
-
-            </label>
-        </div>
-        </div>
-
-    <div class="row">
-            <div class="small-6 columns">
-                <label>Business Phone
-                    <input type="text" placeholder=""  required  ng-model="newBiz.phone" name="phone">
-                </label>
-            </div>
-        </div>
-    <div class="row">
-            <div class="small-6 columns">
-                <label>Email
-                    <input type="email" placeholder=""  required  ng-model="newBiz.email" name="email">
-                </label>
-            </div>
-        </div>
-    <div class="row">
-            <div class="small-6 columns">
-                <label>Country
-                    <input type="text" placeholder=""  required  ng-model="newBiz.country" name="country">
-                </label>
-            </div>
-        </div>
-    <div class="row">
-            <div class="small-6 columns">
-                <label>City
-                    <input type="text" placeholder=""  required  ng-model="newBiz.city" name="city">
-                </label>
-            </div>
-</div>
-    <div class="row">
-            <div class="small-6 columns">
-                <label>PayPal
-                    <input type="text" placeholder=""  required  ng-model="newBiz.paypal" name="paypal">
-                </label>
-            </div>
-        </div>
-
-    <div class="row">
-            <div class="small-6 columns">
-                <label>logo
-                    <div class="callout" >
-                    <input type= "file" on-read-file="showContent($fileContent,'logo')" ng-hide="true" id="upload"/>
-                        <div class="biz-logo" ng-style="{'background-image': 'url(' + content.logo + ')'}"> </div>
-                    </div>
-                    </label>
-               </div>
-
-</div>
-
-        <div class="row">
-            <div class="small-6 columns">
-                <label>cover
-                    <div class="callout">
-                    <input type="file" on-read-file="showContent($fileContent,'cover')" id="upload" ng-hide="true"/>
-                        <div class="biz-cover"  ng-style="{'background-image': 'url(' + content.cover + ')'}"> </div>
-                    </div>
-                </label>
-            </div>
-            </div>
-
-    <div class="row">
-
-            <div class="small-6 pb_columns">
-              <button class="hollow button" type="submit" value="Submit" ng-class="{'disabled' : bizForm.name.$invalid || bizForm.description.$invalid || bizForm.address.$invalid|| bizForm.phone.$invalid}">Submit</button>
-
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-</div>
-    </form>
-    </div>

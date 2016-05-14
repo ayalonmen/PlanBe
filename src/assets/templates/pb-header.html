@@ -1,20 +1,21 @@
 <div class="pb_row expanded"  id="site_main_header" style="z-index:5;position:fixed;width:100%;background-color:#333333;height:60px;padding-top:10px;">
-    <div class="small-2 large-1 columns">
+    <div class="small-2 medium-1 columns">
         <a ng-click="navigateTo('header','/home')">PlanBE</a>
     </div>
     <div class="small-2  columns">
-            <a id="header_become_guide" class="hollow button " ng-click="navigateTo('header','/openworkshop')" style="margin:0;">List a Workshop</a>
+            <a id="header_become_guide" class="hollow button vis-medium  header-sec" ng-click="navigateTo('header','/openworkshop')" style="margin:0;"><translated key="list workshop"></translated></a>
     </div>
-    <div class="small-6 columns">
-        <div class="input-group float-left" >
-            <input class="input-group-field" type="url">
-            <a class="input-group-button button">Search</a>
+    <div class="small-5 medium-7 columns">
+        <div class="input-group float-left vis-medium" >
+            <input class="input-group-field" type="text" placeHolder ="Search" ng-model="queryParam" reqiured/>
+            <a class="input-group-button button"  ng-click="onSearch()"><translated key="search"></translated></a>
         </div>
     </div>
-    <div class="small-2 columns">
-        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')">Sign In</a>
-       <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')">Sign Up</a>
-       <a id="header_id_logout"  ng-hide="!isLogged"   ng-click="signOut('header')">Log Out</a>
+    <div class="small-2   columns vis-medium header-sec">
+        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')"><translated key="signin"></translated></a>
+       <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')"><translated key="signup"></translated></a>
+        <div class="pb_profilepic_inline float-right"  ng-hide="!isLogged"   ng-click="navigateTo('header','/account')" ></div>
+       <a id="header_id_logout" class="float-right" style="margin-right:20px;" ng-hide="!isLogged"   ng-click="signOut('header')"><translated key="signout"></translated></a>
+
     </div>
 </div>
-

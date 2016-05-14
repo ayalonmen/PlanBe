@@ -13,7 +13,8 @@
                     <div class="callout">
                         <div class="row small-up-1 medium-up-2 large-up-4">
                             <div class="columns" ng-repeat="n in workshop.assets  track by $index">
-                               <div class="callout biz-logo" style="background-image: url('{[{workshop.assets[$index].url}]}');padding:0;">
+                               <div class="biz-logo"  style="background-image: url('{[{workshop.assets[$index].url}]}');padding:0;">
+                                   <div class="close-btn float-right" ng-click="deletePicture($index)">X </div>
                                <div class ="preload_mask" ng-show="n.loaded==2">
                                    <div class="spinner float-center" style="z-index: 10;position: absolute;"></div>
 

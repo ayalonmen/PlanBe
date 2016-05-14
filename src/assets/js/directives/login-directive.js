@@ -5,14 +5,14 @@
 .directive("loginForm" ,function(){
          return {
              restrict: "E",
-             templateUrl:'../../assets/templates/login-form.html',
+             templateUrl:'../assets/templates/login-form.html',
              scope:
              {
                  submitFunc: "="
              },
              controller: function($scope,Backand,$http,$location)
              {
-                 $scope.username ="";
+                 $scope.username ="";  
                  $scope.password ="";
                  $scope.error = "";
                  $scope.$on("SERVER_LOGIN_OK",function()

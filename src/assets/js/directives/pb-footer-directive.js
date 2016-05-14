@@ -4,7 +4,7 @@
   .directive("pbFooter" ,function(){
            return {
                restrict: "E",
-               templateUrl:'../../assets/templates/pb-footer.html',
+               templateUrl:'../assets/templates/pb-footer.html',
 
            }
   })

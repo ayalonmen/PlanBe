@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="small-8 columns">
+        <div><h2>Account</h2></div>
+        <span>Name : {[{user.firstName}]}  {[{user.lastName}]}</span> <br>
+        <span>Email : {[{user.email}]}  </span> <br>
+        <span>Businesses : <a ng-click="navigateTo('account','/business/' + user.businesses[0].id )">  {[{user.businesses[0].name}]}  </a></span>
+
+    </div>
+
+</div>
+
+

@@ -18,13 +18,13 @@ angular.module('openworkshop', ['ngRoute'])
         _self.showBizForm = false;
         _self.newBiz = {}
         $scope.workshop = {};
+
         $scope.init = function(){
             _self.showWSForm= 0;
             _self.showBizForm = false;
             _self.newBiz = {}
 
-            $scope.workshop ={ cancelpolicy: true,isMulti:false};
-            if($scope.$parent.userDetails.businesses.length>0)
+            if($scope.$parent.userDetails.businesses.length>0)  
             {
                 console.log("length>0")
               _self.showWSForm= 1;

@@ -9,8 +9,8 @@
                 scope:false,
                 link : function(scope,element,attr,ctrl)
                 {
-                     console.log("In Directve One")
-                    console.log(element.find("form"))
+                    //  console.log("In Directve One")
+                    // console.log(element.find("form"))  
                 }
                 //controller:function($scope, $element, $attrs) {
                 //    $scope['openWorkshopOne']=this;   // Exposes the directive controller on the parent scope with name myDirectiveName

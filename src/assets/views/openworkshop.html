@@ -1,8 +1,56 @@
-<div class="row">
+<div class="row" style="margin-top: 5%">
     <div class="small-12 columns">
-<business-form ng-show="ctrl.showBizForm" submit-func="openBusiness" get-url-func="readOne" upload-image="getS3Url"></business-form>
-        </div>
-    <div class="small-12 columns">
-                <open-workshop-one ng-show="ctrl.showWSForm==1"  submit-func="submitOne" ></open-workshop-one>
+        <business-form ng-show="ctrl.showBizForm" submit-func="openBusiness" get-url-func="readOne" upload-image="getS3Url"></business-form>
     </div>
-</div>
+
+    <div class="small-12 columns fade-in" ng-show="ctrl.showWSForm==1" >
+
+
+        <div class="row" >
+            <div class="small-12 medium-6 medium-centered columns">
+
+                <div class="row">
+                    <div class="small-12 small-centered">
+                       <span style="text-align:center;">
+                        <h4>Give your workshop a name.</h4>
+                        <h5>Picking a good name is important to your success. </h5>
+                       </span>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top: 5%">
+                    <div class="small-12 columns">
+
+                        <form  name="wsForm1" ng-submit="update(2)" novalidate >
+
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <pb_label>Workshop Title
+                                    <input type="text" placeholder=""  required ng-model="workshop.name" name="name" >
+                                </pb_label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="small-12  columns">
+                                <button class="large button expanded" type="submit"  ng-class="{'disabled' : wsForm1.$invalid }">NEXT</button>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        </div>
+    </div>
+
+
+
+

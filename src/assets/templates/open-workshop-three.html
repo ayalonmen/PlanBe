@@ -1,42 +1,45 @@
-<div class=" fade-in" >
-    <form  name="wsForm3" ng-submit="update(showWSForm+1)" novalidate >
-
-        <div class="pb_row">
-
-            <div class="small-4 columns end">
-            <label>Lat
-                <input type="number" step="0.00000000001" placeholder="" ng-model="workshop.lat" name="lat">
-            </label>
-        </div>
-            <div class="small-4 columns end">
-                <label>Long
-                    <input type="number" step="0.00000000001" placeholder="" ng-model="workshop.long" name="long">
-                </label>
+    <div class=" fade-in" >
+        <div class="row">
+            <div class="small-12 pb_columns">
+                <h4> Where does your workshop take place?</h4>
+                <h5>Let participants find your workshop easily</h5>
+                </div>
             </div>
-
-
-</div>
-        <div class="pb_row">
-
-        <div class="small-4 columns end">
-            <label>Address
-                <select id="select" required  ng-model="workshop.address" name="address">
-                    <option value=""></option>
-                    <option value="Barcelona">Barcelona</option>
-                    <option value="Tel Aviv">Tel Aviv</option>
-                </select>
-            </label>
-        </div>
-            </div>
-
-
 
         <div class="row">
             <div class="small-8 pb_columns">
-                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm3.long.$invalid || wsForm3.lat.$invalid || wsForm3.address.$invalid}">NEXT</button>
-                <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
+        <form  name="wsForm3" ng-submit="update(showWSForm+1)" novalidate >
+
+            <div class="pb_row" style="margin-bottom:40px;">
+                <div class="small-12 columns end" >
+
+                    <div class="input-group float-left vis-medium" id="floating-panel">
+                        <input class="input-group-field" type="text" id="address" ng-model="workshop.address"/>
+                        <a class="input-group-button button" id="submit"   ng-click="setGeo(geocoder, map)">Locate</a>
+                    </div>
+
+                    <div id="map" class="google-map" lat="48.833" long="2.333"></div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="small-12 pb_columns">
+                    <input  type="text" ng-model="coordinates" required ng-hide="true"/>
+                    <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm3.$invalid}">NEXT</button>
+                    <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
+
+
+                </div>
+            </div>
+
+        </form>
+
+
+</div>
             </div>
         </div>
-
-    </form>
-</div>

@@ -1,5 +1,5 @@
 <div class=" fade-in" >
-    <form  name="wsForm5" ng-submit="test2()" novalidate >
+    <form  name="wsForm5" ng-submit="update(showWSForm+1)" novalidate >
 
         <div class="pb_row">
             <div class="small-3 columns">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-        </div>
+
         <div class="pb_row">
             <div class="small-10 columns">
                 <fieldset class="fieldset">
@@ -66,7 +66,7 @@
 
         <div class="row">
             <div class="small-10 pb_columns">
-                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm5.tags.$invalid || wsForm5.country.$invalid || wsForm5.city.$invalid}">NEXT</button>
+                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm5.$invalid}">NEXT</button>
                 <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
             </div>
         </div>

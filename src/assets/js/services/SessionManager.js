@@ -6,6 +6,13 @@
         .factory('SessionManager', ['Backand', '$http', function (Backand, $http) {
             var o = {};
             o.api = {};
+            o.server_error= null;
+
+            o.errorUpdate = function(msg)
+            {
+
+                o.server_error = {msg : msg}
+            }
 
             o.api.isLoggedIn = function () {
                 return Backand.getToken() !== null;
@@ -45,12 +52,12 @@
             };
 
 
-            o.api.readList = function (name, sort, filter) {
+            o.api.readList = function (name,page_size, sort, filter) {
                 return $http({
                     method: 'GET',
                     url: Backand.getApiUrl() + '/1/objects/' + name,
                     params: {
-                        pageSize: 20,
+                        pageSize: page_size,
                         pageNumber: 1,
                         filter: filter || '',
                         sort: sort || ''
@@ -87,7 +94,7 @@
                     params:params
                 });
             };
-            
+
             return o;
 
         }]);

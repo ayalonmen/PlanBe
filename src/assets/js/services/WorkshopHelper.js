@@ -3,12 +3,12 @@
 
     angular.module('myApp')
 
-        .service('WorkshopHelper',  function () {
+        .service('WorkshopHelper',  function (lodash) {
 
 
             var getTags = function(obj)
             {
-                console.log(obj)
+                //console.log(obj)
                 var tagarray = new Array();
                 if(obj!==undefined)
                 {
@@ -25,19 +25,17 @@
 
             this.parseWorkshop = function(wsobject)
             {
-                console.log("WorkshopHelper : parseWorkshop")
+                //console.log("WorkshopHelper : parseWorkshop")
                 var obj = new Object()
                 angular.copy(wsobject, obj);
-                console.log(obj)
-                console.log("WorkshopHelper : parseWorkshop whofor--> " + obj.whofor )
-                console.log("WorkshopHelper : parseWorkshop learn--> " +obj.learn )
-                console.log("WorkshopHelper : parseWorkshop needto--> " +obj.needto )
+                //console.log(obj)
 
-                obj.whofor =  (obj.whofor==[]) ? [null] : JSON.parse(obj.whofor)
+
+
                 obj.tags = getTags(obj.workshops_tags)
-                console.log(typeof obj.location)
-                console.log(obj.location)
-             if(obj.location !== "") {
+                //console.log(typeof obj.location)
+                //console.log(obj.location)
+             if(obj.location !== "" && obj.location!== undefined) {
                 obj.location = obj.location.split(",")
                 obj.lat = parseFloat(obj.location[0])
                 obj.long= parseFloat(obj.location[1])
@@ -45,21 +43,24 @@
              } else{
                 obj.location =[]
             }
-                console.log(obj.location)
-                console.log(obj.location.length)
 
 
 
-                console.log("WorkshopHelper : parseWorkshop whofor--> " + obj.whofor )
-                
-                obj.needto  = (obj.needto==[]) ? [null]  : JSON.parse(obj.needto)
-                console.log("WorkshopHelper : parseWorkshop needto--> " +obj.needto )
 
-                obj.learn = (obj.learn==[]) ? [null,null,null]  : JSON.parse(obj.learn)
-                console.log("WorkshopHelper : parseWorkshop learn--> " +obj.learn )
                 obj.assets =  (obj.assets=== undefined || obj.assets==[]) ? []  : JSON.parse(obj.assets)
-               
-                console.log(obj)
+
+                //TODO DEBUG /////////////////////////////////////////////////////////////////////
+
+                //obj.learn = (obj.learn==[]) ? [null,null,null]  : JSON.parse(obj.learn)
+                //obj.whofor =  (obj.whofor==[]) ? [null] : JSON.parse(obj.whofor)
+                // obj.needto  = (obj.needto==[]) ? [null]  : JSON.parse(obj.needto)
+
+                obj.learn = ['Get in-depth knowledge of this field','Find the best solutions' ,'Become independent in making the right decisions']
+                obj.whofor = ['Enthusiasts','People who love to learn new things','Buffs']
+                obj.needto  = ['No prior knowledge is needed','Wear comfortable shoes']
+               //TODO///////////////////////////////////////////////////////////
+
+                //console.log(obj)
                 angular.copy(obj,wsobject );
                 return obj;
             }
@@ -72,21 +73,45 @@
 
                 //we check for the right object schema - if we take from deep link it will include the business id
                  obj.business = (obj.business.id !== undefined)? obj.business.id : obj.business
-                obj.tags_raw = obj.tags
+
+                //we manipultate the tags to contain the cat abd sub cat and send them as params and not  user input i.e delete tags
+
+                if(obj.tags !== undefined && obj.tags!="") {
+                    obj.tags =  obj.tags.toLowerCase();
+                    obj.tags = obj.tags.split(",")
+                   obj.tags.push(obj.category.toLowerCase())
+                    obj.tags.push(obj.subcategory.toLowerCase())
+                    //console.log(typeof  obj.tags)
+                    obj.tags = lodash.uniq(obj.tags)
+                    //console.log("TAGS:")
+                    //console.log(obj.tags)
+                    obj.tags_raw = obj.tags.toString();
+                    //console.log(obj.tags_raw)
+
+                    delete obj.tags
+                }
+                //We set the location coordinates
                 if(obj.location){
                     obj.location= [parseFloat(obj.lat),parseFloat(obj.long)]
                 }
-                delete obj.tags
                 delete obj.lat;
                 delete obj.long;
+
                 obj.whofor = JSON.stringify(obj.whofor)
                 obj.learn = JSON.stringify(obj.learn)
                 obj.needto  = JSON.stringify(obj.needto)
-                console.log("WorkshopHelper : packWorkshop : before assets")
+
                 var js = JSON.stringify( obj.assets)
                 obj.assets = js
-                console.log(obj.assets)
+
+                //delete obj.price
+
+                console.log("WorkshopHelper : packWorkshop : before send")
+                console.log(obj)
+
+
                 return obj;
+
 
             }
 
