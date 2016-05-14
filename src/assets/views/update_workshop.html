@@ -1,0 +1,29 @@
+<div class="row" style="margin-top:60px;">
+    <div class="expanded button-group">
+        <a class="button" ng-class="{'success ' : wsForm1.$valid &&showWSForm!=1,'success hollow':showWSForm==1 }" ng-click="update(1)">Basic Info <span ng-show="wsForm1.$valid && wsForm1.$pristine">✔ </span></a>
+        <a class="button " ng-class="{'success ' : wsForm2.$valid &&showWSForm!=2,'success hollow':showWSForm==2 }" ng-click="update(2)">Details <span ng-show="wsForm2.$valid && wsForm2.$pristine">✔ </span></a>
+        <a class="button" ng-class="{'success ' : wsForm3.$valid &&showWSForm!=3,'success hollow':showWSForm==3 }" ng-click="update(3)">Location <span ng-show="wsForm3.$valid && wsForm3.$pristine">✔ </span></a>
+        <a class="button" ng-class="{'success ' : wsForm4.$valid &&showWSForm!=4,'success hollow':showWSForm==4 }"  ng-click="update(4)">Photos &Videos <span ng-show="wsForm4.$valid && wsForm4.$pristine">✔ </span></a>
+        <a class="button" ng-class="{'success ' : wsForm5.$valid &&showWSForm!=5,'success hollow':showWSForm==5 }"   ng-click="update(5)">Pricing <span ng-show="wsForm5.$valid && wsForm5.$pristine">✔ </span></a>
+        <a class="button" ng-class="{'success ' : wsForm6.$valid &&showWSForm!=6,'success hollow':showWSForm==6 }"   ng-click="update(6)">Calendar <span ng-show="wsForm6.$valid && wsForm6.$pristine">✔ </span></a>
+
+    </div>
+
+</div>
+<div class="row" style="margin-top:20px;">
+    <div class="small-12 columns"style="height:30px;">
+        <span class="float-right" style="color:green" ng-show="pendingServer"><h6>Saving</h6></span>
+        <span class="fade-out float-right" ng-hide="true" style="color:green"><h4>Saved!</h4></span>
+        </div>
+    </div>
+
+
+
+</div>
+
+<open-workshop-one ng-show="showWSForm==1"  ></open-workshop-one>
+<open-workshop-two ng-show="showWSForm==2"    ></open-workshop-two>
+<open-workshop-three ng-show="showWSForm==3"  ></open-workshop-three>
+<open-workshop-four ng-show="showWSForm==4"   ></open-workshop-four>
+<open-workshop-five ng-show="showWSForm==5"  ></open-workshop-five>
+<open-workshop-six ng-show="showWSForm==6"  ></open-workshop-six>

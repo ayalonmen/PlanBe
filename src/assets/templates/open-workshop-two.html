@@ -1,0 +1,105 @@
+        <div class=" fade-in" >
+            <form  name="wsForm2" ng-submit="update(showWSForm+1)" novalidate >
+
+                <div class="row">
+                <div class="small-12 medium-8 columns">
+
+                    <div class="pb_row">
+                        <div class="small-12 columns">
+                    <div class="callout" >
+                        <label>Participants will learn to
+
+                                <div class="row" ng-repeat="n in workshop.learn track by $index">
+                                    <div class="small-12 columns">
+                                        <input class="float-left" type="text" placeholder="i.e: Cook indian food like a pro"  ng-required="{[{$index<3}]}" name="learn{[{$index}]}"  value="{[{n}]}" ng-class="{'compress' : workshop.learn.length>3 }" ng-model="workshop.learn[$index]" ng-maxlength="220">
+                                        <button type="button " style="margin-left:6px;" data-close ng-show="workshop.learn.length>3" ng-click="omitNewInput('learn', $index )"> <span aria-hidden="true">&times;</span></button>
+                                 </div>
+                                 </div>
+
+                            <a class="button secondary hollow expanded" ng-show="workshop.learn.length<5" style="font-size: 2rem;padding:4px;color:#000;" ng-click="addNewInput('learn')">+</a>
+                    </label>
+                </div>
+                    </div>
+                        </div>
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <div class="callout" >
+                                    <label>This workshop is for
+
+                                        <div class="row" ng-repeat="n in workshop.whofor track by $index">
+                                            <div class="small-12 columns">
+                                                <input class="float-left" type="text" placeholder="i.e: Cook indian food like a pro" ng-required="{[{$index<1}]}" name="whofor{[{$index}]}"  value="{[{n}]}" ng-class="{'compress' : workshop.whofor.length>1 }" ng-model="workshop.whofor[$index]" ng-maxlength="220">
+                                                <button type="button " style="margin-left:6px;" data-close ng-show="workshop.whofor.length>1" ng-click="omitNewInput('whofor', $index )"> <span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                        </div>
+
+                                        <a class="button secondary hollow expanded" ng-show="workshop.whofor.length<5" style="font-size: 2rem;padding:4px;color:#000;" ng-click="addNewInput('whofor')">+</a>
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <div class="callout" >
+                                <label>Need To Knows
+
+                                    <div class="row" ng-repeat="n in workshop.needto track by $index">
+                                        <div class="small-12 columns">
+                                            <input class="float-left" type="text" placeholder="i.e: Cook indian food like a pro" ng-required="{[{$index<1}]}" name="needto{[{$index}]}"  value="{[{n}]}" ng-class="{'compress' : workshop.needto.length>1 }" ng-model="workshop.needto[$index]" ng-maxlength="220">
+                                            <button type="button " style="margin-left:6px;" data-close ng-show="workshop.needto.length>1" ng-click="omitNewInput('needto', $index )"> <span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                    </div>
+
+                                    <a class="button secondary hollow expanded" ng-show="workshop.needto.length<5" style="font-size: 2rem;padding:4px;color:#000;" ng-click="addNewInput('needto')">+</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="callout" >
+                            <label>Please choose session type
+                            <div class="expanded button-group">
+                                <a class="button" name="easy" ng-click="setSingleSession(false)" ng-class="{'hollow': workshop.isMulti}">One Session </a>
+                                <a class="button "name="strict" ng-click="setSingleSession(true)" ng-class="{'hollow': !workshop.isMulti}">Multi Session</a>
+                            </div>
+                                <div class="callout" ng-show=" workshop.isMulti">
+                                    <div class="row">
+                                        <div class="small-8 columns" style="line-height: 2rem">
+                                            How many sessions will the workshop include?
+                                            </div>
+                                        <div class="small-4 columns">
+                                            <input type="number" ng-model="workshop.multiNum"/>
+                                        </div>
+                                        </div>
+                                    <div class="row">
+                                        <div class="small-12 columns" >
+                                            <label> Description of course sessions
+                                                <input type="text" ng-model="workshop.multiDesc"/>
+                                            </label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                       </label>
+                    </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="small-12 columns">
+
+
+                            <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm2.tags.$invalid || wsForm2.country.$invalid || wsForm2.city.$invalid}">NEXT</button>
+                            <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
+                        </div>
+                </div>
+                        </div>
+                    </div>
+
+            </form>
+        </div>

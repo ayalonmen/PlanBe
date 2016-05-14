@@ -1,0 +1,75 @@
+<div class=" fade-in" >
+    <form  name="wsForm5" ng-submit="update(showWSForm+1)" novalidate >
+
+        <div class="pb_row">
+            <div class="small-3 columns">
+                <label>Price
+                    <div>What is the price for this workshop?</div>
+                </label>
+            </div>
+
+            <div class="small-3 columns end" style="padding-top:10px;">
+                    <input type="number" placeholder="" required ng-model="workshop.price" string-to-number>
+            </div>
+        </div>
+
+        <div class="pb_row">
+
+                <div class="small-3 columns">
+                        <label>Volume
+                        <div>Set a special volume rate</div>
+                        </label>
+                </div>
+
+                <div class="small-3 columns ">
+                    <label class="float-left">Minimum seats
+                        <input type="number" placeholder=""  ng-model="workshop.volume" class="float-left" ng-min="0" string-to-number>
+                    </label>
+                 </div>
+
+            <div class="small-3 columns end">
+                <label class="float-left">Price per seat
+                    <input type="number" placeholder=""  ng-model="workshop.volumeprice" class="float-left" ng-min="0" string-to-number>
+                </label>
+            </div>
+         </div>
+
+
+        <div class="pb_row">
+            <div class="small-3 columns">
+                <label>Seats
+                    <div>How many total available seats in the workshop?
+                    </div>
+
+                </label>
+            </div>
+            <div class="small-3 columns end" style="padding-top:20px;">
+                <input type="number" placeholder="1" required  ng-model="workshop.seats" ng-min="1" string-to-number>
+                </div>
+            </div>
+
+
+        <div class="pb_row">
+            <div class="small-10 columns">
+                <fieldset class="fieldset">
+                    <legend>Cancellation</legend>
+                    <label>What is your cancellation policy?
+
+                    <div class="expanded button-group">
+                        <a class="button" name="easy" ng-click="setPolicy(true)" ng-class="{'hollow': !workshop.cancelpolicy}">EASY </a>
+                        <a class="button "name="strict" ng-click="setPolicy(false)" ng-class="{'hollow': workshop.cancelpolicy}">STRICT</a>
+                    </div>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-10 pb_columns">
+                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm5.$invalid}">NEXT</button>
+                <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
+            </div>
+        </div>
+
+    </form>
+</div>

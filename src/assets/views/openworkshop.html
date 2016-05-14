@@ -1,177 +1,56 @@
-
-<business-form ng-show="showBizForm" submit-func="openBusiness"></business-form>
-
-<div class="pb_row" style="margin-top:5%;" ng-show="showWSForm">
+<div class="row" style="margin-top: 5%">
     <div class="small-12 columns">
-<h2>Add a new workshop to your business: <br>
-     {[{newBiz.name}]}</h2> <h6>{[{newBiz}]}</h6>
-<form novalidate name="wsListForm" ng-submit="prepareAndSubmit()">
+        <business-form ng-show="ctrl.showBizForm" submit-func="openBusiness" get-url-func="readOne" upload-image="getS3Url"></business-form>
+    </div>
 
-    <div class="row">
-        <div id="sec1">
-            <div class="small-12 columns">
-                <label>Workshop title
-                    <input type="text" placeholder=""  required name="name" ng-model="newWs.name">
-                </label>
-            </div>
-
-            <div class="small-6 columns">
-                <label>Category
-                    <input type="text" placeholder="" required name="category"  ng-model="newWs.category">
-                </label>
-            </div>
-
-            <div class="small-6 columns">
-                <label>Sub Category
-                    <input type="text" placeholder=""  required name="subcategory"  ng-model="newWs.subcategory">
-                </label>
-            </div>
-
-            <div class="small-12 columns">
-                <label>Description
-                    <textarea type="text" placeholder="Description" rows="5" required name="desc" ng-model="newWs.description" ng-maxlength="400" maxlength="200" ></textarea>
-                </label>
-            </div>
-
-            <div class="small-12 columns">
-                <label>Add tags
-                    <input type="text" placeholder="Enter tags separated by comma  : example: cooking,vegan,food etc." aria-describedby="exampleHelpText" required name="tags" ng-model="newWs.tags">
-                </label>
-            </div>
-
-            <div class="small-4 columns">
-              <label>Country
-                <select id="select" required name="country" ng-model="newWs.country">
-                  <option value=""></option>
-                  <option value="US">United States</option>
-                  <option value="IL">Israel</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="small-4 columns end">
-              <label>City
-                <input type="text" placeholder="" aria-describedby="exampleHelpText" data-abide-ignore name="city"ng-model="newWs.city">
-              </label>
-            </div>
-          </div>
-
-            <!--div class="small-12 columns">
-                <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec1','sec2')">Next</button>
-            </div-->
-
-        <!-- End of Sec1 ------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="small-12 columns fade-in" ng-show="ctrl.showWSForm==1" >
 
 
-        <div  id="sec2">
-            <div class="small-12 columns">
-                        <fieldset class="fieldset" >
-                            <legend>What will participants learn?</legend>
-                            <input type="text" placeholder="" required name="learn1" ng-model="newWs.learn1">
-                            <input type="text" placeholder=""  name="learn2" ng-model="newWs.learn2">
-                            <input type="text" placeholder=""  name="learn3" ng-model="newWs.learn3">
-                        </fieldset>
-            </div>
+        <div class="row" >
+            <div class="small-12 medium-6 medium-centered columns">
 
-        <div class="small-12 columns">
-            <fieldset class="fieldset">
-                <legend>Who is it for?</legend>
-                <input type="text" placeholder=""  required name="for1" ng-model="newWs.whofor1">
-                <input type="text" placeholder=""  name="for2" ng-model="newWs.whofor2">
-                <input type="text" placeholder=""  name="for3" ng-model="newWs.whofor3">
-            </fieldset>
-        </div>
-
-        <div class="small-12 columns">
-            <fieldset class="fieldset">
-                <legend>Need to Know</legend>
-                <input type="text" placeholder="" aria-describedby="exampleHelpText" required ng-model="newWs.needto1">
-                <input type="text" placeholder="" aria-describedby="exampleHelpText" ng-model="newWs.needto2">
-                <input type="text" placeholder="" aria-describedby="exampleHelpText" ng-model="newWs.needto3">
-            </fieldset>
-        </div>
-
-
-        <div class="small-12 columns">
-            <fieldset class="fieldset">
-                <legend>Please choose session type</legend>
-            <div class="expanded button-group">
-                <a class="button" name="easy" ng-click="setSingleSession(false)" ng-class="{'hollow': newWs.isMulti}">One Session </a>
-                <a class="button "name="strict" ng-click="setSingleSession(true)" ng-class="{'hollow': !newWs.isMulti}">Multi Session</a>
-            </div>
-        </fieldset>
-        </div>
-
-
-
-        <div class="small-4 columns">
-            <label>How many available seats?
-                <input type="number" placeholder="1" required  ng-model="newWs.seats" ng-min="1">
-            </label>
-        </div>
-
-
-        <!--div class="small-12 columns">
-            <button class="button  float-right" type="button" onclick="javascript:jumpNext('sec3')">Next</button>
-        </div-->
-
-        <div class="small-12 columns" id="sec3">
-            <fieldset class="fieldset">
-                <legend>Add images o videos</legend>
-                <div class="pb_row" data-equalizer data-equalize-on="medium" id="img_container">
-                    <div class="small-4 pb_columns end" id="click_add">
-                        <div class="callout" data-equalizer-watch><img src="https://placeholdit.imgix.net/~text?txtsize=45&txt=Click-to-Add&w=200&h=200&bg=cccccc" id="wimg1" style="cursor:pointer" onclick="performClick('img_1_file');" /></img>
-                        </div>
+                <div class="row">
+                    <div class="small-12 small-centered">
+                       <span style="text-align:center;">
+                        <h4>Give your workshop a name.</h4>
+                        <h5>Picking a good name is important to your success. </h5>
+                       </span>
                     </div>
                 </div>
-            </fieldset>
-        </div>
 
-        <div class="small-6 columns">
-            <label>Price
-                <div class="callout">Please set the price</div>
-            </label>
-        </div>
 
-        <div class="small-6 columns" style="padding-top:10px;">
-            <div class="callout">
-                <input type="number" placeholder="" required ng-model="newWs.price">
+                <div class="row" style="margin-top: 5%">
+                    <div class="small-12 columns">
+
+                        <form  name="wsForm1" ng-submit="update(2)" novalidate >
+
+                        <div class="row">
+                            <div class="small-12 columns">
+                                <pb_label>Workshop Title
+                                    <input type="text" placeholder=""  required ng-model="workshop.name" name="name" >
+                                </pb_label>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="small-12  columns">
+                                <button class="large button expanded" type="submit"  ng-class="{'disabled' : wsForm1.$invalid }">NEXT</button>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                </div>
+
             </div>
-                <span class="form-error">
-      Yo, you had better fill this out, it's required.
-    </span>
-            </label>
-        </div>
-        <div class="small-12 columns">
-            <fieldset class="fieldset">
-                <legend>Volume</legend>
-                <div class="callout secondary float-left">Give discount for volume</div>
 
-                    <div class="callout  float-left"><input type="number" placeholder="" aria-describedby="exampleHelpText" required ng-model="newWs.volume"></div>
-                    <div class="callout  float-left"><input type="number" placeholder="" aria-describedby="exampleHelpText" required ng-model="newWs.volumeprice"></div>
-            </fieldset>
-        </div>
-        <div class="small-12 columns">
-            <fieldset class="fieldset">
-                <legend>Please choose cancelation policy</legend>
-            <div class="expanded button-group">
-                <a class="button" name="easy" ng-click="setPolicy(true)" ng-class="{'hollow': !newWs.cancelpolicy}">EASY </a>
-                <a class="button "name="strict" ng-click="setPolicy(false)" ng-class="{'hollow': newWs.cancelpolicy}">STRICT</a>
-            </div>
-        </fieldset>
-        </div>
-
-
-        <div class="small-12 columns">
-
-            <button class="large button float-right" type="submit" value="Submit">Submit</button>
-            <input type="file" name="img_1_file" class="hide" id="img_1_file" />
 
         </div>
-
-
+        </div>
     </div>
-</form>
-</div>
-</div>
-</div>
+
+
+
+

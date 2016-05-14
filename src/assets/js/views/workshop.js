@@ -12,22 +12,24 @@
         }])
 
 
-        .controller('WsCtrl', ['$routeParams','$scope',function($routeParams,$scope) {
+        .controller('WsCtrl', ['$routeParams','$scope','WorkshopHelper',function($routeParams,$scope,WorkshopHelper) {
             console.log($routeParams.id);
+
             $scope.wsid = $routeParams.id
-            $scope.userDetails = $scope.$parent.userDetails
+
+            //@ We make sure we reload session userdata
+            $scope.$emit("REFRESH_SESSION_REQUEST")
+
             $scope.workshop = {}
-            $scope.$parent.readOne('workshops',$scope.wsid,true).then(function(data)
+            $scope.$parent.readOne('workshops',$scope.wsid,true,1).then(function(data)
             {
                 console.log("Workshop found")
                 console.log(data)
-                $scope.workshop = data.data
-                $scope.workshop.learn = $scope.workshop.learn.split("-b-")
-                $scope.workshop.whofor = $scope.workshop.whofor.split("-b-")
-                $scope.workshop.needto = $scope.workshop.needto.split("-b-")
+                $scope.workshop = WorkshopHelper.parseWorkshop (data.data)
+
             },function(data)
             {
-                console.log("Workshop ERROR")
+                console.log("Workshop ERROR")  
                 console.log(data)
             });
 
@@ -35,9 +37,26 @@
               console.log(id);
               $scope.$parent. navigateTo("workshop","/business/"+id);
             }
+
+                //@ we update the user data when the session is being renewed
+            $scope.$on("SESSION_READY",function(e,userData)
+            {
+                console.log("SESSION_READY")
+                console.log(userData.data)
+                $scope.userId = userData.data.id
+                console.log("UID: " + $scope.userId )
+            })
+
+
+            $scope.getNumber = function(num)
+            {
+                var array = new Array(num)
+                for (var i = 0;i<num;i++)
+                {
+                    array[i] = i+1
+                }
+                return  array;
+            }
         }]);
 
-
-
 })();
-

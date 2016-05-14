@@ -29,17 +29,15 @@
         </fieldset>
     </div>
 
- <div ng-repeat="workshop in business.workshops">
-        <div class="small-4 medium-4 pb_columns centered">
+    <div class="row small-up-1 medium-up-2 large-up-4">
+        <div class="columns" ng-repeat="workshop in business.workshops" ng-click="navigateTo('business','/workshop/'+workshop.id)" >
+            <span>{[{workshop.name}]}</span>
+            <div class="callout biz-logo"ng-style="{'background-image': 'url(' +  convertAssets(workshop).assets[0].url + ')'}" >
+            </div>
 
-            <fieldset class="fieldset" ng-click="navigateTo('business','/workshop/'+workshop.id)">
-                <legend>
-                    {[{workshop.name}]}
-                </legend>
-                {[{workshop.description}]}
-            </fieldset>
         </div>
     </div>
+
 
 
 </div>

@@ -1,22 +1,20 @@
-<div class="pb_row" >
-<div class="small-12 pb-columns">
+<div class="row" >
+    <div class="small-12 pb-columns">
 
-    <div class="pb_row" style="margin-top:60px;" ng-hide="!isLogged">
-    <div class="small-8 pb-columns">
-        <div class="callout primary">
-    <h4>  Hey, you are trying to register but It seems like you're already signed in as  {[{user}]}.</h4><br>
-    <h5>Not you? Please sign out first:</h5>
-    <button  class="button" ng-click="signOut('register','/register')">Sign Out<button/>
-</div>
+            <div class="row" style="margin-top:60px;" ng-hide="!isLogged">
+                    <div class="small-8 pb-columns">
+                                <div class="callout primary">
+                                        <h4>  Hey, you are trying to register but It seems like you're already signed in as  {[{user}]}.</h4><br>
+                                        <h5>Not you? Please sign out first:</h5>
+                                         <button  class="button" ng-click="signOut('register','/register')">Sign Out<button/>
+                                </div>
+                    </div>
+            </div>
+
+             <div class="row">
+                    <div class="small-8 columns">
+                             <registration-form ng-hide="isLogged" sign-up="signUp"></registration-form>
+                    </div>
+             </div>
     </div>
-    </div>
-
-    <div class="pb_row">
-    <div class="small-8 pb-columns">
-<registration-form ng-hide="isLogged" sign-up="signUp"></registration-form>
-</div>
-</div>
-
-
-<div>
 </div>
