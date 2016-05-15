@@ -22,6 +22,7 @@
                 console.log("Business found")
                 console.log(data)
                 $scope.business = data.data
+                $scope.$emit("SERVER_RESPONSE","")
 
                 console.log(  $scope.user )
             },function(data)

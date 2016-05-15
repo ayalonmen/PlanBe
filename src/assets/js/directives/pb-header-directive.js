@@ -18,11 +18,9 @@
 
                   $scope.onSearch = function()
                   {
-                    if( $scope.queryParam!=""){
+                    if( $scope.queryParam!="") {
                          $scope.navigateTo('header','/search/'+$scope.queryParam)  ;
                     }
-
-
                   }
               },
               controllerAs:'ctrl'
