@@ -45,17 +45,27 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     ////LISTENERS
     $rootScope.$on(Backand.EVENTS.SIGNUP, function () {
         $scope.setSessionData()
+         $rootScope.requestPending = false;
 
     });
 
     $rootScope.$on(Backand.EVENTS.SIGNOUT, function () {
         $scope.setSessionData();
         $location.url("")
+         $rootScope.requestPending = false;
     });
 
     $rootScope.$on(Backand.EVENTS.SIGNIN, function () {
         $scope.setSessionData();
         $location.url("")
+         $rootScope.requestPending = false;
+    });
+    $rootScope.$on("LEFT_HOME_STATE", function () {
+     $rootScope.home_state = false;
+    });
+
+    $rootScope.$on("ENTER_HOME_STATE", function () {
+     $rootScope.home_state = true;
     });
 /////METHODS
 
@@ -63,7 +73,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
 
     $scope.setSessionData = function () {
-
+       $rootScope.requestPending = true;
         SessionManager.api.getUserDetails().then(function (data) {
             console.log("Main getUserDetails-------------");
             console.log("data = ")
@@ -76,6 +86,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
                     console.log("READ ONE USER")
                     $scope.userDetails = data.data;
                     console.log($scope.userDetails);
+                     $rootScope.requestPending = false;
                     $rootScope.$broadcast("SESSION_READY", data);
                     console.log(" -------------")
                 });
@@ -86,6 +97,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
 
     $scope.signUp = function (userObj) {
+         $rootScope.requestPending = true;
         SessionManager.api.signUp(userObj.firstName, userObj.lastName, userObj.email, userObj.password, userObj.confirmPassword).then(function (data) {
             $rootScope.$broadcast("SERVER_REGISTRATION_OK", "");
 
@@ -98,6 +110,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
 
     $scope.signOut = function (caller, destination) {
+         $rootScope.requestPending = true;
         var url = "";
         if (destination !== "undefined") {
             url = destination
@@ -112,14 +125,16 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             url = destination
         }
         $location.url(url)
+
     };
 
     $scope.signIn = function (caller, username, password) {
+         $rootScope.requestPending = true;
         SessionManager.api.signin(username, password);
     };
 
     $scope.openBusiness = function (bizObj) {
-
+         $rootScope.requestPending = true;
         bizObj.owner = $scope.userDetails.id;
         console.log(bizObj)
         SessionManager.api.create("businesses", bizObj).then(function (data) {
@@ -135,16 +150,18 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
 
     $scope.openWorkshop = function (wsObj) {
-
+   $rootScope.requestPending = true;
 
         SessionManager.api.create("workshops", wsObj).then(function (data) {
             //TODO
             console.log("Success on create workshop");
             $rootScope.$broadcast("CREATE_WORKSHOP_SUCCESS", data);
+              $rootScope.requestPending = false;
             //$scope.navigateTo("self", "/workshop/" + ( data.data["__metadata"]).id)
         }, function (data) {
             //TODO
             console.log("Error on create workshop")
+           $rootScope.requestPending = false;
             SessionManager.errorUpdate("Error on create workshop : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
             $rootScope.$broadcast("CREATE_WORKSHOP_ERROR", data);
@@ -152,6 +169,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
 
     $scope.createSession =function(seObj) {
+         $rootScope.requestPending = true;
 
             SessionManager.api.onDemand("WS_sessions","batchCreate",seObj).then(function(data)
         {
@@ -176,6 +194,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $scope.updateWorkshop = function (wsObj) {
 
+
         SessionManager.api.update("workshops",wsObj.id, wsObj,wsObj.tags).then(function (data) {
             //TODO
             console.log("Success on create workshop");
@@ -190,6 +209,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
 
     $scope.readOne = function (name, id, deep, level) {
+         $rootScope.requestPending = true;
         return SessionManager.api.readOne(name, id, deep, level)
     };
 
@@ -201,6 +221,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     }
 
     $scope.search = function(queryObj,callback){
+         $rootScope.requestPending = true;
         console.log("myApp - Search")
         var obj = {query:queryObj}
        console.log("myApp - Search" + queryObj)
@@ -208,6 +229,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         {
          console.log("myApp - Search callback")
           callback(data.data.data);
+           $rootScope.requestPending = false;
 
         },
         function(data)
@@ -227,13 +249,20 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             })
         }
 
+//////////LISTENERS
     $scope.$on("REFRESH_SESSION_REQUEST",function(event)
     {
         $scope.setSessionData()
     })
+    $scope.$on("SERVER_RESPONSE",function(event)
+    {
+    $rootScope.requestPending = false;
+    })
 
 //////CONFIG
     $scope.userDetails={};
+    $rootScope.isReady = false;
+    $rootScope.requestPending = false;
     $scope.setSessionData();
     $scope.loadLangData();
 

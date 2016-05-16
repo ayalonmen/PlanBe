@@ -7,7 +7,8 @@
                 restrict: "E",
                 templateUrl: '../assets/templates/pb-calendar.html',
                 scope: {
-                    formWatch: "="
+                    formWatch: "=",
+                    workshop:"@"
                 },
                 link: function (scope, element, attr, ctrl) {
 
@@ -20,16 +21,20 @@
         .controller('CalControl',function($scope,TimeOptions)
         {
 
-            $scope.month = "April";
-            $scope.year = 2016;
-            var numOfDays = Date.getDaysInMonth($scope.year,Date.getMonthNumberFromName($scope.month))
+            $scope.today = Date.today();
+            $scope.month = $scope.today.toString("MMM");
+            $scope.year = $scope.today.toString("yyyy");
+
+            var numOfDays = $scope.today.getDaysInMonth()
             $scope.days = {}
             for(var i=0;i<numOfDays;i++)
             {
                 var dayObj = {date:i+1,c_items:[]}
                 $scope.days["date" + (i+1)] = dayObj
             }
+
             console.log($scope.days)
+            console.log($scope.workshop)
             $scope.timeOptiones = TimeOptions;
             $scope.dialogOpen = false
             $scope.newSession ={start:"10:00",end:"11:00"}
@@ -80,13 +85,14 @@
 
             $scope.openDialog= function(val,other_scope)
             {
-               $scope.$apply(function()
+              /* $scope.$apply(function()
                {
                    $scope.dialogOpen = true
                    $scope.selected = val;
                    $scope.child = other_scope
-               });
+               });*/
                 console.log("openDialog" + val)
+                $scope.$emit("CALENDAR_DAY_SELECTED" ,$scope.year +"-"+ $scope.month+"-" +val)
             }
 
 
@@ -125,10 +131,10 @@
                     hourRep = "0"+ hourRep
                 }
                 var timeRep =  hourRep +minRep
-                opt.push(timeRep)
+                opt.push({timeRep:timeRep})
                 minRep = ":30";
                 timeRep =  hourRep +minRep
-                opt.push(timeRep)
+                opt.push({timeRep:timeRep})
 
             }
             return opt;

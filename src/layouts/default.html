@@ -13,15 +13,19 @@
     </head>
       <body ng-controller="Main"  >
 
-          <pb-header is-logged="isLogged" sign-out="signOut" navigate-to="navigateTo" search="search" ng-if="isReady"></pb-header>
+          <pb-header is-logged="isLogged" sign-out="signOut" navigate-to="navigateTo" search="search" ng-if="isReady" state="home_state"></pb-header>
 
-          <div class="cssload-wrap">
-<div class="cssload-cssload-spinner"></div>
-</div>
 
-              <div style="padding-top:60px;min-height:90vh;">
+
+          <!--div class="cssload-wrap" ng-show="requestPending">
+                <div class="cssload-cssload-spinner"></div>
+        </div-->
+
+              <div style="padding-top:0px;min-height:90vh;">
                   <message-panel ></message-panel>
+
                       <div ng-view ng-if="isReady"></div>
+
               </div>
 
               <pb-footer></pb-footer>
