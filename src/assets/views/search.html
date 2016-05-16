@@ -1,10 +1,31 @@
-
-
-<div class="pb_row" style="margin-top:60px">
+<div class="pb_row" style="padding-top:90px">
     <div class="small-12 columns">
 
      <translated key="found"></translated> {[{res.length || 0}]} <translated key="results"></translated> <br> <label class="label">{[{term}]}</label>
-            <div >
+   </div>
+</div>
+
+                <div class="pb_row " style="margin-top:50px;">
+                    <div class="small-12 medium-6 pb_columns" style="background-color:#eeeeee;height:60px;">
+
+                        <div class="input-group float-left" style="height:100%;">
+                                <input class="input-group-field " type="text" ng-model="queryCity" placeholder="Barcelona">
+                             <span class="input-group-field" style="font-size:0.9rem;line-height:1rem;padding : 0 20px 0 20px">0km</span><input class="input-group-field float-right" type="range" min="2" max="100" step="2" ng-model="queryDistance" style="width:100%;background-color:#eeeeee;margin-right:20px;margin-top:20px;"/> <span class="input-group-field"style="font-size:0.9rem;line-height:1rem">100km</span>
+                        </div>
+
+                    </div>
+
+                    <div class="small-12 medium-6 pb_columns" style="background-color:#eeeeee;height:60px;">
+                            <div class="input-group float-left" style="height:100%; padding:10px;">
+                                  <a class="input-group-button button" style="margin-right:10px;" >Upcoming</a>
+                                  <a class="input-group-button button secondary">AM</a>
+                                  <a class="input-group-button button secondary">PM</a>
+                                   <a class="input-group-button button">Best Reviews</a>
+                    </div>
+                    </div>
+        </div>
+                </div>
+
                 <div class="row small-up-1 medium-up-2 large-up-4" style="margin-top:40px;">
                     <div class="columns" ng-repeat="n in  res  track by $index">
 
@@ -26,6 +47,6 @@
 
                     </div>
                 </div>
-            </div>
+
     </div>
 </div>

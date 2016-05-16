@@ -60,6 +60,13 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         $location.url("")
          $rootScope.requestPending = false;
     });
+    $rootScope.$on("LEFT_HOME_STATE", function () {
+     $rootScope.home_state = false;
+    });
+
+    $rootScope.$on("ENTER_HOME_STATE", function () {
+     $rootScope.home_state = true;
+    });
 /////METHODS
 
 
@@ -118,6 +125,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             url = destination
         }
         $location.url(url)
+
     };
 
     $scope.signIn = function (caller, username, password) {

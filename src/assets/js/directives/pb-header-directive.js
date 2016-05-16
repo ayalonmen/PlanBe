@@ -10,7 +10,8 @@
                   isLogged: "=",
                   signOut:"=",
                   navigateTo: "=",
-                  search: "="
+                  search: "=",
+                  state:'='
               },
               controller:function($scope)
               {
