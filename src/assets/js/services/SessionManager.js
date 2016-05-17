@@ -94,6 +94,10 @@
                     params:params
                 });
             };
+            o.api.socialSignup = function (provider,spec) {
+                    Backand.socialSignup(provider,spec)
+            }
+
 
             return o;
 

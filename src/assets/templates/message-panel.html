@@ -1,6 +1,12 @@
-<div class="callout strong-alert" ng-show="error" >
-   <button class="close-button" aria-label="Close alert" type="button" ng-click="closeMe()">
-      <span aria-hidden="true">&times;</span>
+<div class="pb_row expanded " ng-if="error">
+    <div class="small-12 pb_columns" style="height:60px;">
+    </div>
+    <div class="small-12 pb_columns" style="padding:0;">
+     <div class="callout strong-alert">
+           <button class="close-button" aria-label="Close alert" type="button" ng-click="closeMe()">
+           <span aria-hidden="true">&times;</span>
    </button>
    Error! - {[{error}]}
+</div>
+</div>
 </div>

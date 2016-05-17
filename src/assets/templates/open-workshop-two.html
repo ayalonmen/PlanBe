@@ -57,58 +57,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="small-6 columns">
-                            <div class="callout" >
-                                <label>Session Duration (in hours)
-
-                                    <div class="row" >
-                                        <div class="small-6 columns">
-                                            <input class="float-left" type="number" ng-model="workshop.duration" ng-min="1" ng-max="10">
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                <div class="row">
-                    <div class="small-12 columns">
-                        <div class="callout" >
-                            <label>Please choose session type
-                            <div class="expanded button-group">
-                                <a class="button" name="easy" ng-click="setSingleSession(false)" ng-class="{'hollow': workshop.isMulti}">One Session </a>
-                                <a class="button "name="strict" ng-click="setSingleSession(true)" ng-class="{'hollow': !workshop.isMulti}">Multi Session</a>
-                            </div>
-                                <div class="callout" ng-show=" workshop.isMulti">
-                                    <div class="row">
-                                        <div class="small-8 columns" style="line-height: 2rem">
-                                            How many sessions will the workshop include?
-                                            </div>
-                                        <div class="small-4 columns">
-                                            <input type="number" ng-model="workshop.multiNum"/>
-                                        </div>
-                                        </div>
-                                    <div class="row">
-                                        <div class="small-12 columns" >
-                                            <label> Description of course sessions
-                                                <input type="text" ng-model="workshop.multiDesc"/>
-                                            </label>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                       </label>
-                    </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
                         <div class="small-12 columns">
-
-
                             <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm2.tags.$invalid || wsForm2.country.$invalid || wsForm2.city.$invalid}">NEXT</button>
                             <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
                         </div>

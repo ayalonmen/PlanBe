@@ -14,16 +14,12 @@
                 link : function(scope,element,attr)
                 {
 
-                    scope.data = scope.initData(scope.cindex)
 
-                    if(scope.data!=null){
-                        scope.eventNum = scope.data.length;
-                    }
 
                     element.on('click',function(e)
                     {
                       scope.openDialog(scope.cindex,scope);
-                    });  
+                    });
 
 
                     scope.refresh = function()
@@ -41,6 +37,17 @@
                     }
 
 
+                },
+                controller: function($scope)
+                {
+                    $scope.$on("CELL_DATA_INIT",function(e,data)
+                {
+                    $scope.data = $scope.initData($scope.cindex)
+
+                    if($scope.data!=null){
+                        $scope.eventNum = $scope.data.length;
+                    }
+                })
                 }
 
 

@@ -20,14 +20,14 @@
 
 
             $scope.init = function () {
-
+                $scope.multiArray = new Array()
                 _self.showBizForm = false;
                 _self.newBiz = {}
                 $scope.workshop = null
                 if ($scope.$parent.userDetails.businesses.length > 0) {
                     //console.log("We have a business")
                     if ($scope.showWSForm == 0) {
-                        $scope.showWSForm = 1;  
+                        $scope.showWSForm = 1;
                     }
                     _self.newBiz = $scope.$parent.userDetails.businesses[0]
                     //console.log(_self.newBiz)
@@ -45,6 +45,8 @@
                     if ($scope.workshop == null) {
                         //console.log("NO WORKSHOP FOUND")
                         $scope.navigateTo("updateworkshop", "/openworkshop")
+                    }else {
+                        $scope.$broadcast("SESSION_DATA_INIT" , $scope.workshop.WS_sessions)
                     }
 
                 } else {
@@ -97,7 +99,7 @@
                     if (index > -1) {
 
                         $scope.workshop.assets.splice(index, 1);
-                        $scope.wsForm4.$setDirty();
+                        $scope.wsForm5.$setDirty();
                     }
 
                 }
@@ -114,7 +116,7 @@
             $scope.update = function (goto) {
                 var timeoutID = window.setTimeout(function(){google.maps.event.trigger(map, 'resize')}, 2000);
                 // if (($scope.wsForm1.$valid || $scope.wsForm1.$pristine) && ($scope.wsForm2.$valid || $scope.wsForm2.$pristine) && ($scope.wsForm3.$valid || $scope.wsForm3.$pristine) && ($scope.wsForm4.$valid || $scope.wsForm4.$pristine) && ($scope.wsForm5.$valid || $scope.wsForm5.$pristine)) {
-                if ($scope.wsForm1.$dirty || $scope.wsForm2.$dirty || $scope.wsForm3.$dirty || $scope.wsForm4.$dirty || $scope.wsForm5.$dirty) {
+                if ($scope.wsForm1.$dirty || $scope.wsForm2.$dirty || $scope.wsForm3.$dirty || $scope.wsForm4.$dirty || $scope.wsForm5.$dirty|| $scope.wsForm6.$dirty) {
 
                     $scope.pendingServer = true;
                     $scope.wsForm1.$setPristine()
@@ -122,13 +124,37 @@
                     $scope.wsForm3.$setPristine()
                     $scope.wsForm4.$setPristine()
                     $scope.wsForm5.$setPristine()
+                    $scope.wsForm6.$setPristine()
                     $scope.$parent.updateWorkshop(WorkshopHelper.packWorkshop($scope.workshop));
                 }
                 if (goto) {
-                    $scope.showWSForm = goto  
+                    $scope.showWSForm = goto
                 }
                 //TODO
             }
+
+                $scope.publishWorkshop = function () {
+                        var missForm = $scope.isReadyToPublish()
+                        if (missForm==0) {
+                            alert("All is valid")
+                        }else {
+                        $scope.showWSForm = missForm
+                        }
+                }
+
+                $scope.isReadyToPublish = function()
+                {
+                    var missForm = 0;
+                    for(var i=1;i<7;i++)
+                    {
+                        if($scope["wsForm" + i].$invalid ){
+                            missForm =i;
+                            break;
+                        }
+
+                    }
+                        return missForm;
+                }
 
             $scope.onReadFile = function ($fileContent) {
                 //console.log("CONTROLLER SAYS ONREAD FILE")
@@ -147,7 +173,7 @@
                     var r_url = data.data.url
                     //console.log(r_url)
                    // console.log(data.data.url)
-                    $scope.wsForm4.$setDirty();
+                    $scope.wsForm5.$setDirty();
                     var element_id = data.config.data.element_id
                     //console.log(element_id)
                     $scope.workshop.assets[element_id].url = r_url;
@@ -156,6 +182,36 @@
 
 
             }
+
+
+                $scope.onMultiChange = function($event)
+                {
+                 var elem_to_add =    $scope.workshop.multiNum - $scope.multiArray.length
+                 if(elem_to_add>0)
+                 {
+                     for(var i =0;i<elem_to_add;i++)
+                     {
+                         $scope.multiArray.push({text:""})
+                     }
+                 }else {
+                     var newArray = [];
+                        for(var i =0;i<$scope.multiArray.length;i++)
+                        {
+
+                            var item = $scope.multiArray[i]
+                            if(item.text!=""){
+                                newArray.push(item)
+                            }
+                        }
+                        $scope.multiArray = newArray;
+                        while($scope.multiArray.length< $scope.workshop.multiNum)
+                        {
+                             $scope.multiArray.push({text:""})
+                        }
+                        $scope.workshop.multiNum = $scope.multiArray.length
+                 }
+                    console.log($scope.workshop.multiNum)
+                }
 
 
             $scope.$on("UPDATE_WORKSHOP_SUCCESS", function (event, data) {
@@ -172,7 +228,7 @@
 
         })
 
-   
+
 
 
 })();

@@ -1,11 +1,13 @@
 <div class=" fade-in" >
-    <form  name="wsForm5" ng-submit="update(showWSForm+1)" novalidate >
+    <form  name="wsForm6" ng-submit="publishWorkshop()" novalidate >
 
         <div class="pb_row">
             <div class="small-3 columns">
-                <label>Price
+                <pb-label>Price
+                    <label>
                     <div>What is the price for this workshop?</div>
                 </label>
+                </pb-label>
             </div>
 
             <div class="small-3 columns end" style="padding-top:10px;">
@@ -13,14 +15,35 @@
             </div>
         </div>
 
-        <div class="pb_row">
+        <div class="pb_row" style="margin-top:40px;">
+                            <div class="small-3 columns">
+                                    <input type="checkbox" ng-model="ows5ctrl.earlyFlag"> <pb-label>Earlybird
+                                    <label>What is the eprice for early birds?</label>
+                                </pb-label>
+                            </div>
+
+                           <div ng-if="ows5ctrl.earlyFlag">
+                            <div class="small-3 columns ">
+                                    <label class="float-left">How many days before?
+                                    <input type="number" placeholder=""  ng-model="workshop.earlybird_period" class="float-left" ng-min="0" string-to-number>
+                                </label>
+                             </div>
+
+                        <div class="small-3 columns end">
+                            <label class="float-left">Price per seat
+                                <input type="number" placeholder=""  ng-model="workshop.earlybird_price" class="float-left" ng-min="0" string-to-number>
+                            </label>
+                        </div>
+                     </div>
+          </div>
+        <div class="pb_row" style="margin-top:40px;">
 
                 <div class="small-3 columns">
-                        <label>Volume
-                        <div>Set a special volume rate</div>
-                        </label>
+                                <input type="checkbox" ng-model="ows5ctrl.volumeFlag"> <pb-label>Volume Rate
+                        <label>Set a special volume rate</label>
+                        </pb-label>
                 </div>
-
+                 <div ng-if="ows5ctrl.volumeFlag">
                 <div class="small-3 columns ">
                     <label class="float-left">Minimum seats
                         <input type="number" placeholder=""  ng-model="workshop.volume" class="float-left" ng-min="0" string-to-number>
@@ -33,20 +56,7 @@
                 </label>
             </div>
          </div>
-
-
-        <div class="pb_row">
-            <div class="small-3 columns">
-                <label>Seats
-                    <div>How many total available seats in the workshop?
-                    </div>
-
-                </label>
-            </div>
-            <div class="small-3 columns end" style="padding-top:20px;">
-                <input type="number" placeholder="1" required  ng-model="workshop.seats" ng-min="1" string-to-number>
-                </div>
-            </div>
+     </div>
 
 
         <div class="pb_row">
@@ -64,9 +74,10 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="pb_row" style="margin-top:40px;">
             <div class="small-10 pb_columns">
-                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm5.$invalid}">NEXT</button>
+                <button ng-if="isReadyToPublish()==0" class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm6.$invalid}">CREATE & PUBLISH</button>
+                 <button ng-if="isReadyToPublish()!=0" class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm6.$invalid}">COMPLETE MISSING DATA</button>
                 <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
             </div>
         </div>

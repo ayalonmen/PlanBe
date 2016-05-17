@@ -1,12 +1,18 @@
 <div class="row">
     <div class="small-12 column">
             <div class="row " style="max-width:700px">
-                <div class="cal-col ">
-                    <h4>{[{month}]}  {[{year}]}</h4>
+            <div class="small-3 column">
+                    <button class="button"  ng-click="skipMonth(-1)">Back</button>
                 </div>
+                    <div class="small-6 column">
+                    <h4>{[{month}]}  {[{year}]}</h4>
+                        </div>
+                    <div class="small-3 column">
+                            <button class="button" ng-click="skipMonth(1)">Next</button>
+                        </div>
                 <div class="cal-col">
                 <div ng-repeat="date in days track by $index">
-                    <cal-cell cindex="{[{$index+1}]}" init-data="initData" open-dialog="openDialog">  <md-tooltip>Tooltip mf!!!!</md-tooltip></cal-cell>
+                    <cal-cell cindex="{[{$index+1}]}" init-data="initData" open-dialog="openDialog">  <md-tooltip>Tooltip!!!</md-tooltip></cal-cell>
 
                 </div>
                     </div>
