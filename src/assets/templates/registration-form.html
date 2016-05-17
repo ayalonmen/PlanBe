@@ -1,17 +1,17 @@
         <div class="pb_row  fade-in" ng-show="!regForm.$submitted" >
                 <div class="small-12 pb_columns">
-        
+
                             <div class="pb_row">
                                 <div class="small-12 pb_columns">
                                     <h1>Please Create an Account</h1>
                                 </div>
                             </div>
-        
+
                              <div class="pb_row">
                                 <div class="small-12 pb_columns">
                                     <form id="regForm" ng-submit="signUp(newUser)" ng-model="regForm" name="regForm" novalidate>
-        
-        
+
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
                                                             <label>First Name
@@ -19,7 +19,7 @@
                                                             </label>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
                                                             <label>Last Name
@@ -27,7 +27,7 @@
                                                             </label>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
                                                             <label>Email
@@ -35,7 +35,7 @@
                                                             </label>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
                                                             <label>Password Required
@@ -43,16 +43,16 @@
                                                             </label>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
-        
+
                                                             <label>Re-enter Password
                                                                 <input type="password" placeholder="yeti4preZ" name="confirmPassword" ng-model="newUser.confirmPassword" compare-to="newUser.password" ng-minlength="6" ng-maxlength="12" required>
                                                             </label>
                                                         </div>
                                                     </div>
-        
+
                                                     <div class="pb_row">
                                                         <div class="small-12 pb_columns">
                                                             <button class="button float-right" type="submit" ng-class="{'disabled' : regForm.firstName.$invalid || regForm.lastName.$invalid || regForm.email.$invalid || regForm.password.$invalid || regForm.confirmPassword.$invalid}">Submit</button>
@@ -61,6 +61,11 @@
                                     </form>
                                 </div>
                              </div>
+                             <div class="pb_row">
+                                 <div class="small-12 medium-12 pb_columns">
+                             <a class="button" ng-click="socialSignup()"> SOCIAL SIGNUP</a>
+                           </div>
+                           </div>
                 </div>
         </div>
 

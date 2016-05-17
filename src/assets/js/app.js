@@ -40,6 +40,7 @@ myApp.config(function (BackandProvider,Data_Model) {
     BackandProvider.setAnonymousToken(Data_Model.application_data["ANONYMOUS_TOKEN"]);
 })
 
+
 myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$scope', 'Lang', function(Backand,$rootScope,$location,SessionManager,$scope,Lang) {
 
     ////LISTENERS
@@ -60,6 +61,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         $location.url("")
          $rootScope.requestPending = false;
     });
+
     $rootScope.$on("LEFT_HOME_STATE", function () {
      $rootScope.home_state = false;
     });
@@ -67,6 +69,16 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     $rootScope.$on("ENTER_HOME_STATE", function () {
      $rootScope.home_state = true;
     });
+
+    $scope.$on("REFRESH_SESSION_REQUEST",function(event)
+    {
+        $scope.setSessionData()
+    })
+    $scope.$on("SERVER_RESPONSE",function(event)
+    {
+    $rootScope.requestPending = false;
+    })
+
 /////METHODS
 
 
@@ -102,7 +114,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             $rootScope.$broadcast("SERVER_REGISTRATION_OK", "");
 
         }, function (data, status, headers, config) {
-            SessionManager.errorUpdate("Error on signUp : " + data)
+            //SessionManager.errorUpdate("Error on signUp : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
             $rootScope.$broadcast("SERVER_REGISTRATION_ERROR", "");
         })
@@ -118,6 +130,11 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         SessionManager.api.signout();
         $location.url(url)
     };
+    $scope.socialSignup = function()
+    {
+        alert("socialLogin")
+        SessionManager.api.socialSignup("facebook","left=1,top=1,width=600,height=600")
+    }
 
     $scope.navigateTo = function (caller, destination) {
         var url = "";
@@ -136,6 +153,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     $scope.openBusiness = function (bizObj) {
          $rootScope.requestPending = true;
         bizObj.owner = $scope.userDetails.id;
+
         console.log(bizObj)
         SessionManager.api.create("businesses", bizObj).then(function (data) {
             //TODO
@@ -143,7 +161,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             $rootScope.$broadcast("CREATE_BUSINESS_SUCCESS", data);
         }, function (data) {
             //TODO
-            SessionManager.errorUpdate("Error on create business : " + data)
+            //SessionManager.errorUpdate("Error on create business : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
             console.log("Error on create business")
         })
@@ -162,7 +180,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             //TODO
             console.log("Error on create workshop")
            $rootScope.requestPending = false;
-            SessionManager.errorUpdate("Error on create workshop : " + data)
+            //SessionManager.errorUpdate("Error on create workshop : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
             $rootScope.$broadcast("CREATE_WORKSHOP_ERROR", data);
         })
@@ -173,8 +191,12 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
             SessionManager.api.onDemand("WS_sessions","batchCreate",seObj).then(function(data)
         {
-                console.log("Success on create session");
-        })
+            $rootScope.$broadcast("CREATE_SESSION_SUCCESS", data);
+        }, function(data)
+        {
+                $rootScope.$broadcast("SERVER_ERROR", data);
+        }
+    )
             /*SessionManager.api.create("WS_sessions", seObj).then(function (data) {
                 //TODO
                 console.log("Success on create workshop");
@@ -202,7 +224,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         }, function (data) {
             //TODO
             console.log("Error on create workshop")
-            SessionManager.errorUpdate("Error on update workshop : " + data)
+            //SessionManager.errorUpdate("Error on update workshop : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
             $rootScope.$broadcast("UPDATE_WORKSHOP_ERROR", data);
         })
@@ -234,7 +256,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         },
         function(data)
         {
-            SessionManager.errorUpdate("Error on search : " + data)
+            //SessionManager.errorUpdate("Error on search : " + data)
             $rootScope.$broadcast("SERVER_ERROR", data);
         })
     }
@@ -249,15 +271,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             })
         }
 
-//////////LISTENERS
-    $scope.$on("REFRESH_SESSION_REQUEST",function(event)
-    {
-        $scope.setSessionData()
-    })
-    $scope.$on("SERVER_RESPONSE",function(event)
-    {
-    $rootScope.requestPending = false;
-    })
+
 
 //////CONFIG
     $scope.userDetails={};

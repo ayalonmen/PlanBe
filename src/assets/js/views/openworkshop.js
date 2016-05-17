@@ -24,7 +24,7 @@ angular.module('openworkshop', ['ngRoute'])
             _self.showBizForm = false;
             _self.newBiz = {}
 
-            if($scope.$parent.userDetails.businesses.length>0)  
+            if($scope.$parent.userDetails.businesses.length>0)
             {
                 console.log("length>0")
               _self.showWSForm= 1;
@@ -57,7 +57,8 @@ angular.module('openworkshop', ['ngRoute'])
         });
 
         $scope.$on("CREATE_BUSINESS_SUCCESS",function(event,data){
-            $scope.$parent.setSessionData();
+            //$scope.$parent.setSessionData();
+            $scope.$emit("REFRESH_SESSION_REQUEST","")
             //TODO
         });
 
@@ -91,4 +92,3 @@ angular.module('openworkshop', ['ngRoute'])
 
 });
 })();
-

@@ -2,8 +2,8 @@
         <div class="cal-row ">
             <div style="z-index:2;position: absolute;display: block; margin-left:5px;">{[{cindex}]}</div>
                     <div ng-repeat="event in data track by $index">
-                            <md-tooltip><div style="width:70px;height:40px;padding:10px;">Starts : {[{event.start}]} <br> Ends: {[{event.end}]}</div></md-tooltip>
-                    <div class="float-left" id="{[{cindex}]}_{[{$index+1}]}" style="width: {[{98/data.length}]}px; background-color: {[{event.color}]}; height: {[{(event.end-event.start)*4}]}px; margin-top: {[{(event.start)*4}]}px;" ng-mouseenter="testHover($event)">
+                            <md-tooltip><div style="width:150px;height:40px;padding:10px;">Starts : {[{event.start}]} <br> Ends: {[{(event.end-event.start>0 )? event.end: 'Next Day!'}]}</div></md-tooltip>
+                    <div class="float-left" id="{[{cindex}]}_{[{$index+1}]}" style="width: {[{98/data.length}]}px; background-color: {[{event.color}]}; height: {[{(event.end-event.start>0?event.end-event.start:24-event.start)*4}]}px; margin-top: {[{(event.start)*4}]}px;border:1px solid #000" ng-mouseenter="testHover($event)">
 
                     </div>
                     </div>

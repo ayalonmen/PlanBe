@@ -6,7 +6,8 @@
                restrict: "E",
                templateUrl:'../../assets/templates/registration-form.html',
                scope:{
-                   signUp: '='
+                   signUp: '=',
+                   socialSignup:'='
                },
                controller: function($scope,Backand,$http,$location)
                {

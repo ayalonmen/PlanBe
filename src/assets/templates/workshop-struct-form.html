@@ -1,0 +1,83 @@
+<div class=" fade-in" >
+    <div class="pb_row">
+        <div class="small-8 columns">
+    <form  name="wsForm3" ng-submit="update(showWSForm+1)" novalidate >
+
+
+        <div class="pb_row">
+            <div class="small-4 columns">
+                <pb-label>Seats
+                    <div><label>How many total available seats in the workshop?</label>
+                    </div>
+
+                </pb-label>
+            </div>
+            <div class="small-3 columns end" style="padding-top:20px;">
+                <label>  Min seats
+                <input type="number" placeholder="min 1 seat" required  ng-model="workshop.minseats" ng-min="1" string-to-number>
+            </label>
+                </div>
+                <div class="small-3 columns end" style="padding-top:20px;">
+                        <label>  Max seats
+                           <input type="number" placeholder="min 1 seat" required  ng-model="workshop.seats" ng-min="1" string-to-number>
+                        </label>
+                    </div>
+            </div>
+
+            <div class="row">
+                <div class="small-4 columns">
+                        <pb-label>Duration (in hours)
+                            <div><label>How long is a meeting?</label></div>
+                            </pb-label>
+                        </div>
+
+                                <div class="small-3 columns end">
+                                    <input class="float-left" type="number" ng-model="workshop.duration" ng-min="1" ng-max="10">
+                                </div>
+                </div>
+
+
+
+            <div class="row">
+                <div class="small-12 columns">
+                    <div class="callout" >
+                        <div class="expanded button-group">
+                            <a class="button" name="easy" ng-click="setSingleSession(false)" ng-class="{'hollow': workshop.isMulti}">One Session</a>
+                            <a class="button "name="strict" ng-click="setSingleSession(true)" ng-class="{'hollow': !workshop.isMulti}">Multi Session</a>
+                        </div>
+                </div>
+                    </div>
+                        <div class="small-12 columns" ng-show=" workshop.isMulti">
+                        <div class="row">
+                            <div class="small-8 columns" style="line-height: 2rem">
+                                How many sessions will the workshop include?
+                                </div>
+                            <div class="small-4 columns">
+                                <input type="number" ng-model="workshop.multiNum" ng-change="onMultiChange()" ng-max="12" ng-min="2" name="multiNum"/>
+                            </div>
+                            </div>
+                        <div class="row" ng-repeat="t in multiArray track by $index">
+                            <div class="small-12 columns" >
+                                <label> Description for lesson No. {[{$index+1}]}
+                                    <input type="text" ng-model="t.text" />
+                                </label>
+
+                                </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+        <div class="row">
+            <div class="small-12 pb_columns">
+                <button class=" button float-right" type="submit" value="Submit" ng-class="{'disabled' : wsForm3.$invalid}">NEXT</button>
+                <a class="secondary button float-right"  ng-click="update(showWSForm-1)" >BACK</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
