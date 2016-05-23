@@ -11,7 +11,7 @@
                 },
                 link: function (scope, element, attr, ctrl) {
                     console.log("PB CLENDAR LINK:")
-                        console.log(ctrl)
+                        //console.log(ctrl)
                 },
                 controller: 'CalControl',
                 controlAs: 'ctrl'
@@ -31,7 +31,7 @@
         {
             $scope.data2={};
             console.log("SESSION_DATA_INIT")
-            console.log(data)
+        //    console.log(data)
             delete data["__proto__"]
 
            for(var t in data)
@@ -50,13 +50,13 @@
                 obj.color=  $scope.getRandHex()
                  $scope.data2[sd.toString("MMM")]["date"+parseInt(sd.toString("dd"))]["c_items"].push(obj)
             }
-               console.log($scope.data2)
+              // console.log($scope.data2)
 
             for (var obj in $scope.data2[$scope.today.toString("MMM")])
             {
-                console.log(obj)
+                //console.log(obj)
                  $scope.days[obj].c_items = $scope.data2[$scope.today.toString("MMM")][obj].c_items;
-                     console.log($scope.days[obj])
+                     //console.log($scope.days[obj])
             }
 
             $scope.$broadcast("CELL_DATA_INIT","")
@@ -98,14 +98,14 @@
                     _self.setInitdata();
                 }
 
-                console.log("skipMonth")
+            //    console.log("skipMonth")
 
             }
 
 
             $scope.openDialog= function(val,other_scope)
             {
-                console.log("openDialog" + val)
+                //console.log("openDialog" + val)
                 $scope.$emit("CALENDAR_DAY_SELECTED" ,$scope.year +"-"+ $scope.month+"-" +val)
             }
 

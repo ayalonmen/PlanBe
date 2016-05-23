@@ -6,25 +6,33 @@
 </div>
 
                 <div class="pb_row " style="margin-top:50px;">
-                    <div class="small-12 medium-6 pb_columns" style="background-color:#eeeeee;height:60px;">
-
-                        <div class="input-group float-left" style="height:100%;">
-                                <input class="input-group-field " type="text" ng-model="queryCity" placeholder="Barcelona">
-                             <span class="input-group-field" style="font-size:0.9rem;line-height:1rem;padding : 0 20px 0 20px">0km</span><input class="input-group-field float-right" type="range" min="2" max="100" step="2" ng-model="queryDistance" style="width:100%;background-color:#eeeeee;margin-right:20px;margin-top:20px;"/> <span class="input-group-field"style="font-size:0.9rem;line-height:1rem">100km</span>
-                        </div>
-
+                    <div class="small-12 medium-3 pb_columns">
+                             <input  type="text" style="max-width:200px;" ng-model="queryCity" placeholder="Choose a City"/>
                     </div>
 
+                         <div class="small-12 medium-3 pb_columns">
+
+
+                               <div class="float-left" style="min-width:250px;"> <md-slider ng-model="queryDistance"  step="2" min="2" max="100" aria-label="rating" ng-change="onDistanceChange()"></md-slider></div>
+
+
+                         </div>
+
+                             <!--input class="input-group-field float-right" type="range" min="2" max="100" step="2" ng-model="queryDistance" style="width:100%;background-color:#eeeeee;margin-right:20px;margin-top:20px;"/-->
+
+
+
+
                     <div class="small-12 medium-6 pb_columns" style="background-color:#eeeeee;height:60px;">
-                            <div class="input-group float-left" style="height:100%; padding:10px;">
-                                  <a class="input-group-button button" style="margin-right:10px;" >Upcoming</a>
+                            <div class="input-group float-left" style="height:100%; padding:10px;" >
+                                  <a class="input-group-button button" style="margin-right:10px;" ng-click= "searchLocation()" >Upcoming</a>
                                   <a class="input-group-button button secondary">AM</a>
                                   <a class="input-group-button button secondary">PM</a>
                                    <a class="input-group-button button">Best Reviews</a>
                     </div>
                     </div>
         </div>
-                </div>
+
 
                 <div class="row small-up-1 medium-up-2 large-up-4" style="margin-top:40px;">
                     <div class="columns" ng-repeat="n in  res  track by $index">

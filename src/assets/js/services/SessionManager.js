@@ -7,6 +7,12 @@
             var o = {};
             o.api = {};
             o.server_error= null;
+            o.api.location = null;
+
+            o.api.getLocation = function()
+            {
+                return o.api.location
+            }
 
             o.errorUpdate = function(msg)
             {
@@ -96,6 +102,9 @@
             };
             o.api.socialSignup = function (provider,spec) {
                     Backand.socialSignup(provider,spec)
+            }
+            o.api.socialSignin = function (provider,spec) {
+                    Backand.socialSignin(provider,spec)
             }
 
 

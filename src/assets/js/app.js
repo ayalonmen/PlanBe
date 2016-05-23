@@ -1,3 +1,5 @@
+(function(){
+
 'use strict';
 
 // Declare app level module which depends on views, and components
@@ -13,8 +15,8 @@ var myApp = angular.module('myApp', [
     'account',
     'ngLodash',
     'updateworkshop',
-    'ngMaterial',
-    'search'
+    'search',
+    'ngMaterial'
 ]);
 
 /** Application Data */
@@ -41,7 +43,7 @@ myApp.config(function (BackandProvider,Data_Model) {
 })
 
 
-myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$scope', 'Lang', function(Backand,$rootScope,$location,SessionManager,$scope,Lang) {
+myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$scope', 'Lang', 'Debug',function(Backand,$rootScope,$location,SessionManager,$scope,Lang,Debug) {
 
     ////LISTENERS
     $rootScope.$on(Backand.EVENTS.SIGNUP, function () {
@@ -68,6 +70,8 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $rootScope.$on("ENTER_HOME_STATE", function () {
      $rootScope.home_state = true;
+     Debug.err("ENTER_HOME_STATE",this)
+
     });
 
     $scope.$on("REFRESH_SESSION_REQUEST",function(event)
@@ -85,22 +89,22 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
 
     $scope.setSessionData = function () {
+
        $rootScope.requestPending = true;
         SessionManager.api.getUserDetails().then(function (data) {
-            console.log("Main getUserDetails-------------");
-            console.log("data = ")
-            console.log(data)
+            Debug.Log("Get User Details");
+            Debug.info(data)
             $scope.isLogged = SessionManager.api.isLoggedIn();
-            if ($scope.isLogged) {
-                console.log("user is logged")
 
-                SessionManager.api.readOne('users', data.userId, true).then(function (data) {
-                    console.log("READ ONE USER")
+
+            if ($scope.isLogged) {
+                   Debug.Log("user is logged")
+                   SessionManager.api.readOne('users', data.userId, true).then(function (data) {
+                    Debug.Log("read one --> user")
                     $scope.userDetails = data.data;
-                    console.log($scope.userDetails);
                      $rootScope.requestPending = false;
                     $rootScope.$broadcast("SESSION_READY", data);
-                    console.log(" -------------")
+                    Debug.Log("SESSION_READY")
                 });
             }
 
@@ -132,8 +136,11 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     };
     $scope.socialSignup = function()
     {
-        alert("socialLogin")
-        SessionManager.api.socialSignup("facebook","left=1,top=1,width=600,height=600")
+        SessionManager.api.socialSignup("facebook","left=1,top=1,width=800,height=600")
+    }
+    $scope.socialSignin = function()
+    {
+        SessionManager.api.socialSignin("facebook","left=1,top=1,width=800,height=600")
     }
 
     $scope.navigateTo = function (caller, destination) {
@@ -242,17 +249,22 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         return SessionManager.api.onDemand("images","S3onDemand",dataObj)
     }
 
-    $scope.search = function(queryObj,callback){
+    $scope.search = function(queryObj, callback, _location, _distance){
          $rootScope.requestPending = true;
-        console.log("myApp - Search")
         var obj = {query:queryObj}
-       console.log("myApp - Search" + queryObj)
+        if(_location!==undefined)
+        {
+            obj.location = _location
+        }
+        if(_distance!==undefined)
+        {
+                obj.distance = _distance
+        }
+        console.log(obj)
         return SessionManager.api.onDemand("workshops","Search",obj).then(function(data)
         {
-         console.log("myApp - Search callback")
           callback(data.data.data);
            $rootScope.requestPending = false;
-
         },
         function(data)
         {
@@ -263,15 +275,14 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
         $scope.loadLangData = function()
         {
+             Debug.Log("Loading Lang Data")
             SessionManager.api.readList("languages",1000).then(function(data){
-                console.log("LANG DATA")
+
                 Lang.SetData(data.data.data)
                   $rootScope.isReady = true;
 
             })
         }
-
-
 
 //////CONFIG
     $scope.userDetails={};
@@ -279,8 +290,20 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     $rootScope.requestPending = false;
     $scope.setSessionData();
     $scope.loadLangData();
+   //@ we check for the user current position
+    if (navigator.geolocation) {
+           navigator.geolocation.getCurrentPosition(function(position){
+             $scope.$apply(function(){
+               SessionManager.api.location = position;
+               console.log("Location found by main controller" )
+               console.log( SessionManager.api.location)
+               $rootScope.$broadcast("USER_LOCATION_FOUND","")
+             });
+           });
+       }else {
+            $rootScope.$broadcast("USER_LOCATION_ERROR","")
+       }
+
 
 }])
-
-
-$(document).foundation();
+})();

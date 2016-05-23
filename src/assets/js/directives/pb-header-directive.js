@@ -13,7 +13,7 @@
                   search: "=",
                   state:'='
               },
-              controller:function($scope)
+              controller:function($scope,Debug)
               {
                   $scope.queryParam=""
 
@@ -22,7 +22,12 @@
                     if( $scope.queryParam!="") {
                          $scope.navigateTo('header','/search/'+$scope.queryParam)  ;
                     }
+
                   }
+                  $scope.onMouseOver = function()
+                    {
+                        Debug.err("Mouse Over")
+                    }
               },
               controllerAs:'ctrl'
           }
