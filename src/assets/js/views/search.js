@@ -85,7 +85,7 @@
 
 
                //@ we use google api to get the user coordinates based on the city
-                $scope.searchLocation = function()
+                $scope.searchLocationCorByName = function()
                 {
                         $scope.geocoder = new google.maps.Geocoder();
                         console.log("searchLocation")
@@ -93,7 +93,8 @@
                         $scope.geocoder.geocode({'address': $scope.queryCity}, function (results, status) {
                             if (status === google.maps.GeocoderStatus.OK) {
 
-                                $scope.location = [parseFloat(results[0].geometry.location.lat()),parseFloat(results[0].geometry.location.lng())]
+                                //$scope.location = [parseFloat(results[0].geometry.location.lat()),parseFloat(results[0].geometry.location.lng())]
+                                $scope.location = [results[0].geometry.location.lat(),results[0].geometry.location.lng()]
                                 console.log($scope.location )
                                 console.log($scope.queryDistance )
                                 $scope.searchCommand();
@@ -132,8 +133,9 @@
 
 
 
-                     $scope.searchCommand = function(pos)
+                     $scope.searchCommand = function()
                      {
+                         var pos = $scope.location[0].toString() + " " + $scope.location[1].toString()
                            $scope.$parent.search($routeParams.term,$scope.onResults, pos,$scope.queryDistance);
 
                      }
@@ -143,20 +145,34 @@
                           $timeout.cancel($scope.futureRequest)
                          $scope.futureRequest = $timeout(function() {
                              var pos=SessionManager.api.getLocation()
-                            $scope.searchCommand(pos.coords.latitude +" " +pos.coords.longitude)
+                            $scope.searchCommand()
                         }, 1500);
+                     }
+                     $scope.onCityChange = function()
+                     {
+                            //$scope.location = []
+                            if($scope.isGoogleAPIDefined)
+                            {
+                                  $timeout.cancel($scope.futureRequest)
+                                $scope.futureRequest = $timeout(function() {
+                                    //var pos=SessionManager.api.getLocation()
+                                    $scope.searchLocationCorByName()
+                               }, 1500);
+
+                            }
+
                      }
 
                      $scope.term = $routeParams.term
-                     $scope.location = []
-                      $scope.queryDistance= 20;
+                      $scope.queryDistance= 40;
                       $scope.queryCity = ""
                       var pos=SessionManager.api.getLocation()
                       if( pos !==null)
                       {
                           console.log("KICKING OFF")
                            console.log(pos)
-                          $scope.searchCommand(pos.coords.latitude +" " +pos.coords.longitude)
+                         $scope.location = [pos.coords.latitude,pos.coords.longitude]
+                          $scope.searchCommand()
                           if( $scope.isGoogleAPIDefined){
                             $scope.getCurrentLocation (pos);
                         }
@@ -164,7 +180,8 @@
                       $scope.$on("USER_LOCATION_FOUND",function()
                   {
                         pos=SessionManager.api.getLocation()
-                         $scope.searchCommand(pos.coords.latitude +" " +pos.coords.longitude)
+                         $scope.location = [pos.coords.latitude,pos.coords.longitude]
+                         $scope.searchCommand()
                          if( $scope.isGoogleAPIDefined){
                            $scope.getCurrentLocation (pos);
                        }

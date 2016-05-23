@@ -251,6 +251,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $scope.search = function(queryObj, callback, _location, _distance){
          $rootScope.requestPending = true;
+          $rootScope.$broadcast("SEARCH_ACTION", queryObj);
         var obj = {query:queryObj}
         if(_location!==undefined)
         {
@@ -264,6 +265,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         return SessionManager.api.onDemand("workshops","Search",obj).then(function(data)
         {
           callback(data.data.data);
+
            $rootScope.requestPending = false;
         },
         function(data)
