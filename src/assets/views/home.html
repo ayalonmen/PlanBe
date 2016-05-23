@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<div class="pb_row expanded" style="height:100px;background-color: rgba(0,0,0,0.65);padding:30px 15% 30px 15%;z-index:5;position:relative; top:-120px;display:inline-block">
+<div class="pb_row expanded" style="height:100px;background-color: rgba(0,0,0,0.65);padding:30px 15% 30px 15%;position:relative; top:-120px;display:inline-block">
             <div class="small-12 pb_columns">
                   <div class="input-group float-left " >
                       <input class="input-group-field" type="text" placeHolder ="Search" ng-model="queryParam" reqiured/>
@@ -22,7 +22,7 @@
     <div class="row small-up-1 medium-up-2 large-up-3" style="margin-top:40px;">
         <div class="columns" ng-repeat="n in  res  track by $index">
 
-            <div class="ws-display fade-in" ng-click="clickWS($event,n.workshop.id)">
+            <div class="ws-display fade-in unselectable" ng-click="clickWS($event,n.workshop.id)">
 
             <div class="ws-display ws-image"  ng-style="{'background-image':'url({[{n.workshop.assets[0].url}]})'}">
                 <div class="dark-label">
@@ -74,15 +74,20 @@
 
 <div class="pb_row"  style="margin-top:80px;padding-bottom:80px;">
     <div class="small-12 pb_columns">
-        <div style=" height:400px;background: no-repeat center center;background-color:#e1e1e1;background-image:url('../assets/img/cooking-class.jpg');background-size: cover;background-color: #e2e2e2;background-blend-mode:multiply;">
-            <div class="pb_row center">
-                <div class="small-12 pb_columns ">
-            <button class="button royal"> HOW DOES IT WORK</button>
-        </div>
-    </div>
+        <div style=" height:400px;background: no-repeat center center;background-color:#e1e1e1;background-image:url('../assets/img/cooking-class.jpg');background-size: cover;background-color: #B29272;background-blend-mode:multiply;">
+            <div class="pb_row ">
+                <div class="small-4 medium-2 pb_columns small-centered" style="height:400px;" >
+                                <button class="button royal" style="margin-top:180px;"> HOW DOES IT WORK</button>
+                </div>
+            </div>
 </div>
 <div class="pb_row"  style="margin-top:80px;padding-bottom:80px;">
     <div class="small-12 pb_columns">
-        <div style=" height:400px;background: no-repeat center center;background-color:#e1e1e1;background-image:url('../assets/img/surfing-class2.jpg');background-size: cover;background-color: #e2e2e2;background-blend-mode:multiply;">
+        <div style=" height:400px;background: no-repeat center center;background-color:#e1e1e1;background-image:url('../assets/img/surfing-class2.jpg');background-size: cover;background-color: #B29272;background-blend-mode:multiply;">
+            <div class="pb_row ">
+                <div class="small-4 medium-2 pb_columns small-centered" style="height:400px;" >
+                                <button class="button large" style="margin-top:180px;"> Start a Workshop</button>
+                </div>
+            </div>
 </div>
 </div>

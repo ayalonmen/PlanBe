@@ -1,33 +1,32 @@
-<div class=" fade-in" style="margin-top:5%;" >
-    <form  name="wsForm5" ng-submit="update(showWSForm+1)" novalidate >
+<div class=" fade-in" style="margin-top:2%;" >
+
         <div class="pb_row">
             <div class="small-8 columns">
-                <h3>Let's continue open a  workshop 3 </h3>
-
+                        <file-drag-upload ng-if=" workshop.assets.length==0" dim="big" on-read-file="onReadFile"></file-drag-upload>
             </div>
         </div>
         <div class="pb_row">
-            <div class="small-12 columns">
+            <div class="small-10 columns">
 
-                <label>Images
-                    <div class="callout">
+
+                    <div class="callout" ng-if=" workshop.assets.length>0">
                         <div class="row small-up-1 medium-up-2 large-up-4">
                             <div class="columns" ng-repeat="n in workshop.assets  track by $index">
                                <div class="biz-logo"  style="background-image: url('{[{workshop.assets[$index].url}]}');padding:0;">
-                                   <div class="close-btn float-right" ng-click="deletePicture($index)">X </div>
+                                   <div class="close-btn float-right" ng-click="deletePicture($index)"><md-button class="md-fab" aria-label="upload"><md-icon md-svg-src="../assets/img/md-icons/close.svg"></md-icon></md-button></div>
                                <div class ="preload_mask" ng-show="n.loaded==2">
                                    <div class="spinner float-center" style="z-index: 10;position: absolute;"></div>
 
                                </div>
                                </div>
-                                <input  type="text" ng-model="workshop.assets[$index].cation" ng-maxlength="140"/>
+                                <input  type="text" ng-model="workshop.assets[$index].cation" ng-maxlength="140" placeHolder="Add decciption" style="margin-top:10px;"/>
                             </div>
                             <div class="columns">
-                                <file-drag-upload></file-drag-upload>
+                                <file-drag-upload  dim="small" on-read-file="onReadFile"></file-drag-upload>
                              </div>
                          </div>
                     </div>
-                </label>
+
             </div>
         </div>
 
@@ -35,12 +34,14 @@
 
         <div class="row">
             <div class="small-12 columns">
+                    <form  name="wsForm5" ng-submit="update(showWSForm+1)" novalidate >
                 <button class=" button float-right" type="submit" value="Submit" >NEXT</button>
                 <a class="secondary button float-right"  ng-click="update((showWSForm-1))" >BACK</a>
                 <input type="text" ng-model="workshop.assets[0].url" required ng-hide="true">
+                    </form>
             </div>
         </div>
-        </form>
+
 
 
 </div>

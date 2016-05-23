@@ -3,7 +3,7 @@
 
     angular.module('myApp')
 
-        .service('Lang',  function (lodash) {
+        .service('Lang',  function (lodash,Debug) {
 
             this.keys ={};
             this.lang = "en"
@@ -17,7 +17,8 @@
                     temp[key] = langdata[i]
                  }
                  this.keys = temp
-                 console.log(this.keys)
+                 Debug.Log("Lang Loaded")
+                 Debug.info(this.keys)
 
              }
 

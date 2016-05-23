@@ -36,7 +36,10 @@
                         </div>
 
                         <div class="small-9 pb_columns ">
-                                <div ng-repeat="t in workshop.workshops_tags" class="label" style="margin:2px;">{[{t.tag.Name}]}</div>
+                            <md-chips>
+                                      <md-chip ng-repeat="t in workshop.workshops_tags">{[{t.tag.Name}]}</md-chip>
+                            </md-chips>
+                                <!--div ng-repeat="t in workshop.workshops_tags" class="label" style="margin:2px;">{[{t.tag.Name}]}</div-->
                         </div>
                         <div class="small-12 pb_columns ">
                             <hr>

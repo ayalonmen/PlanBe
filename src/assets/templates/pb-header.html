@@ -1,6 +1,6 @@
 <div class="pb_row expanded"  id="site_main_header" ng-class="{'pb_header' : !state , 'pb_header_home': state}">
     <div class="small-2 medium-1 columns">
-        <div class="unselectable header_logo" ng-click="navigateTo('header','/home')" ><span class="unselectable">PlanBe</span></div>
+        <div class="header_logo unselectable" ng-click="navigateTo('header','/home')" ><span class="unselectable">PlanBe</span></div>
     </div>
     <div class="small-2  columns">
             <a id="header_become_guide" class=" button royal vis-medium  header-sec" ng-click="navigateTo('header','/openworkshop')" style="margin:0;"><translated key="list workshop"></translated></a>
@@ -14,9 +14,20 @@
     <div class="small-2   columns vis-medium header-sec">
         <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')"><translated key="signin"></translated></a>
        <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')"><translated key="signup"></translated></a>
-        <div class="pb_profilepic_inline float-right"  ng-hide="!isLogged"   ng-click="navigateTo('header','/account')" ></div>
-       <a  id="header_id_logout" class="float-right" style="margin-right:20px;" ng-hide="!isLogged"   ng-click="signOut('header')"><translated key="signout"></translated></a>
+        <div class="pb_profilepic_inline float-right unselectable"  ng-hide="!isLogged"  drop-down-trigger="someId"  ></div>
+        <div class="callout" id="someId" style="display:none;margin-top:20px;">
+            <ul>
+                <li ><a ng-click="navigateTo('header','/account')">My Account</a></li>
+                <li>My Profile</li>
+                <li>Dashboard</li>
+                <li>Terms</li>
+                <li>Help Center</li>
+            </ul>
+            <div id="arrow" class="arrow-up"></div>
+        </div>
+       <a id="header_id_logout" class="float-right" style="margin-right:20px;" ng-hide="!isLogged"   ng-click="signOut('header')"><translated key="signout"></translated></a>
+
 
     </div>
-    
+
 </div>

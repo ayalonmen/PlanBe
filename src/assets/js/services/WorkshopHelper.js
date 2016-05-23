@@ -35,11 +35,15 @@
                 obj.tags = getTags(obj.workshops_tags)
                 //console.log(typeof obj.location)
                 //console.log(obj.location)
-             if(obj.location !== "" && obj.location!== undefined) {
+             if(obj.location !== "" && obj.location!== undefined && obj.location!= null) {
+                 console.log("LOCATION  : ")
+                 console.log(typeof obj.location)
+                 console.log(obj.location)
                 obj.location = obj.location.split(",")
                 obj.lat = parseFloat(obj.location[0])
                 obj.long= parseFloat(obj.location[1])
                  obj.location = new Array(obj.lat,obj.long)
+                 console.log(obj.location)
              } else{
                 obj.location =[]
             }

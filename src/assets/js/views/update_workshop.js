@@ -11,7 +11,7 @@
             });
         }])
 
-        view.controller('UWSCtrl' ,function($routeParams,$scope,WorkshopHelper) {
+        view.controller('UWSCtrl' ,function($routeParams,$scope,WorkshopHelper,Debug) {
 
             var _self = this;
             _self.wsid = Number($routeParams.id)
@@ -92,19 +92,7 @@
                 }
             }
 
-            $scope.deletePicture = function (p_index) {
-                //console.log("deletePicture")
-                if ($scope.workshop.assets && $scope.workshop.assets instanceof Array) {
-                    var index = p_index;
-                    if (index > -1) {
-
-                        $scope.workshop.assets.splice(index, 1);
-                        $scope.wsForm5.$setDirty();
-                    }
-
-                }
-            }
-
+          $scope.faketags = [{name:'banan',type:'fruit'},{name:'dog',type:'animal'},{name:'pot',type:'object'}]
             $scope.changeTest = function (event, valid) {
                // console.log("ON CHANGE !!");
                 var valid = event.target.getAttribute("class")
@@ -156,22 +144,38 @@
                         return missForm;
                 }
 
+      ///////////////////////PICTURES  /////////////////////
+                $scope.deletePicture = function (p_index) {
+                    //console.log("deletePicture")
+                    if ($scope.workshop.assets && $scope.workshop.assets instanceof Array) {
+                        var index = p_index;
+                        if (index > -1) {
+
+                            $scope.workshop.assets.splice(index, 1);
+                            $scope.wsForm5.$setDirty();
+                        }
+
+                    }
+                }
+
             $scope.onReadFile = function ($fileContent) {
-                //console.log("CONTROLLER SAYS ONREAD FILE")
-               // console.log($fileContent.length)
+
+               //@ loaded = 2 we show preloader / 0 we drop
                 $scope.workshop.assets.push({url: $fileContent, caption: "test caption", loaded: 2})
                 var file = $fileContent.substr($fileContent.indexOf(',') + 1, $fileContent.length)
-                var fname = "ws_" + $scope.workshop.id + "_" + $scope.workshop.business.id + "_" + $scope.workshop.assets.length;
+                var fname = "ws_" + $scope.workshop.id + "_" + $scope.workshop.business.id + "_" + (Date.now().getTime()/1000)
                 var tempObj = {
                     filename: fname,
                     filedata: file,
                     filedest: "ws_img",
                     element_id: $scope.workshop.assets.length - 1
                 }
+
                 $scope.$parent.getS3Url(tempObj).then(function (data) {
-                    //console.log("S3 Response:")
+
                     var r_url = data.data.url
-                    //console.log(r_url)
+                    Debug.err("URL")
+                    console.log(r_url)
                    // console.log(data.data.url)
                     $scope.wsForm5.$setDirty();
                     var element_id = data.config.data.element_id

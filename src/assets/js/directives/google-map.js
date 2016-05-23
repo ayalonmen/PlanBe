@@ -19,15 +19,14 @@
 
                     // Check if latitude and longitude are specified
                     if (angular.isDefined(scope.lat) && angular.isDefined(scope.long)) {
-                    
-                       
-                        lazyLoadApi.then(initializeMap)  
+
+
+                        lazyLoadApi.then(initializeMap)
                     }
 
                     // Initialize the map
                     function initializeMap() {
-                        console.log("MOTHER FUCKER 2" )
-                        console.log("initializeMap initializeMap initializeMap initializeMap initializeMap initializeMap initializeMap initializeMap initializeMap initializeMap")
+
                         location = new google.maps.LatLng(scope.lat, scope.long);
 
                         mapOptions = {
@@ -49,11 +48,11 @@
 
 
 
-                        
+
 
                     }
 
-                   var setGeo = function (resultsMap) {  
+                   var setGeo = function (resultsMap) {
 
                         var address = document.getElementById('address').value
                         scope.geocoder.geocode({'address': address}, function (results, status) {

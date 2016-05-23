@@ -43,7 +43,10 @@
                         {
                             $scope.$apply(function()
                             {
-                                $scope.coordinates = data
+                                $scope.coordinates = data.split(":")
+                                 $scope.workshop.lat = $scope.coordinates[0]
+                                  $scope.workshop.long = $scope.coordinates[1]
+
                             })
 
                         })

@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 
-angular.module('home', ['ngRoute','backand'])
+angular.module('home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {
@@ -13,7 +13,7 @@ angular.module('home', ['ngRoute','backand'])
 
 
 
-.controller('HomeCtrl', function($scope,WorkshopHelper) {
+.controller('HomeCtrl', function($scope,WorkshopHelper,Debug) {
 
     $scope.$emit("ENTER_HOME_STATE","");
     $scope.queryParam=""
@@ -29,23 +29,28 @@ angular.module('home', ['ngRoute','backand'])
     $scope.$emit("LEFT_HOME_STATE","");
 })
 $scope.onResults1 = function(searchOutput) {
-        for (var i =0 ; i< searchOutput.length;i++)
-        {
-            searchOutput[i].workshop = WorkshopHelper.parseWorkshop(searchOutput[i].workshop)
-        }
-        $scope.res = searchOutput;
+        if(searchOutput!== undefined){
+                for (var i =0 ; i< searchOutput.length;i++)
+                {
+                    searchOutput[i].workshop = WorkshopHelper.parseWorkshop(searchOutput[i].workshop)
+                }
+                $scope.res = searchOutput;
+            }
 
-        console.log($scope.res)
+        //SessionManager.errorUpdate($scope.res)
 
     }
     $scope.onResults2 = function(searchOutput) {
-            for (var i =0 ; i< searchOutput.length;i++)
-            {
-                searchOutput[i].workshop = WorkshopHelper.parseWorkshop(searchOutput[i].workshop)
-            }
-            $scope.res2 = searchOutput;
+        console.log("onResults2")
+        if(searchOutput!== undefined){
+                for (var i =0 ; i< searchOutput.length;i++)
+                {
+                    searchOutput[i].workshop = WorkshopHelper.parseWorkshop(searchOutput[i].workshop)
+                }
+                $scope.res2 = searchOutput;
 
-            console.log($scope.res)
+                Debug.info($scope.res)
+            }
 
         }
     $scope.clickWS= function(event,id) {
@@ -54,8 +59,8 @@ $scope.onResults1 = function(searchOutput) {
         }
 
 
-      $scope.$parent.search("google",$scope.onResults1);
-       $scope.$parent.search("guitar food biking",$scope.onResults2);
+      $scope.$parent.search("google",$scope.onResults1,"32 34", "1000");
+      $scope.$parent.search("surf food biking",$scope.onResults2,"32 34", "5000");
 
 
 });

@@ -5,16 +5,32 @@
         .directive('fileDragUpload', function ($parse) {
             return {
                 restrict: 'E',
-                scope:false,
-                template: '<div class="callout uploader" id="container">Drag or click to upload </div> <input type="file" id="upload" ng-hide="true" />',
-                transclude:true,
+                scope:{
+                    onReadFile:'=',
+                    dim:'@'
+                },
+                template: '<div class="callout" id="container"> \
+                                        <div style="width: 90%; height: auto;  margin: 20% auto; padding: 10px;  position: relative;" id="upload_button"> \
+                                                        <div> \
+                                                                    <md-button class="md-fab" aria-label="upload"><md-icon md-svg-src="../assets/img/md-icons/backup.svg"></md-icon></md-button>Upload Photos\
+                                                        </div> \
+                                                       <div> or drag them inside</div> \
+                                        </div>\
+                                </div>\
+                                 <input type="file" id="upload" ng-hide="true" />',
                 link: function(scope, element, attrs,ctrl) {
 
-                    element.find("#container").on("click",function(e)
+                    var upload =  element.find("#upload")
+                        if(scope.dim == "big")
+                        {
+                            element.find("#container").addClass('uploader-empty')
+                        }else {
+                            element.find("#container").addClass('uploader')
+                        }
+
+                    element.find("#upload_button").on("click",function(e)
                     {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        angular.element(event.target).siblings('#upload').trigger('click');
+                        upload.trigger('click');
                     })
 
                     element.on('dragover', function(e) {

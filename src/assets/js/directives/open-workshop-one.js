@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('myApp')
-        .directive("openWorkshopOne" ,function(){
+        .directive("openWorkshopOne"  ,function(){
             return {
                 restrict: "E",
                 templateUrl:'../../assets/templates/open-workshop-one.html',
@@ -10,8 +10,8 @@
                 link : function(scope,element,attr,ctrl)
                 {
                     //  console.log("In Directve One")
-                    // console.log(element.find("form"))  
-                }
+                    // console.log(element.find("form"))
+
                 //controller:function($scope, $element, $attrs) {
                 //    $scope['openWorkshopOne']=this;   // Exposes the directive controller on the parent scope with name myDirectiveName
                 //
@@ -21,7 +21,8 @@
                 //    }
                // }
 
-            }
-        })
+           }
+       }
+   })
 
 })();
