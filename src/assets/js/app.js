@@ -23,7 +23,7 @@ var myApp = angular.module('myApp', [
 myApp.constant("Data_Model", {
     "application_data": {
         "Application_ENV":"dev",
-        "APP_NAME" : "testapp500",
+        "APP_NAME" : "devapp",
         "SIGN_UP_TOKEN":"dcca42b9-588a-4be5-b56a-eecd5d9aebb8",
         "ANONYMOUS_TOKEN":"b35b8b58-1d64-43dd-930a-95ffc8b5b0f5",
         "USER_STORAGE_URL":"usr_img",
@@ -298,7 +298,6 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
              $scope.$apply(function(){
                SessionManager.api.location = position;
                console.log("Location found by main controller" )
-               console.log( SessionManager.api.location)
                $rootScope.$broadcast("USER_LOCATION_FOUND","")
              });
            });

@@ -12,7 +12,7 @@
         }])
 
 
-        .controller('searchCtrl', function($scope,$routeParams,WorkshopHelper,Lang,lazyLoadApi,SessionManager,$timeout){
+        .controller('searchCtrl', function($scope,$routeParams,WorkshopHelper,Lang,lazyLoadApi,SessionManager,$timeout,$rootScope){
             $scope.isGoogleAPIDefined = false;
              var s ;
             if(document.getElementById("google_maps_script") == undefined)
@@ -25,15 +25,14 @@
                 console.log("ADDIN GOOGLE SCRIPT")
             }else {
                    $scope.isGoogleAPIDefined = true;
-                    console.log("MFR22!!")
-                    console.log(SessionManager.api.getLocation());
+
             }
 
             //@ we use google api to get the user city  based on the coordinates
             $scope.getCurrentLocation = function(posObj)
             {
 
-                              var latlng = {lat: parseFloat(posObj.coords.latitude), lng: parseFloat(posObj.coords.longitude)};
+                              var latlng = {lat: parseFloat(posObj[0]), lng: parseFloat(posObj[1])};
                               $scope.geocoder = new google.maps.Geocoder();
                                console.log(latlng);
                                 $scope.geocoder.geocode({'location': latlng}, function(results, status) {
@@ -77,7 +76,7 @@
                      var pos=SessionManager.api.getLocation()
                      if( pos !==null)
                      {
-                         $scope.getCurrentLocation(pos)
+                         $scope.getCurrentLocation([pos.coords.latitude,pos.coords.longitude])
                      }
                 }
 
@@ -95,8 +94,10 @@
 
                                 //$scope.location = [parseFloat(results[0].geometry.location.lat()),parseFloat(results[0].geometry.location.lng())]
                                 $scope.location = [results[0].geometry.location.lat(),results[0].geometry.location.lng()]
+                                $rootScope.currentLocation = $scope.location;
                                 console.log($scope.location )
-                                console.log($scope.queryDistance )
+                                console.log("________" )
+                                console.log(SessionManager.location_query )
                                 $scope.searchCommand();
                             } else {
                                 alert('Geocode was not successful for the following reason: ' + status);
@@ -139,16 +140,19 @@
                            $scope.$parent.search($routeParams.term,$scope.onResults, pos,$scope.queryDistance);
 
                      }
+
                      $scope.onDistanceChange = function()
                      {
                           //
                           $timeout.cancel($scope.futureRequest)
                          $scope.futureRequest = $timeout(function() {
-                             var pos=SessionManager.api.getLocation()
+                             //var pos=SessionManager.api.getLocation()
                             $scope.searchCommand()
                         }, 1500);
                      }
-                     $scope.onCityChange = function()
+
+
+                     $scope.onCityChange = function()  
                      {
                             //$scope.location = []
                             if($scope.isGoogleAPIDefined)
@@ -166,24 +170,40 @@
                      $scope.term = $routeParams.term
                       $scope.queryDistance= 40;
                       $scope.queryCity = ""
+
                       var pos=SessionManager.api.getLocation()
+                      console.log(pos)
                       if( pos !==null)
                       {
-                          console.log("KICKING OFF")
-                           console.log(pos)
-                         $scope.location = [pos.coords.latitude,pos.coords.longitude]
+                         console.log("KICKING OFF")
+                         console.log(pos)
+                         if($rootScope.currentLocation== undefined){
+                              $scope.location =  [pos.coords.latitude,pos.coords.longitude]
+                         }else {
+                             {
+                                   $scope.location  = $rootScope.currentLocation
+                             }
+                         }
+
                           $scope.searchCommand()
                           if( $scope.isGoogleAPIDefined){
-                            $scope.getCurrentLocation (pos);
+                            $scope.getCurrentLocation ( $scope.location);
                         }
                       }
+
+
                       $scope.$on("USER_LOCATION_FOUND",function()
                   {
+                      if($rootScope.currentLocation==undefined){
                         pos=SessionManager.api.getLocation()
                          $scope.location = [pos.coords.latitude,pos.coords.longitude]
+                     }else {
+                          $scope.location =rootScope.currentLocation
+                              pos=SessionManager.api.getLocation()
+                     }
                          $scope.searchCommand()
                          if( $scope.isGoogleAPIDefined){
-                           $scope.getCurrentLocation (pos);
+                           $scope.getCurrentLocation ($scope.location);
                        }
                   })
 

@@ -8,14 +8,16 @@
                 <div class="pb_row " style="margin-top:50px;">
                     <div class="small-12 medium-3 pb_columns">
                              <input  type="text" style="max-width:200px;" ng-model="queryCity" placeholder="Choose a City" ng-change="onCityChange()"/>
+                             <select ng-model="queryCity" ng-change="onCityChange()" >
+                                     <option value="Barcelona">Barcelona</option>
+                                      <option value="Tel Aviv">Tel Aviv</option>
+                                       <option value="Paris">Paris</option>
+                             </select>
+
                     </div>
 
                          <div class="small-12 medium-3 pb_columns">
-
-
                                <div class="float-left" style="min-width:250px;"> <md-slider ng-model="queryDistance"  step="2" min="2" max="100" aria-label="rating" ng-change="onDistanceChange()"></md-slider></div>
-
-
                          </div>
 
                              <!--input class="input-group-field float-right" type="range" min="2" max="100" step="2" ng-model="queryDistance" style="width:100%;background-color:#eeeeee;margin-right:20px;margin-top:20px;"/-->

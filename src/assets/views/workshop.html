@@ -177,6 +177,10 @@
                                     </div>
                                         <div class="small-12 pb_columns" style="margin-top:12px;">
                                                 <a class="button expanded" style="height:45px;line-height:45px;font-size:1.1rem;padding-top:0px;">BOOK</a>
+                                                <form name="paypal-form" nonvalidate>
+                                                    <input type="text" id="amount">
+                                                    <button class="button" ng-click="charge()">PayPal</button>
+                                                </form>
                                         </div>
                                 </div>
 
