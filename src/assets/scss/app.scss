@@ -5,6 +5,8 @@
 @import 'motion-ui';
 
 
+//@include foundation-flex-classes;
+//@include foundation-flex-grid;
 @include foundation-global-styles;
 @include foundation-grid;
 @include foundation-typography;
@@ -44,6 +46,9 @@
 @include motion-ui-animations;
 
 
+body {
+    background-color:#ededed;
+}
 
 .pb_hero{
     background-size: cover;
@@ -53,7 +58,7 @@
       border-radius: $rad;
       width: $wid;
       height: $hyt;
-      background-color: #6c9a8f;
+      background-color:$light-gray;
       border-style: solid;
       border-width:$border;
       border-color: white;
@@ -72,10 +77,9 @@
 }
 .pb_biz_profilepic
 {
-    @include pb_rounded_div(50%,120px,120px,2px);
+    @include pb_rounded_div(50%,130px,130px,2px);
     display:inline-block;
     position: relative;
-    margin-top: -40px;
     z-index: 2;
     background-size: contain;
     background-image: url('http://www.aaedits.co.uk/wp-content/uploads/2015/11/Small-Business-Saturday-UK-Logo-2015-Blue-Hi-Res.jpg');
@@ -91,7 +95,7 @@
 .ng-valid.ng-dirty
 {
     border-color: green;
-     color: green;
+     color: $primary-color;
 }
 
 
@@ -118,7 +122,7 @@
 .pb_columns{
     @extend .columns;
     border-width:0px;
-    border-color: #EEEEEE;
+    border-color: tomato;
     border-style:solid;
 }
 .pb_test_border
@@ -205,10 +209,6 @@
 }
 
 
-
-
-
-
 .compress
 {
   width:98%;
@@ -243,43 +243,52 @@
 }
 
 
-
 .fade-in {
-    -webkit-animation: fadein 1.2s; /* Safari, Chrome and Opera > 11.2.1 */
-         -moz-animation: fadein 1.2s; /* Firefox < 16 */
-          -ms-animation: fadein 1.2s; /* Internet Explorer */
-           -o-animation: fadein 1.2s; /* Opera < 11.2.1 */
-              animation: fadein 1.2s;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+     -moz-animation: fadein 1s; /* Firefox < 16 */
+      -ms-animation: fadein 1s; /* Internet Explorer */
+       -o-animation: fadein 1s; /* Opera < 12.1 */
+          animation: fadein 1s;
   }
 
   @keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-  /* Firefox < 16 */
-  @-moz-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-  /* Safari, Chrome and Opera > 12.1 */
-  @-webkit-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-  /* Internet Explorer */
-  @-ms-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
 
-  /* Opera < 12.1 */
-  @-o-keyframes fadein {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-  }
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.slide-in{
+    @include mui-slide(in,left,$duration:200ms)
+}
+
+.slide-out{
+    @include mui-slide(out,right,$duration:200ms)
+}
+
+
 
 
 
@@ -342,11 +351,6 @@
   }
 }
 
-.header-sec{
-  @include breakpoint(medium down) {
-    font-size:12px;
-  }
-}
 
 ///////CALENDAR//////////////////
 .calendar-cell{
@@ -667,30 +671,82 @@
 
 .header_logo
 {
-    color:white;
+    color:#222222;
     font-size: 1.2rem;
     cursor: pointer;
+    min-width: 100px;
 }
 .header_logo:hover
 {
     color:#aaaaaa;
 }
 
-.pb_header_home{
+.pb-header{
     z-index:5;
     position:fixed;
     width:100%;
-    height:60px;
-    padding-top:10px;
+    height:64px;
+    padding-top:0px;
+    background-color: $white;
+    line-height: 62px;
+    text-transform: uppercase;
+    font-size: 0.9rem !important;
 }
-.pb_header{
-    z-index:5;
-    position:fixed;
-    width:100%;
-    height:60px;
-    padding-top:10px;
-    background-color: #313131
+
+.home-header
+{
+   background-color: transparent;
+   color:white;
+
 }
+
+.list-button{
+@include button(false,  $primary-color,  $primary-color,  $primary-color, hollow);
+    border-radius :5px;
+    border-width: 2px;
+    font-size: 0.8rem
+
+}
+.home-header > .list-button
+{
+    @include button(false,  #ffffff,  #ffffff,  #ffffff, hollow);
+    border-radius :5px;
+    border-width: 2px;
+     font-size: 0.8rem
+
+}
+.border-cell{
+    border-left:1px;
+    border-right:1px;
+        border-top:0px;
+        border-bottom:0px;
+    border-color:#e0e0e0;
+    border-style:solid;
+}
+.home-header  .border-cell{
+    border:0px;
+}
+
+.home-header  a
+{
+    color:#ffffff;
+}
+
+.home-header .jewel
+{
+    color:#000000;
+    background-color: $primary-color;
+}
+
+.input-group{
+    margin:0px;
+}
+.drop-menu a
+{
+    color:#000000;
+}
+
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -698,4 +754,97 @@
   border-right: 10px solid transparent;
 
   border-bottom: 10px solid white;
+}
+
+.header-right
+{
+    padding:0;
+    min-width:225px;
+    margin:0px;
+}
+
+.header-right-expand
+{
+    width: 335px;
+    padding:0;
+    margin:0px;
+}
+
+.jewel{
+@include pb_rounded_div(50%,19px,19px,2px);
+ position:relative;
+top: -36px;
+left: 16px;
+z-index: 80;
+line-height:14px;
+font-size:11px;
+color:$primary-color;
+text-align: center;
+font-weight: 700;
+background-color: #000000;
+border-color: #000000;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-32 { font-size: 32px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.color-yellow{
+    color: $yellow
+}
+.menu-pane
+{
+    height:100%;
+    width: 300px;
+    background-color:$primary-color;
+    position:fixed;
+    z-index:1000;
+    color:$white !important;
+    display:none;
+}
+.menu-pane .pb_row{
+    margin:0px;
+}
+
+.menu-pane .content-section{
+    padding:22px;
+    font-size:1.1rem;
+    text-transform: none !important;
+    border-bottom:1px solid $white;
+    line-height:100%;
+}
+
+.menu-pane ul
+{
+   line-height:200%;
+   list-style:none;
+   padding:0px !important;
+}
+
+.menu-pane a {
+    color:#FFFFFF;
+}
+.menu-pane  .list-button
+{
+    @include button(true,  #ffffff,  #ffffff,  #ffffff, hollow);
+    border-radius :5px;
+    border-width: 3px;
+     font-size: 1rem;
+     font-weight: 500;
+     text-transform: uppercase;
+     padding-top:10px;
+      padding-bottom:10px;
+
+}
+
+.container-background
+{
+    width:100%;
+    height:100%;
+    position: fixed;
+    top:0;
+    right:0;
+    background: rgba(0, 0, 0, 0.45);
 }

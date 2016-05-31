@@ -160,23 +160,27 @@
                                                 <div class="small-9 pb_columns " style="padding-right:2px;">
                                                         <div >Pick a date and time</div>
                                                         <div style="background-color:#BBBBBB;height:50px;padding:5px">
+
                                                             <select ng-model="booking_request.start">
                                                                     <option ng-repeat="se in workshop.WS_sessions track by $index">{[{se.time}]}</option>
                                                             </select>
+
                                                         </div>
                                                 </div>
                                                 <div class="small-3 pb_columns " style="padding-left:2px;">
                                                             <div >Seats</div>
                                                             <div style="background-color:#BBBBBB;height:50px;;padding:5px">
+
                                                                 <select ng-model="booking_request.seats">
                                                                     <option ng-repeat="i in getNumber(workshop.seats) track by $index">{[{i}]}</option>
                                                                 </select>
+                                                                
                                                             </div>
                                                 </div>
                                         </div>
                                     </div>
                                         <div class="small-12 pb_columns" style="margin-top:12px;">
-                                                <a class="button expanded" style="height:45px;line-height:45px;font-size:1.1rem;padding-top:0px;">BOOK</a>
+                                                <a class="button expanded" style="height:45px;line-height:45px;font-size:1.1rem;padding-top:0px;" ng-click="commitBooking()">BOOK</a>
                                                 <form name="paypal-form" nonvalidate>
                                                     <input type="text" id="amount">
                                                     <button class="button" ng-click="charge()">PayPal</button>

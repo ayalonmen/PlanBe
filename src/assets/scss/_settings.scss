@@ -45,12 +45,10 @@
 
 $global-width: rem-calc(1200);
 $global-font-size: 100%;
-$global-lineheight: 1.5;
-$primary-color: #2199e8;
+$global-lineheight: 1;
+$primary-color: #26c6da;
 $secondary-color: #777;
-//////////
 $royal-color: #ffffff;
-///////////////
 $success-color: #3adb76;
 $warning-color: #ffae00;
 $alert-color: #ec5840;
@@ -58,20 +56,22 @@ $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #0a0a0a;
-$white: #fefefe;
+$white: #FFFFFF;
+$yellow: #ffb300;
 $body-background: $white;
 $body-font-color: $black;
 $body-font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $text-direction: ltr;
-$global-margin: 1rem;
-$global-padding: 1rem;
-$global-margin: 1rem;
+$global-margin: 0.8rem;
+$global-padding: 0.8rem;
+$global-margin: 0.8rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius:0px;
 $global-text-direction: ltr;
 $rem-base: 16px;
+
 
 // 2. Breakpoints
 // --------------
@@ -90,7 +90,7 @@ $breakpoint-classes: (small medium large);
 
 $grid-row-width: $global-width;
 $grid-column-count: 12;
-$grid-column-gutter: 30px;
+$grid-column-gutter: 16px;
 $block-grid-max: 6;
 
 // 4. Base Typography
@@ -237,16 +237,16 @@ $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
-  default: 0.9rem,
-  large: 1.25rem,
+  default: 0.8rem,
+  large: 0.8rem,
 );
 $button-opacity-disabled: 0.25;
 
 // 12. Button Group
 // ----------------
 
-$buttongroup-margin: 1rem;
-$buttongroup-spacing: 1px;
+$buttongroup-margin: 0rem;
+$buttongroup-spacing: 0;
 $buttongroup-child-selector: '.button';
 $buttongroup-expand-max: 6;
 

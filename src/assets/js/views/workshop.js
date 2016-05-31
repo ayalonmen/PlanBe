@@ -16,6 +16,7 @@
             console.log($routeParams.id);
 
             $scope.wsid = $routeParams.id
+            $scope.sessionData= {};
 
             //@ We make sure we reload session userdata
             $scope.$emit("REFRESH_SESSION_REQUEST")
@@ -59,6 +60,12 @@
             }
 
             var self = this;
+
+            $scope.commitBooking = function()
+            {
+                console.log("MFKR")
+                $scope.$parent.bookSession($scope.booking_request.start);
+            }
 
                 $scope.charge = function () {
                               self.error = "";

@@ -25,6 +25,15 @@
             o.api.isLoggedIn = function () {
                 return Backand.getToken() !== null;
             };
+
+            o.api.setUser = function (data) {
+                o.user = data
+            };
+            o.api.isManager = function()
+            {
+                return (o.user.businesses && o.user.businesses[0].workshops && o.user.businesses[0].workshops.length>0)
+            }
+
             o.api.getUserName = function () {
                 return Backand.getUsername();
             };

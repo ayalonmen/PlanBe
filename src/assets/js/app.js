@@ -91,17 +91,22 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     $scope.setSessionData = function () {
 
        $rootScope.requestPending = true;
+           SessionManager.api.setUser(null)
         SessionManager.api.getUserDetails().then(function (data) {
             Debug.Log("Get User Details");
             Debug.info(data)
             $scope.isLogged = SessionManager.api.isLoggedIn();
-
 
             if ($scope.isLogged) {
                    Debug.Log("user is logged")
                    SessionManager.api.readOne('users', data.userId, true).then(function (data) {
                     Debug.Log("read one --> user")
                     $scope.userDetails = data.data;
+                    SessionManager.api.setUser(data.data)
+                    //$scope.isManager = SessionManager.api.isManager();
+                    console.log("the user")
+                    console.log(SessionManager.user)
+                    $scope.isManager = SessionManager.api.isManager();
                      $rootScope.requestPending = false;
                     $rootScope.$broadcast("SESSION_READY", data);
                     Debug.Log("SESSION_READY")
@@ -247,6 +252,13 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
         //var data = {}
        // data.url = dataObj;
         return SessionManager.api.onDemand("images","S3onDemand",dataObj)
+    }
+
+    $scope.bookSession = function(sessionObj)
+    {
+        console.log(sessionObj)
+    SessionManager.api.onDemand("workshops","booksession",sessionObj)
+
     }
 
     $scope.search = function(queryObj, callback, _location, _distance){

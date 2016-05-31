@@ -8,6 +8,7 @@
               templateUrl:'../assets/templates/pb-header.html',
               scope:{
                   isLogged: "=",
+                  isManager: "=",
                   signOut:"=",
                   navigateTo: "=",
                   search: "=",
@@ -19,6 +20,7 @@
 
                   $scope.onSearch = function()
                   {
+                      console.log('onSearch')  
                     if( $scope.queryParam!="") {
                          $scope.navigateTo('header','/search/'+$scope.queryParam)  ;
                     }
