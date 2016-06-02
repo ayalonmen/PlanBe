@@ -93,7 +93,7 @@
             {
                 var testdate = $scope.today .clone()
                 testdate = testdate.addMonths(mm);
-                if(testdate.compareTo(Date.today())>=0){
+                if(testdate.compareTo(Date.today())>=-1){
                     $scope.today = testdate.clone();
                     _self.setInitdata();
                 }

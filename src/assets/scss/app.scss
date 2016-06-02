@@ -688,9 +688,14 @@ body {
     height:64px;
     padding-top:0px;
     background-color: $white;
-    line-height: 62px;
+    line-height: 64px;
     text-transform: uppercase;
     font-size: 0.9rem !important;
+    color:$primary-color
+}
+.pb-header .drop-down-show
+{
+    background-color:$offwhite;
 }
 
 .home-header
@@ -718,8 +723,8 @@ body {
 .border-cell{
     border-left:1px;
     border-right:1px;
-        border-top:0px;
-        border-bottom:0px;
+    border-top:0px;
+    border-bottom:0px;
     border-color:#e0e0e0;
     border-style:solid;
 }
@@ -737,13 +742,91 @@ body {
     color:#000000;
     background-color: $primary-color;
 }
+.home-header i {
+color:#ffffff
+}
+.home-header .drop-down-show
+{
+    background-color: transparent;
+}
 
 .input-group{
     margin:0px;
 }
-.drop-menu a
+.drop-menu{
+    padding:0px;
+    display:none;
+    min-width: 300px;
+}
+
+.drop-menu ul {
+    margin-left:0px;
+}
+.drop-menu ul li
 {
-    color:#000000;
+    color:$nav-gray;
+    width:100%;
+    height:47px;
+    line-height: 47px;
+    font-size: 14px;
+    background-color: $white;
+    cursor: pointer;
+    border-bottom: 1px solid $warm-gray;
+    list-style: none;
+    text-transform: none;
+    padding: 0px 22px 0px 22px;
+    font-weight: 300;
+
+}
+
+.drop-menu ul li:hover
+{
+    color:$black;
+    font-weight: 500;
+    background-color: $offwhite;
+}
+.drop-menu.small-inbox
+{
+    width:358px;
+    background-color: $white;
+
+    border-bottom: none;
+}
+.drop-menu.small-inbox ul li
+{
+    height:74px;
+    line-height: 14px;
+    vertical-align: middle;
+    padding: 22px 22px 12px 22px;
+}
+.inbox-message-container
+{
+    max-height:296px;
+    overflow-y: scroll;
+     border:1px solid $warm-gray;
+     border-bottom: none;
+      border-top: none;
+}
+.inbox-message-header {
+     height:40px;
+     width:100%;
+     border:1px solid $warm-gray;
+     color:$primary-color;
+     font-size: 16px;
+     text-transform: none;
+     line-height: 40px;
+     padding: 0 22px 0 22px;
+}
+.inbox-message-footer {
+     height:47px;
+     width:100%;
+     color:$black;
+     background-color: $primary-color;
+     font-size: 16px;
+     text-transform: uppercase;;
+     line-height: 47px;
+     padding: 0 22px 0 22px;
+     font-weight: 500;
 }
 
 
@@ -796,21 +879,29 @@ border-color: #000000;
 }
 .menu-pane
 {
-    height:100%;
     width: 300px;
     background-color:$primary-color;
     position:fixed;
     z-index:1000;
     color:$white !important;
     display:none;
+    box-shadow:-2px 0px 3px #667766;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
+/////mobile scroll on touch
+.no-bounce {  height: 100%; overflow-y: scroll; -webkit-overflow-scrolling: touch; }
+.no-bounce > div { height: 100%; overflow-y: scroll; -webkit-overflow-scrolling: touch; }
+.no-bounce > div > div {min-height: 101%; }
+
+
 .menu-pane .pb_row{
     margin:0px;
 }
 
 .menu-pane .content-section{
     padding:22px;
-    font-size:1.1rem;
+    font-size:1rem;
     text-transform: none !important;
     border-bottom:1px solid $white;
     line-height:100%;
@@ -820,11 +911,12 @@ border-color: #000000;
 {
    line-height:200%;
    list-style:none;
-   padding:0px !important;
+   margin-left:0px !important;
 }
 
 .menu-pane a {
     color:#FFFFFF;
+
 }
 .menu-pane  .list-button
 {
@@ -846,5 +938,29 @@ border-color: #000000;
     position: fixed;
     top:0;
     right:0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.55);
+}
+..pb-headerr-view i#hamburger{
+    color:$yellow;
+    @include breakpoint(small only) {
+    color:$primary-color !important;
+    }
+}
+.manager-view .menu-pane#mobile-menu
+{
+    background-color:$yellow;
+    @include breakpoint(small only) {
+     background-color:$primary-color !important;
+    }
+}
+.manager-view .jewel#mob-jewel
+{
+    color:$yellow;
+    @include breakpoint(small only) {
+    color:$primary-color !important;
+}
+}
+.menu-pane .content-section.no-border
+{
+ border-bottom: none;
 }

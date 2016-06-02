@@ -76,7 +76,14 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $scope.$on("REFRESH_SESSION_REQUEST",function(event)
     {
-        $scope.setSessionData()
+        if(SessionManager.user==null){
+            $scope.setSessionData()
+        }else {
+            var data ={data:SessionManager.user}
+
+            $rootScope.$broadcast("SESSION_READY", data);
+        }
+
     })
     $scope.$on("SERVER_RESPONSE",function(event)
     {
@@ -90,9 +97,9 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $scope.setSessionData = function () {
 
-       $rootScope.requestPending = true;
+           $rootScope.requestPending = true;
            SessionManager.api.setUser(null)
-        SessionManager.api.getUserDetails().then(function (data) {
+           SessionManager.api.getUserDetails().then(function (data) {
             Debug.Log("Get User Details");
             Debug.info(data)
             $scope.isLogged = SessionManager.api.isLoggedIn();

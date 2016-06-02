@@ -1,7 +1,7 @@
-<div class=" row expanded">
+<div class=" row expanded fade-in" >
     <div class="columns hero" style="background-image: url('{[{workshop.assets[0].url}]}')">
           <h1>{[{workshop.name}]} </h1>
-            <a class="button float-right" ng-if=" workshop.business.owner==userId " ng-click="navigateTo('workshop','/updateworkshop/' +wsid)">Edit</a>
+            <a class="button float-right" ng-if="workshop.business.owner==userId " ng-click="navigateTo('workshop','/updateworkshop/' +wsid)">Edit</a>
     </div>
 </div>
 
@@ -161,20 +161,19 @@
                                                         <div >Pick a date and time</div>
                                                         <div style="background-color:#BBBBBB;height:50px;padding:5px">
 
-                                                            <select ng-model="booking_request.start">
-                                                                    <option ng-repeat="se in workshop.WS_sessions track by $index">{[{se.time}]}</option>
+                                                            <select ng-model="booking_request" ng-options="option.time for option in workshop.WS_sessions track by option.id">
+                                                                    <!--option ng-repeat="se in workshop.WS_sessions track by $index">{[{se.time}]}</option-->
                                                             </select>
-
                                                         </div>
                                                 </div>
                                                 <div class="small-3 pb_columns " style="padding-left:2px;">
                                                             <div >Seats</div>
                                                             <div style="background-color:#BBBBBB;height:50px;;padding:5px">
 
-                                                                <select ng-model="booking_request.seats">
-                                                                    <option ng-repeat="i in getNumber(workshop.seats) track by $index">{[{i}]}</option>
+                                                                <select ng-model="booking_request.requested_seats">
+                                                                    <option ng-repeat="i in getNumber(booking_request.seats_available) track by $index">{[{i}]}</option>
                                                                 </select>
-                                                                
+
                                                             </div>
                                                 </div>
                                         </div>

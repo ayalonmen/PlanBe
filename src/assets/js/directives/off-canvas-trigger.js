@@ -24,6 +24,10 @@
                         scope.gate  = false;
                       closeGate();
                     })
+					//pane.on('touchmove', function(e) {
+
+        				//e.preventDefault();
+					//}, false);
                    element.on("click",function(event) {
                        event.preventDefault()
                        scope.gate  = !scope.gate;

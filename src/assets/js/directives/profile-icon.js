@@ -10,7 +10,7 @@
               },
               controller:function($scope,Debug)
               {
-                  
+
               },
               controllerAs:'ctrl'
           }

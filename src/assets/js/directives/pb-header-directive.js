@@ -17,10 +17,10 @@
               controller:function($scope,Debug)
               {
                   $scope.queryParam=""
-
+                  $scope.notifications = [ {id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"},{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"} ,{id:"1" , text:"You have a new booking request to confirm",time:"3 houres ago"}  ]
                   $scope.onSearch = function()
                   {
-                      console.log('onSearch')  
+                      console.log('onSearch')
                     if( $scope.queryParam!="") {
                          $scope.navigateTo('header','/search/'+$scope.queryParam)  ;
                     }

@@ -16,7 +16,6 @@
             console.log($routeParams.id);
 
             $scope.wsid = $routeParams.id
-            $scope.sessionData= {};
 
             //@ We make sure we reload session userdata
             $scope.$emit("REFRESH_SESSION_REQUEST")
@@ -64,7 +63,9 @@
             $scope.commitBooking = function()
             {
                 console.log("MFKR")
-                $scope.$parent.bookSession($scope.booking_request.start);
+                var sessionId =  $scope.booking_request.id;
+                var seatsNum =$scope.booking_request.requested_seats;
+                $scope.$parent.bookSession({session:sessionId,seats_num:seatsNum});
             }
 
                 $scope.charge = function () {
@@ -90,6 +91,9 @@
                                   }
                                 });
                 }
+
+
+                
                 //check if this is a redirect from PayPal , after the user approves the payment
         // PayPal adds PayerID and  paymentId to the return url we give them
 

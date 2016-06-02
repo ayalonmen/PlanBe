@@ -12,7 +12,7 @@
 				if (pane.position() !== undefined) {
 					pane.css('position', 'fixed')
 					pane.css('z-index', 5)
-					pane.css('width', '300px')
+					//pane.css('width', '300px')
 					scope.stillOn = false;
                     var position = element.position();
                     var p_height = pane.height();
@@ -22,6 +22,7 @@
 
 
 					   element.on("mouseover",function() {
+					  	element.addClass('drop-down-show')
                         scope.stillOn = false;
 						pane.css('display', 'block')
 
@@ -51,6 +52,7 @@
 					pane.on("mouseenter", function() {
 						scope.stillOn = true;
 						pane.css('display', 'block')
+						element.addClass('drop-down-show')
 					})
 
 
@@ -60,16 +62,18 @@
 						setTimeout(function() {
 							if (!scope.stillOn) {
 								pane.css('display', 'none')
+								element.removeClass('drop-down-show')
 							}
-						}, 100)
+						}, 200)
 
 					})
 					pane.on("mouseleave", function() {
 						setTimeout(function() {
 
 							pane.css('display', 'none')
+								element.removeClass('drop-down-show')
                             scope.stillOn = false;
-						}, 100)
+						}, 200)
 					})
 
 				}
