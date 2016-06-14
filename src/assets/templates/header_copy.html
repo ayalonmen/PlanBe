@@ -1,0 +1,39 @@
+<div class="pb_row expanded pb-header"  id="site_main_header" ng-class="{'home-header': state}">
+    <div class="small-4 medium-2 large-1 pb_columns" dir="auto" style="min-width:150px;">
+        <div class="header_logo unselectable" ng-click="navigateTo('header','/home')"><span class="unselectable">PB</span></div>
+    </div>
+    <div class="small-2 medium-2 large-1 pb_columns" style="padding-left:20px;padding-right:20px;width:120px;">
+        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')" ><translated key="explore"></translated></a>
+    </div>
+
+    <div class="small-1 pb_columns vis-large" ng-class="{'home-header': state}" style="max-width:165px;min-width:165px;">
+            <a id="header_become_guide" class="list-button  header-sec" ng-click="navigateTo('header','/openworkshop')" style="margin:0;"><translated key="list workshop"></translated></a>
+    </div>
+
+    <div class="columns"  ng-if="state" style="padding: 0;">
+        <div class="input-group vis-medium"  ng-show="state">
+            <input class="input-group-field" type="text" placeHolder ="Search" ng-model="queryParam" reqiured style="height:62px;"/>
+            <a class="input-group-button button royal"  ng-click="onSearch()"><translated key="search"></translated></a>
+        </div>
+    </div>
+
+    <div class="medium-1 pb_columns vis-medium header-sec" style="width:150px;">
+        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')"><translated key="signin"></translated></a>
+       <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')"><translated key="signup"></translated></a>
+        <div class="pb_profilepic_inline float-right unselectable"  ng-hide="!isLogged"  drop-down-trigger="someId"  ></div>
+        <div class="callout" id="someId" style="display:none;margin-top:20px;">
+            <ul>
+                <li ><a ng-click="navigateTo('header','/account')">My Account</a></li>
+                <li>My Profile</li>
+                <li>Dashboard</li>
+                <li>Terms</li>
+                <li>Help Center</li>
+            </ul>
+            <div id="arrow" class="arrow-up"></div>
+        </div>
+       <a id="header_id_logout" class="float-right" style="margin-right:20px;" ng-hide="!isLogged"   ng-click="signOut('header')"><translated key="signout"></translated></a>
+
+
+    </div>
+
+</div>

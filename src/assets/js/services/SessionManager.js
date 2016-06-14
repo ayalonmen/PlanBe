@@ -6,11 +6,14 @@
         .factory('SessionManager', ['Backand', '$http', function (Backand, $http) {
             var o = {};
             o.api = {};
+            o.user= null;
             o.server_error= null;
             o.api.location = null;
+            o.api.location_query = null;
 
             o.api.getLocation = function()
             {
+
                 return o.api.location
             }
 
@@ -23,6 +26,15 @@
             o.api.isLoggedIn = function () {
                 return Backand.getToken() !== null;
             };
+
+            o.api.setUser = function (data) {
+                o.user = data
+            };
+            o.api.isManager = function()
+            {
+                return (o.user.businesses && o.user.businesses[0].workshops && o.user.businesses[0].workshops.length>0)
+            }
+
             o.api.getUserName = function () {
                 return Backand.getUsername();
             };
@@ -106,6 +118,25 @@
             o.api.socialSignin = function (provider,spec) {
                     Backand.socialSignin(provider,spec)
             }
+
+            o.api.makePayPalPayment = function (amount){
+                var parameters = {amount: amount,process:"payment"};
+              return o.api.onDemand("workshops","paypalTest",parameters)
+         }
+
+         o.api.makePayPalApproval = function (payerId, paymentId) {
+             return $http({
+             method: 'POST',
+             url: Backand.getApiUrl() + '/1/objects/action/workshops/?name=paypalTest',
+             params: {
+               parameters: {
+                 payerId: payerId,
+                 paymentId: paymentId,
+                 process:"approval"
+               }
+             }
+           });
+         }
 
 
             return o;

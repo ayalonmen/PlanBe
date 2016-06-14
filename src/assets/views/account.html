@@ -1,12 +1,28 @@
-<div class="row">
-    <div class="small-8 columns">
-        <div><h2>Account</h2></div>
-        <span>Name : {[{user.firstName}]}  {[{user.lastName}]}</span> <br>
-        <span>Email : {[{user.email}]}  </span> <br>
-        <span>Businesses : <a ng-click="navigateTo('account','/business/' + user.businesses[0].id )">  {[{user.businesses[0].name}]}  </a></span>
-
-    </div>
-
+<div class="row" style="padding-top:90px;" >
+	<div class="small-12 columns" style="line-height:30px;">
+		<div>
+			<h2>Account</h2></div>
+		<span>Name : {[{AccountController.user.firstName}]}  {[{AccountController.user.lastName}]}</span>
+		<br>
+		<span>Email : {[{AccountController.user.email}]}  </span>
+		<br>
+		<span>Businesses : <a ng-click="navigateTo('account','/business/' + AccountController.user.businesses[0].id )">  {[{AccountController.user.businesses[0].name }]}  -- {[{'/business/' + AccountController.user.businesses[0].id}]}</a></span>
+		<br>
+		<span>Profile Pic : </span>
+		<br>
+	</div>
+	<div class="small-12 columns" style="margin-top:40px;">
+		<div class="row">
+			<div class="small-4 columns" ng-show="AccountController.user.profilePic==''">
+				<file-drag-upload dim="small" on-read-file="AccountController.onReadFile"></file-drag-upload>
+			</div>
+			<div class="small-4 columns end" ng-hide="AccountController.user==null ||  AccountController.user.profilePic==''">
+				<div class="biz-logo" style="background-image: url('{[{AccountController.user.profilePic}]}');padding:0;border: 1px solid #000000;width:200px;">
+					<div class="preload_mask" ng-show="AccountController.isPPicLoaded==2">
+						<div class="spinner float-center" style="z-index: 10;position: absolute;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-

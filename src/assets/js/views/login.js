@@ -7,7 +7,7 @@ angular.module('login', ['ngRoute'])
   $routeProvider.when('/login', {
     templateUrl: '../assets/views/login.html',
     controller: 'LoginCtrl',
-    controllerAs:'ctrl'
+    controllerAs:'ctrl'  
   });
 }])
 

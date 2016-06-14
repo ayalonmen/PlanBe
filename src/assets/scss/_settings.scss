@@ -45,40 +45,45 @@
 
 $global-width: rem-calc(1200);
 $global-font-size: 100%;
-$global-lineheight: 1.5;
-$primary-color: #2199e8;
-$secondary-color: #777;
-//////////
+$global-lineheight: 1;
+$primary-color: #00d8b7;
+$secondary-color: #b4bebc;
 $royal-color: #ffffff;
-///////////////
 $success-color: #3adb76;
 $warning-color: #ffae00;
 $alert-color: #ec5840;
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
+$light-gray: #ededed;
+$light-gray-2: #d8d8d8;
+$medium-gray: #9b9b9b;
+$dark-gray: #616161;
 $black: #0a0a0a;
-$white: #fefefe;
-$body-background: $white;
+$warm-gray:#9e9e9e;
+$white: #FFFFFF;
+$offwhite:#f4f3f3;
+$nav-gray:#757575;
+$yellow: #fbc02d;
+$eggplant: #4f4249;
+$body-background: $offwhite;
 $body-font-color: $black;
-$body-font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$body-font-family: "Ubuntu", Ubunto, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $text-direction: ltr;
-$global-margin: 1rem;
-$global-padding: 1rem;
-$global-margin: 1rem;
+$global-margin: 0.8rem;
+$global-padding: 0.8rem;
+$global-margin: 0.8rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius:0px;
 $global-text-direction: ltr;
-$rem-base: 16px;
+$rem-base: 14px;
+
 
 // 2. Breakpoints
 // --------------
 
 $breakpoints: (
   small: 0,
-  medium: 640px,
+  medium: 760px,
   large: 1024px,
   xlarge: 1200px,
   xxlarge: 1440px,
@@ -90,7 +95,7 @@ $breakpoint-classes: (small medium large);
 
 $grid-row-width: $global-width;
 $grid-column-count: 12;
-$grid-column-gutter: 30px;
+$grid-column-gutter: 0px;
 $block-grid-max: 6;
 
 // 4. Base Typography
@@ -112,8 +117,8 @@ $header-sizes: (
   medium: (
     'h1': 48,
     'h2': 40,
-    'h3': 31,
-    'h4': 25,
+    'h3': 30,
+    'h4': 22,
     'h5': 20,
     'h6': 16,
   ),
@@ -164,7 +169,7 @@ $abbr-underline: 1px dotted $black;
 // 5. Typography Helpers
 // ---------------------
 
-$lead-font-size: $global-font-size * 1.25;
+$lead-font-size: $global-font-size * 1;
 $lead-lineheight: 1.6;
 $subheader-lineheight: 1.4;
 $subheader-color: $dark-gray;
@@ -237,16 +242,16 @@ $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,
-  default: 0.9rem,
-  large: 1.25rem,
+  default: 0.8rem,
+  large: 0.8rem,
 );
 $button-opacity-disabled: 0.25;
 
 // 12. Button Group
 // ----------------
 
-$buttongroup-margin: 1rem;
-$buttongroup-spacing: 1px;
+$buttongroup-margin: 0rem;
+$buttongroup-spacing: 0;
 $buttongroup-child-selector: '.button';
 $buttongroup-expand-max: 6;
 

@@ -17,8 +17,8 @@
                     temp[key] = langdata[i]
                  }
                  this.keys = temp
-                 Debug.Log("Lang Loaded")
-                 Debug.info(this.keys)
+                // Debug.Log("Lang Loaded")
+                // Debug.info(this.keys)
 
              }
 

@@ -1,33 +1,213 @@
-<div class="pb_row expanded"  id="site_main_header" ng-class="{'pb_header' : !state , 'pb_header_home': state}">
-    <div class="small-2 medium-1 columns">
-        <div class="header_logo unselectable" ng-click="navigateTo('header','/home')" ><span class="unselectable">PlanBe</span></div>
-    </div>
-    <div class="small-2  columns">
-            <a id="header_become_guide" class=" button royal vis-medium  header-sec" ng-click="navigateTo('header','/openworkshop')" style="margin:0;"><translated key="list workshop"></translated></a>
-    </div>
-    <div class="small-5 medium-7 columns">
-        <div class="input-group float-left vis-medium"  ng-show="!state">
-            <input class="input-group-field" type="text" placeHolder ="Search" ng-model="queryParam" reqiured/>
-            <a class="input-group-button button "  ng-click="onSearch()"><translated key="search"></translated></a>
-        </div>
-    </div>
-    <div class="small-2   columns vis-medium header-sec">
-        <a id="header_id_signin"  ng-show="!isLogged" ng-click="navigateTo('header','/login')"><translated key="signin"></translated></a>
-       <a id="header_id_signup"  ng-show="!isLogged" ng-click="navigateTo('header','/register')"><translated key="signup"></translated></a>
-        <div class="pb_profilepic_inline float-right unselectable"  ng-hide="!isLogged"  drop-down-trigger="someId"  ></div>
-        <div class="callout" id="someId" style="display:none;margin-top:20px;">
-            <ul>
-                <li ><a ng-click="navigateTo('header','/account')">My Account</a></li>
-                <li>My Profile</li>
-                <li>Dashboard</li>
-                <li>Terms</li>
-                <li>Help Center</li>
-            </ul>
-            <div id="arrow" class="arrow-up"></div>
-        </div>
-       <a id="header_id_logout" class="float-right" style="margin-right:20px;" ng-hide="!isLogged"   ng-click="signOut('header')"><translated key="signout"></translated></a>
+<div class=" pb_row expanded pb-header" id="site_main_header" ng-class="{'home-header': state ,'manager-view':isManager && !state}">
+
+	<div class="small-6 medium-2 large-1  pb_columns" dir="auto" style="min-width:110px;padding-left:22px;line-height:62px">
+		<div class="header_logo unselectable" ng-click="navigateTo('header','/home')"><span class="unselectable"><i  class="material-icons md-24">toys</i>PB</span></div>
+	</div>
 
 
-    </div>
+	<div class="small-2 medium-2 large-1  pb_columns vis-large " style="padding-left:20px;padding-right:20px;width:110px;">
+		<a id="header_id_signin">
+			<translated key="explore"></translated>
+		</a>
+	</div>
+
+	<div class="small-1  pb_columns vis-large end" ng-class="{'home-header': state}" style="max-width:165px;min-width:165px;" ng-if="!isManager || !isLogged">
+		<a id="header_become_guide" class="list-button   " ng-click="navigateTo('header','/openworkshop')" style="margin:0;">
+			<translated key="list workshop"></translated>
+		</a>
+	</div>
+
+
+
+	<div class="large-1 pb_columns vis-medium" ng-if="!state" style="padding-top:14px;width:40px; line-height:12px;">
+		<a ng-click="onSearch()"><i class="material-icons md-36">search</i></a>
+	</div>
+
+	<div class="large-5  pb_columns vis-medium" ng-show="!state" style="padding: 0;max-width:400px;">
+		<input type="text" placeHolder="Find a Workshop" ng-model="queryParam" dir="auto" style="height:64px;border-width:0;box-shadow:none;margin:0px;" ng-keydown="onKeyPress($event)" />
+
+	</div>
+
+	<!--RIGHT SIDE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	<!------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------>
+
+	<!-- MOBILE (right) -->
+	<div class="small-2 medium-1  pb_columns hide-for-large float-right" dir="auto" style="min-width:90px;height:64px;padding-left:22px;padding-top:8px;line-height:0px" off-canvas-trigger="mobile-menu">
+		<div> <i class="material-icons md-48 " id="hamburger"> menu </i> </div>
+	</div>
+	<div class="large-1 pb_columns show-for-small-only float-right"  style="padding-top:14px;width:40px; line-height:12px;">
+		<a ng-click="onSearch()"><i class="material-icons md-36">search</i></a>
+	</div>
+
+
+	<div id="mobile-menu" class="menu-pane hide-for-large no-bounce" ng-class="{'manager-view':isManager && !state}" style="display:none">
+		<div>
+			<div ng-if="isLogged">
+				<div class="content-section" style="padding-bottom:3px;">
+					<div style="display:table;height:40px;">
+						<div style="display:table-row;height:40px;">
+							<div style="display:table-cell;width:260px;">
+								<profile-icon></profile-icon>
+							</div>
+							<div style="display:table-cell;width:20px;">
+								<a><i  class="material-icons md-32" style="color:black">notifications</i><div ng-if="notifications.length>0" class="jewel" id="mob-jewel" style="background-color:white;border-color:white">{[{notifications.length}]}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="content-section">
+					Inbox
+				</div>
+
+				<div class="content-section">
+					<ul>
+						<li><a class="menu-link" ng-click="navigateTo('header','/account')">Explore</a> </li>
+						<li>Account </li>
+						<li>Edit Profile </li>
+						<li>Wishlist </li>
+						<li>Reservations </li>
+						<li>Settings </li>
+					</ul>
+
+					<ul class="vis-medium" ng-if="isManager" >
+						<li>Dashboard </li>
+						<li>Manage Listings </li>
+						<li>Bookinks </li>
+						<li>Transactions </li>
+						<li>Reviews </li>
+					</ul>
+
+					<a id="header_become_guide" class="list-button" ng-click="navigateTo('header','/openworkshop')" style="margin:0;width:247px">
+						<translated key="list workshop"></translated>
+					</a>
+
+					<ul style="margin-top:22px;">
+						<li>Invite Friends </li>
+						<li>Help</li>
+						<li><a class="menu-link" ng-click="signOut('header')">Log Out</a> </li>
+					</ul>
+
+				</div>
+
+
+
+			</div>
+					<div ng-if="!isLogged">
+						<div class="content-section">
+							<span style="text-transform:uppercase"><translated key="signup"></translated></span>
+						</div>
+						<div class="content-section" ng-click="navigateTo('header','/login')">
+							<span style="text-transform:uppercase"><translated key="signin"></translated></span>
+						</div>
+						<div class="content-section no-border">
+							<ul >
+								<li>Explore </li>
+								<li>Help</li>
+							</ul>
+
+							<a id="header_become_guide" class="list-button" ng-click="navigateTo('header','/openworkshop')" style="margin:0;width:247px">
+								<translated key="list workshop"></translated>
+							</a>
+						</div>
+
+
+					</div>
+
+		</div>
+	</div>
+
+
+	<!--DESKTOP RIGHT ---------------------------------------------------------------------------------------------------------------->
+
+	<!-- ANNONYMOUS -->
+
+	<div class="medium-2  pb_columns vis-large   " style="width:150px; padding:0;" ng-if="!isLogged">
+		<div class=" pb_row">
+
+			<div class="medium-6 large-6  pb_columns ">
+				<a id="header_id_signin" ng-show="!isLogged" ng-click="navigateTo('header','/login')">
+					<translated key="signin"></translated>
+				</a>
+			</div>
+
+			<div class="medium-6  large-6  pb_columns end">
+				<a id="header_id_signin" ng-show="!isLogged" ng-click="navigateTo('header','/register')">
+					<translated key="signup"></translated>
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- USER LOGGED IN -->
+
+	<div class="large-1  pb_columns vis-large   header-right" ng-if="isLogged" ng-class="{'header-right-expand': isManager}">
+		<div class=" pb_row" style="margin:0px; ">
+
+			<div class="large-4  pb_columns border-cell" style="width:110px;height:64px;padding-right:22px;padding-left:22px;" ng-if="isManager" drop-down-trigger="manage_drop" >
+				<a ng-click="navigateTo('header','/account')">
+					<translated key="manage"></translated>
+				</a>
+				<div class="callout  drop-menu fade-in" id="manage_drop" >
+					<ul>
+						<li>Dashboard</li>
+						<li >Manage listings</li>
+						<li>Bookings</li>
+						<li>Business</li>
+						<li>Transactions</li>
+						<li>Reviews</li>
+					</ul>
+					<!--div id="ar pb_row" class="ar pb_row-up"></div-->
+				</div>
+			</div>
+
+			<div class="large-4  pb_columns border-cell" drop-down-trigger="note_drop" style="width:110px; height:64px; padding-right:40px; padding-left:36px; padding-top:16px; line-height:0px">
+
+				<a ng-show="isLogged"><i style="margin:0;padding:0" class="material-icons md-32">notifications</i><div ng-if="notifications.length>0" class="jewel">{[{notifications.length}]}</div></a>
+
+				<div class="drop-menu small-inbox fade-in" id="note_drop" style="display:none">
+					<div class="inbox-message-header"> Notifications ({[{notifications.length}]}) </div>
+					<div class="inbox-message-container">
+					<ul>
+						<li ng-repeat="note in notifications track by $index">{[{note.text}]} <br> {[{note.time}]}</li>
+					</ul>
+				</div>
+					<div class="inbox-message-footer"> Inbox ({[{notifications.length}]}) </div>
+					<!--div id="ar pb_row" class="ar pb_row-up"></div-->
+				</div>
+			</div>
+
+			<div class="large-4  pb_columns end" style="width:115px; height:64px;padding:0" drop-down-trigger="my_account_drop">
+
+				<div class=" pb_row" style="margin:0px; padding:0">
+					<div class="large-12  pb_columns unselectable" style="padding-left:22px;padding-top:10px;height:62px;text-transform:none;">
+							<profile-icon></profile-icon>
+						<!--div class="pb_profilepic_inline unselectable" ng-hide="!isLogged"> </div>
+					</div>
+					<div class="large-6  pb_columns " style="text-transform:none">
+						me
+					</div-->
+				</div>
+			</div>
+
+				<div class="callout drop-menu fade-in" id="my_account_drop" style="display:none;">
+					<ul>
+						<li ng-click="navigateTo('header','/account')">My Account</li>
+						<li ng-click="signOut('header')">
+								<translated key="signout"></translated>
+						</li>
+						<li>Dashboard</li>
+						<li>Terms</li>
+						<li>Help Center</li>
+					</ul>
+					<!--div id="ar pb_row" class="ar pb_row-up"></div-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 </div>

@@ -7,29 +7,30 @@
 			link: function(scope, element, attributes) {
 				var dataPaneID = attributes.dropDownTrigger
 				console.log(dataPaneID)
-				var pane = element.siblings('#' + dataPaneID)
+				var pane = element.children('#' + dataPaneID)
 
 				if (pane.position() !== undefined) {
 					pane.css('position', 'fixed')
 					pane.css('z-index', 5)
-					pane.css('width', '300px')
+					//pane.css('width', '300px')
 					scope.stillOn = false;
                     var position = element.position();
                     var p_height = pane.height();
-                    var arrow =   pane.find('#arrow')
-                    var ar_pos = arrow.position();
-                    arrow.css('position','fixed');
+                    //var arrow =   pane.find('#arrow')
+                    //var ar_pos = arrow.position();
+                    //arrow.css('position','fixed');
 
 
 					   element.on("mouseover",function() {
-                        scope.stillOn = true;
+					  	element.addClass('drop-down-show')
+                        scope.stillOn = false;
 						pane.css('display', 'block')
 
-						pane.css('left', element.position().left - (pane.outerWidth() / 2))
-						pane.css('top', element.height() + position.top)
+						pane.css('left', element.position().left - (pane.outerWidth() -element.outerWidth()))
+						pane.css('top', element.outerHeight() + position.top)
 
 
-                        arrow.css('top', pane.offset().top -9);
+                        //arrow.css('top', pane.offset().top -9);
 						var p_pos = pane.position()
 
 						var right_overflow = window.innerWidth - (p_pos.left + pane.outerWidth());
@@ -43,32 +44,36 @@
 							pane.css('left', 0)
 						}
                         var f_pos = element.offset()
-                        console.log("&&&" + f_pos.left)
-                        arrow.css('left', f_pos.left + (element.width()/4));
+
+                        //arrow.css('left', f_pos.left + (element.width()/4));
 
 					})
 
 					pane.on("mouseenter", function() {
 						scope.stillOn = true;
 						pane.css('display', 'block')
+						element.addClass('drop-down-show')
 					})
 
 
 
 					element.on("mouseleave",function() {
+
 						setTimeout(function() {
 							if (!scope.stillOn) {
 								pane.css('display', 'none')
+								element.removeClass('drop-down-show')
 							}
-						}, 1550)
+						}, 200)
 
 					})
 					pane.on("mouseleave", function() {
 						setTimeout(function() {
 
 							pane.css('display', 'none')
+								element.removeClass('drop-down-show')
                             scope.stillOn = false;
-						}, 550)
+						}, 200)
 					})
 
 				}

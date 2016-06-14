@@ -7,28 +7,29 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>PlanBe</title>
-      <!-- Angular Material CSS now available via Google CDN; version 1.0.7 used here -->
-   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-   <link rel="stylesheet" href="{{root}}assets/css/app.css">
+
+   <!-- Angular Material CSS now available via Google CDN; version 1.0.7 used here -->
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+ <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,500italic,700&subset=latin,greek' rel='stylesheet' type='text/css'/>
+ <link rel="stylesheet" href="{{root}}assets/css/app.css">
 
 
     </head>
-      <body ng-controller="Main"  >
+      <body ng-controller="Main" >
 
-          <pb-header is-logged="isLogged" sign-out="signOut" navigate-to="navigateTo" search="search" ng-if="isReady" state="home_state"></pb-header>
+              <pb-header is-logged="isLogged" is-manager="isManager" sign-out="signOut" navigate-to="navigateTo" search="search" ng-if="isReady" state="home_state"></pb-header>
 
-          <!--div class="cssload-wrap" ng-show="requestPending">
-                <div class="cssload-cssload-spinner"></div>
-        </div-->
+              <!--div class="cssload-wrap" ng-show="requestPending">
+                    <div class="cssload-cssload-spinner"></div>
+            </div-->
 
-              <div style="padding-top:0px;min-height:90vh;">
-                  <message-panel ></message-panel>
+              <div style="padding-top:0px;">
+                      <message-panel ></message-panel>
                       <div ng-view ng-if="isReady"></div>
-            </div>
-            
-              <pb-footer></pb-footer>
+             </div>
 
-
+              <!-- <pb-footer></pb-footer> -->
 
               <script src="{{root}}assets/js/app.js"></script>
              <!--script src="https://rawgit.com/angular/bower-material/master/angular-material.min.js">< /script-->
