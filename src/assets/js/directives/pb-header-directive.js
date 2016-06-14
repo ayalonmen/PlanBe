@@ -28,6 +28,11 @@
                     {
                         Debug.err("Mouse Over")
                     }
+                    $scope.$on("SEARCH_ACTION",function(event,data)
+                    {
+                            console.log("SEARCH_ACTION:" + data)
+                            $scope.queryParam = data;
+                    })
               },
               controllerAs:'ctrl'
           }
