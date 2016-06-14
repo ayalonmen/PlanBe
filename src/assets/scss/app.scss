@@ -77,10 +77,7 @@ body {
 }
 .pb_biz_profilepic
 {
-    @include pb_rounded_div(50%,130px,130px,2px);
-    display:inline-block;
-    position: relative;
-    z-index: 2;
+    @include pb_rounded_div(50%,140px,140px,2px);
     background-size: contain;
     background-image: url('http://www.aaedits.co.uk/wp-content/uploads/2015/11/Small-Business-Saturday-UK-Logo-2015-Blue-Hi-Res.jpg');
     background-repeat: no-repeat;
@@ -115,13 +112,13 @@ body {
 }
 .pb_row{
     @extend .row;
-    border-width:0px;
+    border-width:1px;
     border-color: green;
     border-style:solid;
 }
 .pb_columns{
     @extend .columns;
-    border-width:0px;
+    border-width:1px;
     border-color: tomato;
     border-style:solid;
 }
@@ -219,6 +216,7 @@ body {
   border-width: thick;
   border-color: #0a0a0a;
   min-height:200px;
+  width:250px;
  vertical-align: middle;
   text-align:center;
 }
@@ -289,18 +287,17 @@ body {
 }
 
 
-
-
-
 .hero {
-  background: no-repeat center center;
-  background-size: cover;
-  background-color: #414741;
-  background-blend-mode:overlay;
-  height: 50vh;
+  background-color: #AAAAAA;
+  height: 40vh;
   min-height:300px;
   overflow: hidden;
   padding:0 0 0 0;
+  background:  url('../img/surfing-class.jpg') no-repeat center center, -webkit-radial-gradient(center, ellipse cover,rgba(100,100,100,0.5) 0%,rgba(0,0,0,0.4) 42%,rgba(80,80,80,1) 100%);
+  //background:  url('../img/surfing-class.jpg') no-repeat center center, radial-gradient(ellipse at center, rgba(100,100,100,0.5) 0%,rgba(0,0,0,0.4) 42%,rgba(80,80,80,1) 100%);
+  background:   url('../img/surfing-class.jpg') no-repeat center center, radial-gradient(ellipse at center, rgba(50,50,50,0.7) 0%,rgba(100,100,145,0.4) 52%,rgba(30,30,45,1) 100%);
+  background-blend-mode:soft-light;
+  background-size: cover;
 }
 
 .hero h1 {
@@ -940,7 +937,7 @@ border-color: #000000;
     right:0;
     background: rgba(0, 0, 0, 0.55);
 }
-..pb-headerr-view i#hamburger{
+.pb-headerr-view i#hamburger{
     color:$yellow;
     @include breakpoint(small only) {
     color:$primary-color !important;
@@ -964,3 +961,22 @@ border-color: #000000;
 {
  border-bottom: none;
 }
+
+.autocomplete {
+  min-height: 200px; }
+
+.veggie-option {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  padding: 0 8px; }
+
+.veggie-option .md-item-text {
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 3px; }
+
+.veggie-option .md-item-text h3,
+.veggie-option .md-item-text p {
+  padding: 0;
+  margin: 0; }

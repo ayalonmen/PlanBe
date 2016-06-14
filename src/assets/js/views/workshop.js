@@ -18,7 +18,7 @@
             $scope.wsid = $routeParams.id
 
             //@ We make sure we reload session userdata
-            $scope.$emit("REFRESH_SESSION_REQUEST")
+
 
             $scope.workshop = {}
             $scope.$parent.readOne('workshops',$scope.wsid,true,1).then(function(data)
@@ -93,10 +93,10 @@
                 }
 
 
-                
+
                 //check if this is a redirect from PayPal , after the user approves the payment
         // PayPal adds PayerID and  paymentId to the return url we give them
-
+        $scope.$emit("REFRESH_SESSION_REQUEST")
         if ($location.search().PayerID && $location.search().paymentId) {
 
           //Call Backand action to approve the payment by the facilitator

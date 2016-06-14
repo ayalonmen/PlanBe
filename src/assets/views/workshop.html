@@ -1,209 +1,25 @@
 <div class=" row expanded fade-in" >
     <div class="columns hero" style="background-image: url('{[{workshop.assets[0].url}]}')">
-          <h1>{[{workshop.name}]} </h1>
             <a class="button float-right" ng-if="workshop.business.owner==userId " ng-click="navigateTo('workshop','/updateworkshop/' +wsid)">Edit</a>
     </div>
 </div>
 
-
-
-<div class="pb_row fade-in" >
-    <div class="small-9 pb_columns ">
-
-           <div class="pb_row">
-                   <div class="small-2 pb_columns ">
-                        <div class="pb_biz_profilepic float-left"></div>
-                    </div>
-
-                     <div class="small-7 pb_columns ">
-                         <div class="pb_row">
-                                 <div class="float-left"><h4> {[{workshop.name}]}  </h4></div>
-                        </div>
-                         <div class="pb_row">
-                                <div ><span style="color:orangered">★★★★☆ </span> <span style="font-size: 0.9rem">67 <translated key="reviews"></translated></span> </div>
-                        </div>
-                    </div>
-
-                       <div class="small-4 pb_columns ">
-
-                       </div>
-               </div>
-
-                <div class="pb_row">
-
-                        <div class="small-3 pb_columns ">
-                                <div><a  ng-click="gotoBusiness(workshop.business.id)" >{[{workshop.business.name}]}</a></div>
-                        </div>
-
-                        <div class="small-9 pb_columns ">
-                            <md-chips>
-                                      <md-chip ng-repeat="t in workshop.workshops_tags">{[{t.tag.Name}]}</md-chip>
-                            </md-chips>
-                                <!--div ng-repeat="t in workshop.workshops_tags" class="label" style="margin:2px;">{[{t.tag.Name}]}</div-->
-                        </div>
-                        <div class="small-12 pb_columns ">
-                            <hr>
-                        </div>
-
-                </div>
-
-
-        <div class="pb_row" style="padding-top:30px;padding-bottom:40px;">
-            <div class="small-12  pb_columns ">
-            <div >
-                <h5 >
-                    About</h5>
-                    <div dir="auto">
-                     <p style="font-size:0.9rem;line-height:1.1rem">  {[{workshop.description}]}</p>
-                    </div>
-            </div>
-        </div>
-        <div ckass="small-12 pb_columns">
-            <a class="button small secondary">Contact host</a>
-        </div>
-    </div>
-
-    <div class="pb_row">
-        <div class="small-8  pb_columns ">
-
-                <div class="small-3  pb_columns " style="padding:0px;font-weight:bold;">Participants will learn how to</div>
-                <div class="small-9  pb_columns ">
-                    <ul style="list-style-type:none">
-                        <li ng-repeat="item in workshop.learn track by $index">
-                            {[{item}]}
-                        </li>
-                    </ul>
-                </div>
-    <div class="small-12  pb_columns " ><hr> </div>
-</div>
-<div class="small-4 pb_columns">
-
-    <div class="pb_row centered">
-        <div class="small-12 columns">
-                <span style="font-weight:bold">Where</span><br>
-                    <span>{[{workshop.address}]}</span>
-        </div>
-    </div>
-    <div class="pb_row centered">
-        <div class="small-12 columns">
-                <span style="font-weight:bold">Cancelation</span><br>
-                    <span>{[{(workshop.cancelpolicy)?"Easy" : "Strict"}]}</span>
-        </div>
-    </div>
-</div>
-</div>
-
 <div class="pb_row">
-    <div class="small-8  pb_columns ">
+    <div class="small-12 pb_columns" style="padding: 44px;min-height:249px;background-color:#ffffff">
+        <div class="pb_row">
 
-                <div class="small-3  pb_columns " style="padding:0px;font-weight:bold;">This workshop is intended to</div>
-                <div class="small-9  pb_columns ">
-                            <ul style="list-style-type:none">
-                                <li ng-repeat="item in workshop.whofor track by $index">
-                                    {[{item}]}
-                                </li>
-                            </ul>
-                </div>
+                <div class="small-8 pb_columns" style="padding:0;min-height:140px;">
+                    <div class="pb_row">
+                            <div class="small-3 pb_columns">
+                                    <div class="pb_biz_profilepic"></div>
+                            </div>
+                            <div class="small-9 pb_columns">
+                                    <h3>dfsdfsdf dfsdfsdf sdf sd</h3>
+                            </div>
+                      </div>
 
-                 <div class="small-12  pb_columns " ><hr> </div>
-    </div>
-    <div class="small-4 pb_columns">
-
-        <div class="pb_row centered">
-            <div class="small-12 pb_columns">
-                    <span style="font-weight:bold">Volume</span><br>
-                        <span>When you purchase {[{workshop.volume}]} or more seats, price per seat is {[{workshop.volumeprice | currency}]}</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="pb_row">
-    <div class="small-8  pb_columns ">
-                <div class="small-3  pb_columns " style="padding:0px;font-weight:bold;">This workshop is intended to</div>
-                <div class="small-9  pb_columns ">
-                            <ul style="list-style-type:none">
-                                <li ng-repeat="item in workshop.whofor track by $index">
-                                    {[{item}]}
-                                </li>
-                            </ul>
-                        </div>
 
         </div>
     </div>
-
-
-
     </div>
-
-    <div class="small-3 pb_columns ">
-            <div class="pb_row">
-                    <div class="small-12 pb_columns" style="padding:0px;">
-                        <div style="background-color:#BBBBBB;height:25px;"></div>
-                    </div>
-            </div>
-
-                <div class="pb_row">
-                    <div class="small-12 pb_columns" style="padding:0px;">
-                        <div class="callout" >
-
-                            <div class="pb_row">
-                            <div class="small-12 pb_columns">
-                                <div style="background-color:#555555;height:50px;padding-left:12px;line-height:50px;padding-right:12px;">
-                                        <div class="float-left" style="color:#FFFFFF;font-size:1.7rem;font-weight:bold;">{[{workshop.price | currency:undefined:0}]} </div>
-                                        <div class="float-right" style="color:#FFFFFF;">per seat </div>
-                                    </div>
-                                </div>
-                                    <div class="small-12 pb_columns" style="margin-top:36px;">
-                                        <div class="pb_row">
-                                                <div class="small-9 pb_columns " style="padding-right:2px;">
-                                                        <div >Pick a date and time</div>
-                                                        <div style="background-color:#BBBBBB;height:50px;padding:5px">
-
-                                                            <select ng-model="booking_request" ng-options="option.time for option in workshop.WS_sessions track by option.id">
-                                                                    <!--option ng-repeat="se in workshop.WS_sessions track by $index">{[{se.time}]}</option-->
-                                                            </select>
-                                                        </div>
-                                                </div>
-                                                <div class="small-3 pb_columns " style="padding-left:2px;">
-                                                            <div >Seats</div>
-                                                            <div style="background-color:#BBBBBB;height:50px;;padding:5px">
-
-                                                                <select ng-model="booking_request.requested_seats">
-                                                                    <option ng-repeat="i in getNumber(booking_request.seats_available) track by $index">{[{i}]}</option>
-                                                                </select>
-
-                                                            </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                        <div class="small-12 pb_columns" style="margin-top:12px;">
-                                                <a class="button expanded" style="height:45px;line-height:45px;font-size:1.1rem;padding-top:0px;" ng-click="commitBooking()">BOOK</a>
-                                                <form name="paypal-form" nonvalidate>
-                                                    <input type="text" id="amount">
-                                                    <button class="button" ng-click="charge()">PayPal</button>
-                                                </form>
-                                        </div>
-                                </div>
-
-                    </div>
-
-            </div>
-         </div>
-     </div>
-     <div class="pb_row">
-         <div class="small-9 columns">
-
-                     <div class="row small-up-1 medium-up-2 large-up-3">
-                         <div class="columns" ng-repeat="n in workshop.assets  track by $index">
-                             <div class="callout biz-logo" style="background-image: url('{[{workshop.assets[$index].url}]}');padding:0;">
-                                 </div>
-                             </div>
-                         </div>
-
-         </div>
-     </div>
 </div>
-
-<!-- ////////////IMAGES//////////////////////// -->

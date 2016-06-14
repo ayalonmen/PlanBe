@@ -6,6 +6,7 @@
         .factory('SessionManager', ['Backand', '$http', function (Backand, $http) {
             var o = {};
             o.api = {};
+            o.user= null;
             o.server_error= null;
             o.api.location = null;
             o.api.location_query = null;

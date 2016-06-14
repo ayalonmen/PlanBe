@@ -1,0 +1,18 @@
+
+<md-chips ng-model="srchCtrl.selectedVegetables" md-autocomplete-snap
+          md-transform-chip="srchCtrl.transformChip($chip)"
+          md-require-match="srchCtrl.autocompleteDemoRequireMatch">
+  <md-autocomplete
+      md-selected-item="srchCtrl.selectedItem"
+      md-search-text="srchCtrl.searchText"
+      md-items="item in srchCtrl.querySearch(srchCtrl.searchText)"
+      md-item-text="item.name"
+      placeholder="Search for a vegetable">
+    <span md-highlight-text="srchCtrl.searchText">{{item.name}} :: {{item.type}}</span>
+  </md-autocomplete>
+  <md-chip-template>
+    <span>
+      <strong>{{$chip.name}}</strong>
+    </span>
+  </md-chip-template>
+</md-chips>

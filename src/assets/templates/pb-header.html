@@ -24,7 +24,8 @@
 	</div>
 
 	<div class="large-5  pb_columns vis-medium" ng-show="!state" style="padding: 0;max-width:400px;">
-		<input type="text" placeHolder="Find a Workshop" ng-model="queryParam" dir="auto" style="height:64px;border-width:0;box-shadow:none;margin:0px;" />
+		<input type="text" placeHolder="Find a Workshop" ng-model="queryParam" dir="auto" style="height:64px;border-width:0;box-shadow:none;margin:0px;" ng-keydown="onKeyPress($event)" />
+
 	</div>
 
 	<!--RIGHT SIDE -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -84,7 +85,7 @@
 					<ul style="margin-top:22px;">
 						<li>Invite Friends </li>
 						<li>Help</li>
-						<li>Log Out</li>
+						<li><a class="menu-link" ng-click="signOut('header')">Log Out</a> </li>
 					</ul>
 
 				</div>
@@ -96,7 +97,7 @@
 						<div class="content-section">
 							<span style="text-transform:uppercase"><translated key="signup"></translated></span>
 						</div>
-						<div class="content-section">
+						<div class="content-section" ng-click="navigateTo('header','/login')">
 							<span style="text-transform:uppercase"><translated key="signin"></translated></span>
 						</div>
 						<div class="content-section no-border">

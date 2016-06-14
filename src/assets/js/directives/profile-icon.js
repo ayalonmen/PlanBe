@@ -6,13 +6,24 @@
           return {
               restrict: "E",
               templateUrl:'../assets/templates/profile-icon.html',
-              scope:{
-              },
-              controller:function($scope,Debug)
+              scope:{},
+              link: function(scope,element,attr)
               {
 
               },
-              controllerAs:'ctrl'
+              controller:function($scope,Debug,SessionManager)
+              {
+                    var self = this;
+                    self.picurl = "";
+
+                    $scope.$on("SESSION_READY",function(e,data) {
+
+                          if(SessionManager.api.isLoggedIn()) {
+                                 self.picurl = SessionManager.user.profilePic;
+                          }
+                    })
+              },
+              controllerAs:'ppCtrl'
           }
  })
 

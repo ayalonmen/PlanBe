@@ -30,6 +30,13 @@
                     {
                         Debug.err("Mouse Over")
                     }
+                    $scope.onKeyPress = function($event)
+                    {
+                         if($event.keyCode==13)
+                         {
+                             $scope.onSearch();
+                         }
+                    }
                     $scope.$on("SEARCH_ACTION",function(event,data)
                     {
                             console.log("SEARCH_ACTION:" + data)

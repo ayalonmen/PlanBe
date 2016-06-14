@@ -55,6 +55,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
     $rootScope.$on(Backand.EVENTS.SIGNOUT, function () {
         $scope.setSessionData();
         $location.url("")
+          $scope.isLogged = false;
          $rootScope.requestPending = false;
     });
 
@@ -76,11 +77,12 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 
     $scope.$on("REFRESH_SESSION_REQUEST",function(event)
     {
+        Debug.err("REFRESH_SESSION_REQUEST")
         if(SessionManager.user==null){
             $scope.setSessionData()
         }else {
             var data ={data:SessionManager.user}
-
+            console.log("NO ROUND TRIP")
             $rootScope.$broadcast("SESSION_READY", data);
         }
 
@@ -93,18 +95,15 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 /////METHODS
 
 
-
-
     $scope.setSessionData = function () {
 
            $rootScope.requestPending = true;
-           SessionManager.api.setUser(null)
            SessionManager.api.getUserDetails().then(function (data) {
-            Debug.Log("Get User Details");
+            Debug.Log("setSession : Data Get User Details");
             Debug.info(data)
-            $scope.isLogged = SessionManager.api.isLoggedIn();
-
-            if ($scope.isLogged) {
+            //
+            if (data!==null) {
+                  $scope.isLogged = true;
                    Debug.Log("user is logged")
                    SessionManager.api.readOne('users', data.userId, true).then(function (data) {
                     Debug.Log("read one --> user")
@@ -117,7 +116,13 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
                      $rootScope.requestPending = false;
                     $rootScope.$broadcast("SESSION_READY", data);
                     Debug.Log("SESSION_READY")
-                });
+                },function(data){
+                  Debug.err("Access Token invalid!!")
+              });
+            }else {
+                $rootScope.$broadcast("SESSION_OUT", data);
+                SessionManager.api.setUser(null)
+                  $scope.isLogged = false;
             }
 
 
@@ -204,6 +209,13 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
             $rootScope.$broadcast("CREATE_WORKSHOP_ERROR", data);
         })
     };
+
+    $scope.updateUserData =function(userObj)
+    {
+        console.log("updateUserdata " + userObj.id )
+        console.log(userObj )
+        return SessionManager.api.update("users", userObj.id , userObj)
+    }
 
     $scope.createSession =function(seObj) {
          $rootScope.requestPending = true;
@@ -308,6 +320,7 @@ myApp.controller('Main',['Backand','$rootScope','$location','SessionManager','$s
 //////CONFIG
     $scope.userDetails={};
     $rootScope.isReady = false;
+    $scope.isLogged = false;
     $rootScope.requestPending = false;
     $scope.setSessionData();
     $scope.loadLangData();

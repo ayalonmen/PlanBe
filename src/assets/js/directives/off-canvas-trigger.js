@@ -9,8 +9,6 @@
 
 				var pane = element.siblings('#'+dataPaneID)
                 var background_element = angular.element("<div class='fade-in container-background'></div>")
-
-	           console.log(pane)
                  pane.css('display', 'none')
                  pane.addClass("slide-in mui-enter")
                  scope.gate = false;
